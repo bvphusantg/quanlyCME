@@ -160,6 +160,72 @@ table.tbl tr:last-child td{border-bottom:none;}
 .badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;}
 .badge-teal{background:var(--teal-light);color:var(--teal);}
 .badge-navy{background:#E7EDF4;color:var(--navy);}
+
+/* ---------------- Bảng điều khiển: biểu đồ ---------------- */
+.ch-tools{display:flex;gap:6px;align-items:center;}
+.ch-tools button{border:1px solid var(--border);background:#fff;border-radius:6px;font-size:11px;font-weight:700;
+  color:var(--text-muted);padding:4px 8px;cursor:pointer;line-height:1.2;}
+.ch-tools button:hover{border-color:var(--navy-3);color:var(--navy);background:#F4F7FA;}
+.ch-box{width:100%;overflow:hidden;}
+.ch-box svg{width:100%;height:auto;display:block;}
+.ch-empty{text-align:center;color:var(--text-muted);font-size:12.5px;padding:42px 10px;}
+
+/* ---------- Khoá ô cấu hình sau khi lưu ---------- */
+.cfg-lockbar{display:flex;align-items:center;gap:9px;}
+.cfg-lockbar .st{font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:20px;}
+.cfg-lockbar .st.on{background:var(--teal-light);color:#0d3c34;border:1px solid #bfe3dc;}
+.cfg-lockbar .st.off{background:var(--gold-light);color:#6b4c15;border:1px solid #ecd9ad;}
+.card.cfg-locked .card-pad input:not([type=file]),
+.card.cfg-locked .card-pad select,
+.card.cfg-locked .card-pad textarea{
+  background:#F3F5F8 !important;color:#93A0B0 !important;border-color:#E4E9EF !important;
+  cursor:not-allowed;-webkit-text-fill-color:#93A0B0;}
+.card.cfg-locked .card-pad label{color:#9AA6B4;}
+.card.cfg-locked .card-pad .btn:not(.cfg-allow){opacity:.45;pointer-events:none;}
+.card.cfg-locked .card-pad .hint,.card.cfg-locked .card-pad .legal{opacity:.6;}
+.cfg-lockmsg{font-size:11.5px;color:var(--text-muted);margin-top:10px;font-style:italic;}
+
+/* ---------- Quét mã QR ---------- */
+.scan-modes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.scan-modes button{flex:1 1 130px;border:1.5px solid var(--border);background:#fff;border-radius:9px;padding:11px 10px;
+  cursor:pointer;font-size:12.5px;font-weight:700;color:var(--navy);display:flex;flex-direction:column;align-items:center;gap:5px;}
+.scan-modes button:hover{border-color:var(--navy-3);background:#F5F8FB;}
+.scan-modes button.on{border-color:var(--teal);background:var(--teal-light);color:#0d3c34;}
+.scan-modes .ic{font-size:19px;line-height:1;}
+.scan-stage{position:relative;background:#0d1620;border-radius:10px;overflow:hidden;aspect-ratio:4/3;display:none;}
+.scan-stage.on{display:block;}
+.scan-stage video{width:100%;height:100%;object-fit:cover;display:block;}
+.scan-reticle{position:absolute;top:50%;left:50%;width:58%;aspect-ratio:1;transform:translate(-50%,-50%);
+  border:2.5px solid rgba(255,255,255,.85);border-radius:14px;box-shadow:0 0 0 2000px rgba(0,0,0,.35);}
+.scan-hint{position:absolute;left:0;right:0;bottom:8px;text-align:center;color:#fff;font-size:11.5px;
+  text-shadow:0 1px 3px rgba(0,0,0,.8);}
+.scan-wedge{border:1.5px dashed #bfe3dc;background:var(--teal-light);border-radius:9px;padding:10px 12px;margin-bottom:12px;}
+.scan-wedge input{width:100%;border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-family:Consolas,monospace;
+  font-size:13px;letter-spacing:1px;background:#fff;}
+.scan-log{font-size:11.5px;color:var(--text-muted);margin-top:8px;}
+.dash-filter{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;}
+.dash-presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.dash-presets button{border:1px solid var(--border);background:#fff;border-radius:20px;font-size:11.5px;font-weight:600;
+  color:var(--text-muted);padding:5px 12px;cursor:pointer;}
+.dash-presets button.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin-bottom:18px;}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:14px 15px;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--navy-3);}
+.kpi.k-teal:before{background:var(--teal);} .kpi.k-gold:before{background:var(--gold);} .kpi.k-red:before{background:var(--danger);}
+.kpi .lb{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px;}
+.kpi .vl{font-size:25px;font-weight:800;color:var(--navy);line-height:1.15;margin-top:5px;font-variant-numeric:tabular-nums;}
+.kpi .ft{font-size:11px;color:var(--text-muted);margin-top:3px;}
+.rp-page{width:210mm;min-height:297mm;background:#fff;padding:15mm 15mm 12mm;box-sizing:border-box;
+  font-family:'Times New Roman',Times,serif;color:#000;position:relative;}
+.rp-page h1{font-size:16pt;text-align:center;margin:0 0 2mm;color:#142C46;}
+.rp-page h2{font-size:12pt;margin:6mm 0 2mm;color:#142C46;border-bottom:1px solid #d9dfe6;padding-bottom:1mm;}
+.rp-meta{font-size:9.5pt;text-align:center;color:#444;margin-bottom:4mm;}
+.rp-tbl{width:100%;border-collapse:collapse;font-size:8.6pt;}
+.rp-tbl th,.rp-tbl td{border:1px solid #c9d1da;padding:1.6mm 2mm;}
+.rp-tbl th{background:#EEF2F6;font-weight:700;text-align:left;}
+.rp-kpi{display:flex;flex-wrap:wrap;gap:3mm;margin-bottom:3mm;}
+.rp-kpi>div{flex:1 1 40mm;border:1px solid #c9d1da;border-radius:2mm;padding:2.5mm 3mm;}
+.rp-kpi .l{font-size:8pt;color:#555;} .rp-kpi .v{font-size:14pt;font-weight:700;color:#142C46;}
 .badge-gold{background:var(--gold-light);color:#8a651f;}
 .badge-gray{background:#EEF1F4;color:var(--text-muted);}
 .badge-danger{background:var(--danger-light);color:var(--danger);}
@@ -1047,19 +1113,49 @@ function renderApp(){
     const ok = (CFG.storage.mode==='native' && NATIVE) || (CFG.storage.mode==='fsapi' && ROOT_READY);
     ns.innerHTML = `<span class="status-dot ${ok?'dot-ok':'dot-warn'}"></span>${ok?esc(CFG.storage.rootPath||FOLDER_NAME):'Chưa gắn thư mục '+FOLDER_NAME}`;
     ns.style.cursor='pointer';
-    ns.onclick = ()=>{ STATE.tab='settings'; renderApp(); };
+    ns.onclick = ()=>{ STATE.tab='settings'; switchTab(); };
   }
 }
+/* LỖI CŨ: mỗi lần bấm một mục, hàm renderApp() dựng lại toàn bộ khung ứng dụng,
+   thanh menu bị tạo mới nên vị trí cuộn quay về 0 — bấm mục ở cuối danh sách
+   (Đồng bộ Google, Cài đặt & dữ liệu) thì menu nhảy vọt lên đầu, mất dấu mục
+   đang chọn. NAY: chỉ vẽ lại phần menu và phần nội dung, đồng thời ghi nhớ và
+   khôi phục đúng vị trí cuộn, rồi kéo mục đang chọn vào vùng nhìn thấy. */
+let NAV_SCROLL = 0;
 function renderNav(){
   const nav=$('#navList');
+  if(!nav) return;
+  const keep = nav.scrollTop || NAV_SCROLL;
   nav.innerHTML = ROUTES.map(g=>`
     <div class="nav-group-label">${g.group}</div>
     ${g.items.map(it=>`<button class="nav-item ${STATE.tab===it.id?'active':''}" data-tab="${it.id}"><span class="nav-icon">${it.icon}</span>${it.label}</button>`).join('')}
   `).join('');
-  $all('.nav-item', nav).forEach(b=>b.addEventListener('click', ()=>{ STATE.tab=b.dataset.tab; STATE.editing=null; renderApp(); }));
+  nav.scrollTop = keep;
+  $all('.nav-item', nav).forEach(b=>b.addEventListener('click', ()=>{
+    NAV_SCROLL = nav.scrollTop;
+    STATE.tab=b.dataset.tab; STATE.editing=null;
+    switchTab();
+  }));
+  /* Đưa mục đang chọn vào vùng nhìn thấy nếu nó đang nằm ngoài khung */
+  const act = nav.querySelector('.nav-item.active');
+  if(act){
+    const top = act.offsetTop, bot = top + act.offsetHeight;
+    if(top < nav.scrollTop + 4) nav.scrollTop = Math.max(0, top - 8);
+    else if(bot > nav.scrollTop + nav.clientHeight - 4) nav.scrollTop = bot - nav.clientHeight + 12;
+  }
+  NAV_SCROLL = nav.scrollTop;
+}
+/* Chuyển mục: giữ nguyên khung ứng dụng, chỉ thay nội dung — nhanh hơn và
+   không làm menu nhảy. Nội dung thì cuộn về đầu vì đó là hành vi người dùng mong đợi. */
+function switchTab(){
+  if(typeof stopQrCamera==='function' && STATE.tab!=='lookup') stopQrCamera();
+  renderNav();
+  renderTab();
+  const ct = $('#content'); if(ct) ct.scrollTop = 0;
+  if(window.scrollTo) window.scrollTo({top:0, behavior:'auto'});
 }
 const TAB_META = {
-  dashboard:['Bảng điều khiển','Tổng quan hoạt động cập nhật kiến thức y khoa liên tục'],
+  dashboard:['Bảng điều khiển','Theo dõi khóa đào tạo, học viên, tiến độ và tình trạng cấp giấy — kèm biểu đồ và báo cáo trực quan'],
   hospital:['Đơn vị cấp CME','Thông tin cơ sở y tế dùng để in trên giấy chứng nhận (Điều 14)'],
   design:['Thiết kế giấy chứng nhận','Tùy chỉnh màu/hình nền, khung viền nghệ thuật quanh mép giấy và logo hình chìm (đều tùy chọn)'],
   rates:['Bảng mức quy đổi giờ tín chỉ','Căn cứ Điều 4–11 Quy định và Phụ lục I Thông tư 32/2023/TT-BYT'],
@@ -1083,7 +1179,7 @@ function renderTab(){
   $('#pageSub').textContent=sub;
   const c=$('#content');
   const tr=$('#topbarRight'); tr.innerHTML='';
-  if(STATE.tab==='dashboard') renderDashboard(c);
+  if(STATE.tab==='dashboard') renderDashboard(c,tr);
   else if(STATE.tab==='hospital') renderHospital(c);
   else if(STATE.tab==='design') renderDesign(c);
   else if(STATE.tab==='rates') renderRates(c);
@@ -1100,71 +1196,980 @@ function renderTab(){
   else if(STATE.tab==='archive') renderArchive(c,tr);
   else if(STATE.tab==='gsync') renderGoogleSync(c);
   else if(STATE.tab==='settings') renderSettings(c);
+  /* Gắn thanh khoá cho mọi khối cấu hình vừa được vẽ ra */
+  try{ initCfgLocks(); }catch(e){ console.warn('Khoá cấu hình:', e); }
+}
+
+/* ==========================================================================
+ *  BỘ VẼ BIỂU ĐỒ (SVG thuần, không phụ thuộc thư viện ngoài)
+ *  Vẽ bằng SVG thay vì canvas vì: in ra không vỡ nét ở mọi cỡ giấy, tải về
+ *  được cả .svg để đưa vào slide/ấn phẩm, và chuyển sang .png bằng chính
+ *  trình duyệt nên chữ tiếng Việt luôn đúng dấu.
+ * ========================================================================== */
+const CH_PALETTE = ['#1F4E7A','#1F7A6C','#B8873A','#7A4A8C','#C0433F','#2F8FBF','#6B8E23','#A65C2E','#4A5D75','#0E7490','#9A6324','#3F6212'];
+const CH_FONT = "'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif";
+function chEsc(t){ return String(t===undefined||t===null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function chNum(n){ return fmtNum(n); }
+/* Làm tròn trục lên số "đẹp" (1 / 2 / 2,5 / 5 × 10^k) để lưới chia đều */
+function chNiceMax(v){
+  if(!v || v<=0) return 1;
+  const exp = Math.floor(Math.log10(v)), base = v/Math.pow(10,exp);
+  const step = base<=1?1: base<=2?2: base<=2.5?2.5: base<=5?5:10;
+  return step*Math.pow(10,exp);
+}
+function chTruncate(t, n){ t=String(t||''); return t.length>n ? t.slice(0,n-1)+'…' : t; }
+function chOpen(w,h){
+  return `<svg viewBox="0 0 ${w} ${h}" width="100%" xmlns="http://www.w3.org/2000/svg" data-w="${w}" data-h="${h}"
+    style="display:block;font-family:${CH_FONT};background:#ffffff;">`;
+}
+function chNoData(w,h,msg){
+  return chOpen(w,h)+`<text x="${w/2}" y="${h/2}" text-anchor="middle" font-size="13" fill="#8A94A3">${chEsc(msg||'Chưa có dữ liệu trong khoảng đã chọn')}</text></svg>`;
+}
+function chGrid(x0,y0,w,h,max,ticks,unit){
+  let g='';
+  for(let i=0;i<=ticks;i++){
+    const y = y0+h - (h*i/ticks);
+    const v = max*i/ticks;
+    g += `<line x1="${x0}" y1="${y.toFixed(1)}" x2="${x0+w}" y2="${y.toFixed(1)}" stroke="${i===0?'#9AA5B4':'#EDF0F4'}" stroke-width="${i===0?1.2:1}"/>`;
+    g += `<text x="${x0-7}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="10.5" fill="#77839A">${chEsc(chNum(v))}</text>`;
+  }
+  if(unit) g += `<text x="${x0-7}" y="${y0-8}" text-anchor="end" font-size="10" fill="#8A94A3">${chEsc(unit)}</text>`;
+  return g;
+}
+/* --- Biểu đồ cột đứng --- */
+function chartBars(data, o){
+  o = o || {};
+  const w = o.w||640, h = o.h||280;
+  if(!data || !data.length) return chNoData(w,h,o.empty);
+  const padL=48, padR=14, padT=18, padB= o.rotate?58:36;
+  const cw = w-padL-padR, ch = h-padT-padB;
+  const max = chNiceMax(Math.max(...data.map(d=>d.value), 0)) || 1;
+  const n = data.length, slot = cw/n, bw = Math.min(o.barW||46, slot*0.62);
+  let svg = chOpen(w,h) + chGrid(padL,padT,cw,ch,max,4,o.unit);
+  data.forEach((d,i)=>{
+    const bh = Math.max(0, ch*(d.value/max));
+    const x = padL + slot*i + (slot-bw)/2, y = padT+ch-bh;
+    const col = o.color || CH_PALETTE[0];
+    svg += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="3" fill="${col}" fill-opacity="${d.dim?0.42:0.92}"/>`;
+    if(d.value>0) svg += `<text x="${(x+bw/2).toFixed(1)}" y="${(y-5).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="700" fill="#33415A">${chEsc(chNum(d.value))}</text>`;
+    const lx = padL+slot*i+slot/2, ly = padT+ch+16;
+    svg += o.rotate
+      ? `<text x="${lx.toFixed(1)}" y="${ly}" font-size="10.5" fill="#5A6678" text-anchor="end" transform="rotate(-38 ${lx.toFixed(1)} ${ly})">${chEsc(chTruncate(d.label,22))}</text>`
+      : `<text x="${lx.toFixed(1)}" y="${ly}" font-size="10.8" fill="#5A6678" text-anchor="middle">${chEsc(chTruncate(d.label,14))}</text>`;
+  });
+  return svg+'</svg>';
+}
+/* --- Biểu đồ đường có tô vùng (dùng cho luỹ kế) --- */
+function chartLine(data, o){
+  o = o || {};
+  const w = o.w||640, h = o.h||280;
+  if(!data || data.length<1) return chNoData(w,h,o.empty);
+  const padL=52, padR=16, padT=18, padB=36;
+  const cw = w-padL-padR, ch = h-padT-padB;
+  const max = chNiceMax(Math.max(...data.map(d=>d.value),0)) || 1;
+  const n = data.length;
+  const px = i => padL + (n===1 ? cw/2 : cw*i/(n-1));
+  const py = v => padT + ch - ch*(v/max);
+  let svg = chOpen(w,h) + chGrid(padL,padT,cw,ch,max,4,o.unit);
+  const pts = data.map((d,i)=>`${px(i).toFixed(1)},${py(d.value).toFixed(1)}`).join(' ');
+  const col = o.color || CH_PALETTE[1];
+  svg += `<defs><linearGradient id="chg${o.gid||'1'}" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="${col}" stop-opacity="0.30"/><stop offset="100%" stop-color="${col}" stop-opacity="0.02"/></linearGradient></defs>`;
+  svg += `<polygon points="${px(0).toFixed(1)},${(padT+ch).toFixed(1)} ${pts} ${px(n-1).toFixed(1)},${(padT+ch).toFixed(1)}" fill="url(#chg${o.gid||'1'})"/>`;
+  svg += `<polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>`;
+  data.forEach((d,i)=>{
+    svg += `<circle cx="${px(i).toFixed(1)}" cy="${py(d.value).toFixed(1)}" r="3.4" fill="#fff" stroke="${col}" stroke-width="2"/>`;
+    const step = Math.ceil(n/9);
+    if(i%step===0 || i===n-1)
+      svg += `<text x="${px(i).toFixed(1)}" y="${padT+ch+16}" font-size="10.5" fill="#5A6678" text-anchor="middle">${chEsc(chTruncate(d.label,10))}</text>`;
+  });
+  if(n) svg += `<text x="${px(n-1).toFixed(1)}" y="${(py(data[n-1].value)-9).toFixed(1)}" font-size="11" font-weight="800" fill="${col}" text-anchor="end">${chEsc(chNum(data[n-1].value))}</text>`;
+  return svg+'</svg>';
+}
+/* --- Biểu đồ vành khuyên kèm chú giải --- */
+function chartDonut(data, o){
+  o = o || {};
+  const w = o.w||620, h = o.h||280;
+  const items = (data||[]).filter(d=>d.value>0);
+  if(!items.length) return chNoData(w,h,o.empty);
+  const total = items.reduce((s,d)=>s+d.value,0);
+  const cx = 128, cy = h/2, R = Math.min(96, h/2-16), r = R*0.60;
+  let a0 = -Math.PI/2, svg = chOpen(w,h);
+  items.forEach((d,i)=>{
+    const ang = (d.value/total)*Math.PI*2, a1 = a0+ang;
+    const col = d.color || CH_PALETTE[i%CH_PALETTE.length];
+    const big = ang>Math.PI ? 1 : 0;
+    const P=(rad,a)=>[(cx+rad*Math.cos(a)).toFixed(2),(cy+rad*Math.sin(a)).toFixed(2)];
+    const [x1,y1]=P(R,a0),[x2,y2]=P(R,a1),[x3,y3]=P(r,a1),[x4,y4]=P(r,a0);
+    if(items.length===1){
+      svg += `<circle cx="${cx}" cy="${cy}" r="${(R+r)/2}" fill="none" stroke="${col}" stroke-width="${R-r}"/>`;
+    } else {
+      svg += `<path d="M${x1},${y1} A${R},${R} 0 ${big} 1 ${x2},${y2} L${x3},${y3} A${r},${r} 0 ${big} 0 ${x4},${y4} Z" fill="${col}"/>`;
+    }
+    a0 = a1;
+  });
+  svg += `<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="21" font-weight="800" fill="#142C46">${chEsc(chNum(total))}</text>`;
+  svg += `<text x="${cx}" y="${cy+16}" text-anchor="middle" font-size="10.5" fill="#77839A">${chEsc(o.centerLabel||'tổng')}</text>`;
+  const lx = 262; let ly = cy - Math.min(items.length,9)*13 + 6;
+  items.slice(0,9).forEach((d,i)=>{
+    const col = d.color || CH_PALETTE[i%CH_PALETTE.length];
+    const pct = (d.value/total*100);
+    svg += `<rect x="${lx}" y="${ly-9}" width="11" height="11" rx="2.5" fill="${col}"/>`;
+    svg += `<text x="${lx+18}" y="${ly}" font-size="11.5" fill="#33415A">${chEsc(chTruncate(d.label,42))}</text>`;
+    svg += `<text x="${w-14}" y="${ly}" font-size="11.5" font-weight="700" fill="#142C46" text-anchor="end">${chEsc(chNum(d.value))} · ${pct.toFixed(1).replace('.',',')}%</text>`;
+    ly += 26;
+  });
+  return svg+'</svg>';
+}
+/* --- Biểu đồ thanh ngang (tên dài, xếp hạng) --- */
+function chartHBar(data, o){
+  o = o || {};
+  const items = (data||[]).slice(0, o.max||8);
+  const rowH = o.rowH||30, w = o.w||640;
+  if(!items.length) return chNoData(w, o.h||220, o.empty);
+  const h = 22 + items.length*rowH + 10;
+  const padL = o.labelW||190, padR = 62;
+  const bw = w-padL-padR;
+  const max = Math.max(...items.map(d=>d.value), 1);
+  let svg = chOpen(w,h);
+  items.forEach((d,i)=>{
+    const y = 16 + i*rowH;
+    const len = Math.max(2, bw*(d.value/max));
+    const col = d.color || CH_PALETTE[i%CH_PALETTE.length];
+    svg += `<text x="${padL-10}" y="${y+14}" font-size="11.5" fill="#33415A" text-anchor="end">${chEsc(chTruncate(d.label, o.labelChars||30))}</text>`;
+    svg += `<rect x="${padL}" y="${y+3}" width="${bw}" height="17" rx="4" fill="#F0F3F7"/>`;
+    svg += `<rect x="${padL}" y="${y+3}" width="${len.toFixed(1)}" height="17" rx="4" fill="${col}" fill-opacity="0.92"/>`;
+    const extra = d.sub ? ` · ${d.sub}` : '';
+    svg += `<text x="${w-12}" y="${y+16}" font-size="11.5" font-weight="700" fill="#142C46" text-anchor="end">${chEsc(chNum(d.value))}${chEsc(extra)}</text>`;
+  });
+  return svg+'</svg>';
+}
+
+/* --------- Tải biểu đồ về máy: .svg giữ nguyên nét, .png để dán nhanh --------- */
+function chartSvgString(el){
+  if(!el) return '';
+  const clone = el.cloneNode(true);
+  clone.setAttribute('xmlns','http://www.w3.org/2000/svg');
+  clone.setAttribute('width', clone.getAttribute('data-w')||'640');
+  clone.setAttribute('height', clone.getAttribute('data-h')||'280');
+  return '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
+}
+function svgToPngDataUrl(el, scale){
+  return new Promise((resolve,reject)=>{
+    const W = parseFloat(el.getAttribute('data-w'))||640;
+    const H = parseFloat(el.getAttribute('data-h'))||280;
+    const sc = scale||2.5;
+    const src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(chartSvgString(el))));
+    const img = new Image();
+    img.onload = ()=>{
+      const cv = document.createElement('canvas');
+      cv.width = Math.round(W*sc); cv.height = Math.round(H*sc);
+      const g = cv.getContext('2d');
+      g.fillStyle='#ffffff'; g.fillRect(0,0,cv.width,cv.height);
+      g.drawImage(img,0,0,cv.width,cv.height);
+      resolve(cv.toDataURL('image/png'));
+    };
+    img.onerror = ()=>reject(new Error('Không dựng được ảnh từ biểu đồ'));
+    img.src = src;
+  });
+}
+async function downloadChart(boxId, name, kind){
+  const el = document.querySelector('#'+boxId+' svg');
+  if(!el){ showToast('Không tìm thấy biểu đồ','err'); return; }
+  try{
+    if(kind==='svg'){
+      download(name+'.svg', new Blob([chartSvgString(el)],{type:'image/svg+xml;charset=utf-8'}));
+    } else {
+      const url = await svgToPngDataUrl(el, 3);
+      const bin = atob(url.split(',')[1]); const arr = new Uint8Array(bin.length);
+      for(let i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i);
+      download(name+'.png', new Blob([arr],{type:'image/png'}));
+    }
+    showToast('Đã tải biểu đồ về máy','ok');
+  }catch(e){ showToast('Lỗi khi tải biểu đồ: '+e.message,'err'); }
+}
+/* Khối thẻ bọc quanh mỗi biểu đồ, kèm nút tải riêng */
+function chartCard(id, title, desc, svg, foot){
+  return `<div class="card" style="margin-bottom:16px;">
+    <div class="card-head"><div><h2>${esc(title)}</h2>${desc?`<div class="desc">${esc(desc)}</div>`:''}</div>
+      <div class="ch-tools">
+        <button data-dl="png" data-box="ch_${id}" data-name="${esc(slug(title))}">⬇ PNG</button>
+        <button data-dl="svg" data-box="ch_${id}" data-name="${esc(slug(title))}">⬇ SVG</button>
+      </div></div>
+    <div class="card-pad"><div class="ch-box" id="ch_${id}">${svg}</div>
+      ${foot?`<div class="small-muted" style="margin-top:8px;">${foot}</div>`:''}</div>
+  </div>`;
+}
+
+/* ==========================================================================
+ *  KHOÁ Ô CẤU HÌNH SAU KHI LƯU
+ *  Sau khi lưu, các ô trong khối cấu hình chuyển sang trạng thái chỉ đọc và làm
+ *  mờ — nội dung vẫn hiển thị để người dùng biết ô đó đã có dữ liệu, nhưng không
+ *  sửa nhầm được. Muốn sửa phải bấm "Chỉnh sửa", đây là một thao tác có chủ ý.
+ *  Cách làm: không sửa từng biểu mẫu, mà tự nhận diện thẻ chứa một ô mốc rồi
+ *  gắn thanh khoá vào — nhờ vậy các biểu mẫu thêm sau này cũng dùng lại được.
+ * ========================================================================== */
+/* Mỗi khối cấu hình khai báo: ô mốc để nhận diện thẻ, và nút Lưu sẵn có (nếu có).
+   Khối ĐÃ CÓ nút Lưu riêng thì KHÔNG sinh thêm nút "Lưu & khoá" — bấm chính nút
+   Lưu của biểu mẫu là phần mềm tự khoá lại, tránh hai nút cùng làm một việc.
+   Khối không có nút Lưu (tự lưu ngay khi gõ) mới cần nút khoá riêng. */
+const LOCK_SECTIONS = [
+  { key:'hospital',  anchor:'#f_tenDonVi', label:'Thông tin đơn vị',  save:'#saveHospital' },
+  { key:'numbering', anchor:'#f_mauSo',    label:'Quy tắc đánh số',   save:'#saveNumbering' },
+  { key:'qr',        anchor:'#qrViewer',   label:'Mã QR & mật mã',    save:null },
+  { key:'google',    anchor:'#gClientId',  label:'Kết nối Google',    save:null },
+  { key:'archive',   anchor:'#arYears',    label:'Quy tắc lưu trữ',   save:null },
+  { key:'sealcfg',   anchor:'#sUnlockMin', label:'Quy tắc con dấu',   save:null }
+];
+function lockSection(key){ return LOCK_SECTIONS.find(x=>x.key===key); }
+function cfgLocks(){ return (CFG.locks = CFG.locks || {}); }
+function isCfgLocked(key){ return !!cfgLocks()[key]; }
+function setCfgLock(key, val){ cfgLocks()[key] = !!val; saveCfg(); }
+/* Gắn thanh khoá vào mọi khối cấu hình đang hiển thị trên màn hình */
+function initCfgLocks(){
+  LOCK_SECTIONS.forEach(sec=>{
+    const el = document.querySelector(sec.anchor);
+    if(!el) return;
+    const card = el.closest ? el.closest('.card') : null;
+    if(!card || card.dataset.lockKey) return;
+    card.dataset.lockKey = sec.key;
+    const head = card.querySelector('.card-head');
+    if(head){
+      const bar = document.createElement('div');
+      bar.className = 'cfg-lockbar';
+      bar.innerHTML = `<span class="st"></span><button class="btn btn-sm cfg-allow" data-lockbtn="${sec.key}"></button>`;
+      head.appendChild(bar);
+    }
+    /* Khối có nút Lưu riêng: gắn thêm việc khoá lại NGAY SAU khi người dùng bấm Lưu,
+       để không phải bấm hai nút cho cùng một hành động. */
+    if(sec.save){
+      const sv = card.querySelector(sec.save);
+      if(sv && !sv.dataset.lockHook){
+        sv.dataset.lockHook = '1';
+        sv.addEventListener('click', ()=>{
+          setCfgLock(sec.key, true);
+          const cur = document.querySelector('.card[data-lock-key="'+sec.key+'"]');
+          if(cur) applyCfgLock(cur);
+        });
+      }
+    }
+    applyCfgLock(card);
+  });
+  $all('[data-lockbtn]').forEach(b=>{
+    if(b.dataset.bound) return; b.dataset.bound='1';
+    b.addEventListener('click', ()=>{
+      const key = b.dataset.lockbtn;
+      const sec = lockSection(key);
+      const card = document.querySelector('.card[data-lock-key="'+key+'"]') || b.closest('.card');
+      if(isCfgLocked(key)){
+        setCfgLock(key,false); applyCfgLock(card);
+        showToast(sec && sec.save
+          ? 'Đã mở khoá. Sửa xong bấm nút Lưu của biểu mẫu, phần mềm sẽ tự khoá lại.'
+          : 'Đã mở khoá để chỉnh sửa. Sửa xong bấm “Lưu & khoá”.', 'ok');
+      } else {
+        /* Khối tự lưu khi gõ thì nút này vừa ghi cấu hình xuống, vừa khoá.
+           Khối có nút Lưu riêng thì nút này CHỈ khoá, không lưu trùng. */
+        if(!sec || !sec.save) saveCfg();
+        setCfgLock(key,true); applyCfgLock(card);
+        showToast(sec && sec.save ? 'Đã khoá khối cấu hình này' : 'Đã lưu và khoá khối cấu hình này','ok');
+      }
+    });
+  });
+}
+function applyCfgLock(card){
+  if(!card) return;
+  const key = card.dataset.lockKey;
+  const locked = isCfgLocked(key);
+  card.classList.toggle('cfg-locked', locked);
+  card.querySelectorAll('.card-pad input, .card-pad select, .card-pad textarea').forEach(f=>{
+    if(f.type==='file'){ f.disabled = locked; return; }
+    if(f.type==='checkbox' || f.type==='radio'){ f.disabled = locked; return; }
+    f.readOnly = locked;
+    if(f.tagName==='SELECT') f.disabled = locked;
+  });
+  const sec = lockSection(key);
+  const hasOwnSave = !!(sec && sec.save);
+  const st = card.querySelector('.cfg-lockbar .st');
+  const bt = card.querySelector('.cfg-lockbar [data-lockbtn]');
+  if(st){ st.className = 'st ' + (locked?'on':'off'); st.textContent = locked ? '🔒 Đã cấu hình' : '✎ Đang chỉnh sửa'; }
+  if(bt){
+    /* Có nút Lưu riêng thì chỉ hiện "Khoá lại" — việc lưu để nút Lưu của biểu mẫu lo */
+    bt.textContent = locked ? 'Chỉnh sửa' : (hasOwnSave ? 'Khoá lại' : 'Lưu & khoá');
+    bt.classList.toggle('btn-primary', locked);
+  }
+  let msg = card.querySelector('.cfg-lockmsg');
+  const text = locked
+    ? 'Các ô đang hiển thị mờ vì khối cấu hình đã được lưu và khoá. Bấm “Chỉnh sửa” ở góc trên để mở khoá.'
+    : (hasOwnSave ? 'Đang mở để chỉnh sửa. Bấm nút Lưu của biểu mẫu bên dưới, phần mềm sẽ tự khoá lại.' : '');
+  if(text){
+    if(!msg){ msg = document.createElement('div'); msg.className='cfg-lockmsg';
+      const pad = card.querySelector('.card-pad'); if(pad) pad.appendChild(msg); }
+    if(msg) msg.textContent = text;
+  } else if(msg){ msg.remove(); }
+}
+
+/* ==========================================================================
+ *  QUÉT MÃ QR — hỗ trợ ba cách, không cần thư viện ngoài
+ *  1) Máy quét mã vạch/QR chuyên dụng (USB hoặc Bluetooth): loại thiết bị này
+ *     hoạt động như một bàn phím, bắn rất nhanh chuỗi ký tự rồi kết thúc bằng
+ *     phím Enter. Phần mềm nhận ra nhịp gõ bất thường đó để phân biệt với người
+ *     gõ tay, nên nhân viên chỉ cần bắn mã là hệ thống tự tra cứu.
+ *  2) Camera của máy tính hoặc điện thoại, dùng BarcodeDetector có sẵn trong
+ *     trình duyệt nhân Chromium (Chrome, Edge, Cốc Cốc).
+ *  3) Chọn tệp ảnh chụp mã QR để giải mã, dùng khi máy không có camera.
+ * ========================================================================== */
+let QR_SCAN = { mode:null, stream:null, raf:null, det:null, buf:'', last:0, wedgeOn:true };
+
+/* Bóc mã tra cứu và mật mã từ nội dung quét được, chấp nhận nhiều dạng khác nhau */
+function parseLookupPayload(text){
+  let t = String(text||'').trim();
+  if(!t) return null;
+  let code='', pass='';
+  if(/^https?:\/\//i.test(t)){
+    try{
+      const u = new URL(t);
+      code = u.searchParams.get('code') || u.searchParams.get('ma') || '';
+      pass = u.searchParams.get('pass') || u.searchParams.get('p') || '';
+      if(!code){ const seg=u.pathname.split('/').filter(Boolean); code = seg[seg.length-1]||''; }
+    }catch(e){ /* không phải URL hợp lệ, xử lý như chuỗi thường */ }
+  }
+  if(!code && /^CME-TRACUU:/i.test(t)) code = t.replace(/^CME-TRACUU:/i,'').trim();
+  if(!code){
+    const parts = t.split(/[|;,\s]+/).filter(Boolean);
+    code = parts[0]||'';
+    if(parts[1] && parts[1].length<=12) pass = parts[1];
+  }
+  code = code.trim().toUpperCase();
+  if(!code) return null;
+  return { code, pass: (pass||'').trim().toUpperCase() };
+}
+/* Nhận kết quả quét từ bất kỳ nguồn nào rồi tra cứu ngay */
+function handleScanned(text, source){
+  const r = parseLookupPayload(text);
+  if(!r){ showToast('Không đọc được nội dung mã vừa quét','err'); return false; }
+  STATE.lookup = STATE.lookup || {};
+  STATE.lookup.code = r.code;
+  if(r.pass) STATE.lookup.pass = r.pass;
+  const ec=$('#lkCode'), ep=$('#lkPass');
+  if(ec) ec.value = r.code;
+  if(ep && r.pass) ep.value = r.pass;
+  const note = $('#lkScanLog');
+  if(note) note.innerHTML = `Đã nhận mã <b>${esc(r.code)}</b> từ ${esc(source||'thiết bị quét')} lúc ${new Date().toLocaleTimeString('vi-VN')}.`;
+  /* Có đủ mã và mật mã thì tra cứu luôn; thiếu mật mã thì đưa con trỏ vào ô mật mã */
+  if(r.pass || !CFG.qr.requirePassword) doLookup();
+  else { if(ep){ ep.focus(); ep.select && ep.select(); } showToast('Đã nhận mã tra cứu — nhập tiếp mật mã trên phiếu','ok'); }
+  return true;
+}
+/* --- 1) Máy quét chuyên dụng: nhận diện theo nhịp gõ --- */
+function wedgeKeyHandler(e){
+  if(!QR_SCAN.wedgeOn || STATE.tab!=='lookup') return;
+  const tag = (e.target && e.target.tagName)||'';
+  const inField = tag==='INPUT' || tag==='TEXTAREA' || tag==='SELECT';
+  const now = Date.now();
+  if(now - QR_SCAN.last > 120) QR_SCAN.buf = '';   /* nghỉ lâu -> coi như gõ tay */
+  QR_SCAN.last = now;
+  if(e.key === 'Enter'){
+    const data = QR_SCAN.buf; QR_SCAN.buf='';
+    /* Máy quét bắn cả chuỗi trong chớp mắt; người gõ tay không thể đạt tốc độ này */
+    if(data.length>=6){
+      if(handleScanned(data, 'máy quét chuyên dụng')){ e.preventDefault(); }
+    }
+    return;
+  }
+  if(e.key && e.key.length===1){
+    QR_SCAN.buf += e.key;
+    if(QR_SCAN.buf.length>512) QR_SCAN.buf='';
+    /* Nếu đang gõ trong ô nhập thì để nguyên, chuỗi vẫn hiện ra bình thường */
+    if(!inField && QR_SCAN.buf.length>0) e.preventDefault();
+  }
+}
+/* --- 2) Camera --- */
+function qrDetectorSupported(){ return typeof window.BarcodeDetector !== 'undefined'; }
+async function startQrCamera(){
+  const stage = $('#lkStage'), video = $('#lkVideo');
+  if(!stage || !video) return;
+  if(!qrDetectorSupported()){
+    showToast('Trình duyệt này chưa hỗ trợ giải mã QR bằng camera. Hãy dùng Chrome/Edge, máy quét chuyên dụng, hoặc chọn ảnh mã QR.','err');
+    return;
+  }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    showToast('Không truy cập được camera. Lưu ý trình duyệt chỉ cho dùng camera trên địa chỉ https hoặc localhost.','err');
+    return;
+  }
+  try{
+    QR_SCAN.det = new window.BarcodeDetector({formats:['qr_code']});
+    QR_SCAN.stream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:'environment' } });
+    video.srcObject = QR_SCAN.stream;
+    await video.play();
+    stage.classList.add('on');
+    QR_SCAN.mode = 'camera';
+    const tick = async ()=>{
+      if(QR_SCAN.mode!=='camera') return;
+      try{
+        const found = await QR_SCAN.det.detect(video);
+        if(found && found.length){
+          const val = found[0].rawValue||'';
+          if(val){ stopQrCamera(); handleScanned(val,'camera'); return; }
+        }
+      }catch(e){ /* khung hình chưa sẵn sàng, thử lại ở lượt sau */ }
+      QR_SCAN.raf = requestAnimationFrame(tick);
+    };
+    QR_SCAN.raf = requestAnimationFrame(tick);
+    showToast('Đưa mã QR vào giữa khung hình','ok');
+  }catch(e){
+    showToast('Không bật được camera: '+e.message,'err');
+  }
+}
+function stopQrCamera(){
+  QR_SCAN.mode = null;
+  if(QR_SCAN.raf){ cancelAnimationFrame(QR_SCAN.raf); QR_SCAN.raf=null; }
+  if(QR_SCAN.stream){ QR_SCAN.stream.getTracks().forEach(t=>t.stop()); QR_SCAN.stream=null; }
+  const stage=$('#lkStage'); if(stage) stage.classList.remove('on');
+  const btn=$('#lkCam'); if(btn) btn.classList.remove('on');
+}
+/* --- 3) Ảnh chụp mã QR --- */
+async function scanQrFromFile(file){
+  if(!file) return;
+  if(!qrDetectorSupported()){
+    showToast('Trình duyệt này chưa hỗ trợ giải mã QR từ ảnh. Hãy dùng Chrome/Edge hoặc máy quét chuyên dụng.','err');
+    return;
+  }
+  try{
+    const det = new window.BarcodeDetector({formats:['qr_code']});
+    const bmp = await createImageBitmap(file);
+    const found = await det.detect(bmp);
+    if(found && found.length) handleScanned(found[0].rawValue||'', 'ảnh mã QR');
+    else showToast('Không tìm thấy mã QR trong ảnh. Thử chụp lại rõ hơn, đủ sáng.','err');
+  }catch(e){ showToast('Không đọc được ảnh: '+e.message,'err'); }
 }
 
 /* ============================== DASHBOARD ================================ */
-function renderDashboard(c){
-  const totalCerts = DATA.certificates.filter(x=>x.trangThai!=='huy'&&x.trangThai!=='thu_hoi').length;
-  const totalHours = DATA.certificates.filter(x=>x.trangThai!=='huy'&&x.trangThai!=='thu_hoi').reduce((s,x)=>s+(x.gioTinChi||0),0);
-  const totalParticipants = new Set(DATA.certificates.map(x=>x.participantId)).size;
-  const totalPrograms = DATA.programs.length;
+/* ==========================================================================
+ *  BẢNG ĐIỀU KHIỂN — LỚP TÍNH TOÁN SỐ LIỆU
+ *  Mọi biểu đồ đều lấy từ một hàm tổng hợp duy nhất để các con số trên màn hình,
+ *  trong PDF và trong Word luôn khớp nhau tuyệt đối.
+ * ========================================================================== */
+function dashDefaultFilter(){
+  const now = new Date(), y = now.getFullYear();
+  return { preset:'year', tu:y+'-01-01', den:todayISO(), programId:'', hinhThuc:'', donVi:'',
+           groupBy:'auto', includeInactive:false };
+}
+function dashPeriodKey(iso, mode){
+  if(!iso) return '';
+  const y = iso.slice(0,4), m = iso.slice(5,7);
+  if(mode==='year') return y;
+  if(mode==='quarter') return y+'-Q'+(Math.floor((parseInt(m)-1)/3)+1);
+  return y+'-'+m;
+}
+function dashPeriodLabel(key, mode){
+  if(mode==='year') return 'Năm '+key;
+  if(mode==='quarter') return key.replace('-',' ');
+  const [y,m] = key.split('-'); return 'T'+parseInt(m)+'/'+y.slice(2);
+}
+/* Sinh đủ các mốc thời gian giữa hai đầu mút để biểu đồ không bị "nhảy cóc"
+   ở những kỳ không cấp giấy nào — nhìn đúng thực tế hơn. */
+function dashPeriodRange(tu, den, mode){
+  const out=[]; if(!tu||!den) return out;
+  let a=new Date(tu+'T00:00:00'), b=new Date(den+'T00:00:00');
+  if(isNaN(a)||isNaN(b)||a>b) return out;
+  if(mode==='year'){ for(let y=a.getFullYear(); y<=b.getFullYear(); y++) out.push(String(y)); return out; }
+  if(mode==='quarter'){
+    let y=a.getFullYear(), q=Math.floor(a.getMonth()/3)+1;
+    const ye=b.getFullYear(), qe=Math.floor(b.getMonth()/3)+1;
+    while(y<ye || (y===ye && q<=qe)){ out.push(y+'-Q'+q); q++; if(q>4){q=1;y++;} if(out.length>200) break; }
+    return out;
+  }
+  let y=a.getFullYear(), m=a.getMonth()+1;
+  const ye=b.getFullYear(), me=b.getMonth()+1;
+  while(y<ye || (y===ye && m<=me)){ out.push(y+'-'+String(m).padStart(2,'0')); m++; if(m>12){m=1;y++;} if(out.length>400) break; }
+  return out;
+}
+function dashCompute(f){
+  const inRange = iso => (!f.tu || (iso||'') >= f.tu) && (!f.den || (iso||'') <= f.den);
+  const alive = c => c.trangThai!=='huy' && c.trangThai!=='thu_hoi';
 
-  const byHT = {};
-  DATA.certificates.forEach(cert=>{
-    if(cert.trangThai==='huy'||cert.trangThai==='thu_hoi') return;
-    const ht = cert.hinhThucSnapshot || 'khac';
-    byHT[ht] = (byHT[ht]||0) + (cert.gioTinChi||0);
+  /* --- Giấy chứng nhận lọt bộ lọc --- */
+  const certs = DATA.certificates.filter(c=>{
+    if(!inRange(c.ngayCap)) return false;
+    if(!f.includeInactive && !alive(c)) return false;
+    if(f.programId && c.programId!==f.programId) return false;
+    const rec = byId(DATA.records, c.recordId) || {};
+    const ht = c.hinhThucSnapshot || rec.hinhThuc || '';
+    if(f.hinhThuc && ht!==f.hinhThuc) return false;
+    if(f.donVi){
+      const p = byId(DATA.participants,c.participantId) || c.participantSnapshot || {};
+      if(!String(p.donViCongTac||'').toLowerCase().includes(f.donVi.toLowerCase())) return false;
+    }
+    return true;
   });
-  const maxHT = Math.max(1, ...Object.values(byHT));
+  const certsAlive = certs.filter(alive);
 
-  const recentCerts = [...DATA.certificates].sort((a,b)=>(b.ngayTao||'').localeCompare(a.ngayTao||'')).slice(0,6);
+  /* --- Ghi nhận giờ tín chỉ chưa cấp giấy (đo tiến độ cấp) --- */
+  const issuedRecIds = new Set(DATA.certificates.filter(alive).map(c=>c.recordId));
+  const recPending = DATA.records.filter(r=>{
+    if(issuedRecIds.has(r.id)) return false;
+    if(f.programId && r.programId!==f.programId) return false;
+    if(f.hinhThuc && r.hinhThuc!==f.hinhThuc) return false;
+    const pg = byId(DATA.programs, r.programId);
+    if(pg && pg.ngayKetThuc && !inRange(pg.ngayKetThuc)) return false;
+    return true;
+  });
 
-  c.innerHTML = `
-    ${!DATA.hospital.tenDonVi ? '' : ''}
-    <div class="grid grid-4" style="margin-bottom:18px;">
-      <div class="stat"><div class="ring"></div><div class="label">Giấy chứng nhận đã cấp</div><div class="value">${totalCerts}</div><div class="foot">còn hiệu lực</div></div>
-      <div class="stat"><div class="ring"></div><div class="label">Tổng giờ tín chỉ</div><div class="value">${fmtNum(totalHours)}</div><div class="foot">giờ tín chỉ</div></div>
-      <div class="stat"><div class="ring"></div><div class="label">Người đã được cấp</div><div class="value">${totalParticipants}</div><div class="foot">người hành nghề</div></div>
-      <div class="stat"><div class="ring"></div><div class="label">Chương trình / hoạt động</div><div class="value">${totalPrograms}</div><div class="foot">đã ghi nhận</div></div>
-    </div>
-    <div class="grid grid-2">
-      <div class="card">
-        <div class="card-head"><div><h2>Giờ tín chỉ theo hình thức</h2><div class="desc">Tổng hợp trên các giấy còn hiệu lực</div></div></div>
-        <div class="card-pad">
-          ${Object.keys(byHT).length===0 ? '<div class="empty"><div class="ic">◌</div>Chưa có dữ liệu</div>' :
-            Object.entries(byHT).sort((a,b)=>b[1]-a[1]).map(([id,val])=>{
-              const h=hinhThucById(id);
-              return `<div style="margin-bottom:12px;">
-                <div class="hstack" style="justify-content:space-between;font-size:12.5px;margin-bottom:4px;">
-                  <span><b>${esc(h?h.ten:id)}</b> <span class="small-muted">(${h?h.dieu:''})</span></span>
-                  <span class="mono">${fmtNum(val)} giờ</span>
-                </div>
-                <div style="background:#EEF1F4;border-radius:6px;height:8px;overflow:hidden;">
-                  <div style="background:linear-gradient(90deg,var(--teal),var(--navy-3));height:100%;width:${(val/maxHT*100).toFixed(1)}%;"></div>
-                </div>
-              </div>`;
-            }).join('')}
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head"><div><h2>Giấy chứng nhận gần đây</h2></div></div>
-        <div class="tbl-wrap"><table class="tbl">
-          <thead><tr><th>Số giấy</th><th>Người được cấp</th><th>Ngày cấp</th><th class="right">Giờ TC</th></tr></thead>
-          <tbody>
-          ${recentCerts.length===0?'<tr><td colspan="4" class="empty">Chưa cấp giấy nào</td></tr>':recentCerts.map(cert=>{
-            const p=byId(DATA.participants, cert.participantId);
-            return `<tr><td class="mono">${esc(cert.soGiay)}</td><td>${esc(p?p.hoTen:'')}</td><td>${fmtDate(cert.ngayCap)}</td><td class="right mono">${fmtNum(cert.gioTinChi)}</td></tr>`;
-          }).join('')}
-          </tbody>
-        </table></div>
-      </div>
-    </div>
-    <div class="legal" style="margin-top:18px;">
-      Công cụ hỗ trợ tác nghiệp nội bộ, không thay thế hồ sơ gốc theo Điều 12 Quy định. Giấy chứng nhận chỉ xác nhận hoạt động và số giờ tín chỉ ghi trên giấy, không xác nhận việc hoàn thành tổng số giờ tín chỉ cho thủ tục giấy phép hành nghề (Điều 3.5).
-    </div>`;
+  /* --- Nhóm theo kỳ --- */
+  let mode = f.groupBy;
+  if(mode==='auto'){
+    const days = (f.tu && f.den) ? daysBetween(f.tu, f.den) : 400;
+    mode = days<=200 ? 'month' : (days<=1200 ? 'quarter' : 'year');
+  }
+  const keys = dashPeriodRange(f.tu||(certs.length?certs.map(c=>c.ngayCap).sort()[0]:todayISO()), f.den||todayISO(), mode);
+  const byPeriodCount={}, byPeriodHours={};
+  keys.forEach(k=>{ byPeriodCount[k]=0; byPeriodHours[k]=0; });
+  certsAlive.forEach(c=>{
+    const k = dashPeriodKey(c.ngayCap, mode);
+    if(byPeriodCount[k]===undefined){ byPeriodCount[k]=0; byPeriodHours[k]=0; keys.push(k); }
+    byPeriodCount[k]++; byPeriodHours[k]+=(c.gioTinChi||0);
+  });
+  keys.sort();
+  const seriesCount = keys.map(k=>({label:dashPeriodLabel(k,mode), value:byPeriodCount[k]||0}));
+  let run=0;
+  const seriesCum = keys.map(k=>{ run += (byPeriodHours[k]||0); return {label:dashPeriodLabel(k,mode), value:Math.round(run*100)/100}; });
+
+  /* --- Cơ cấu theo hình thức CME --- */
+  const byHT={};
+  certsAlive.forEach(c=>{
+    const rec = byId(DATA.records, c.recordId) || {};
+    const id = c.hinhThucSnapshot || rec.hinhThuc || 'khac';
+    const h = hinhThucById(id);
+    const name = h ? h.ten : (typeof id==='string' && id!=='khac' ? id : 'Khác');
+    byHT[name] = (byHT[name]||0) + (c.gioTinChi||0);
+  });
+  const htData = Object.entries(byHT).map(([k,v])=>({label:k, value:Math.round(v*100)/100})).sort((a,b)=>b.value-a.value);
+
+  /* --- Xếp hạng chương trình / đơn vị công tác --- */
+  const progAgg={};
+  certsAlive.forEach(c=>{
+    const pg = byId(DATA.programs,c.programId) || c.programSnapshot || {};
+    const key = c.programId || (pg.ten||'—');
+    if(!progAgg[key]) progAgg[key]={ ten:pg.ten||'(không rõ)', hoc:0, gio:0, ngayKT:pg.ngayKetThuc||'', ngayBD:pg.ngayBatDau||'', ht:pg.hinhThuc||'' , ids:new Set()};
+    progAgg[key].hoc++; progAgg[key].gio += (c.gioTinChi||0); progAgg[key].ids.add(c.participantId);
+  });
+  const progRows = Object.entries(progAgg).map(([id,v])=>({
+    id, ten:v.ten, hoc:v.hoc, nguoi:v.ids.size, gio:Math.round(v.gio*100)/100,
+    tb: v.hoc? Math.round(v.gio/v.hoc*100)/100 : 0, ngayBD:v.ngayBD, ngayKT:v.ngayKT
+  })).sort((a,b)=>b.hoc-a.hoc);
+  const topPrograms = progRows.slice(0,8).map(r=>({label:r.ten, value:r.hoc, sub:'học viên'}));
+
+  const unitAgg={};
+  certsAlive.forEach(c=>{
+    const p = byId(DATA.participants,c.participantId) || c.participantSnapshot || {};
+    const key = (p.donViCongTac||'(chưa ghi đơn vị)').trim();
+    unitAgg[key] = (unitAgg[key]||0)+1;
+  });
+  const topUnits = Object.entries(unitAgg).map(([k,v])=>({label:k, value:v, sub:'giấy'})).sort((a,b)=>b.value-a.value).slice(0,8);
+
+  /* --- Tiến độ chu kỳ 120 giờ tín chỉ / 5 năm (Điều 3 TT 32/2023/TT-BYT) --- */
+  const cycleFrom = addYears(todayISO(), -5);
+  const perPerson = {};
+  DATA.certificates.filter(alive).forEach(c=>{
+    if((c.ngayCap||'') < cycleFrom) return;
+    perPerson[c.participantId] = (perPerson[c.participantId]||0) + (c.gioTinChi||0);
+  });
+  const buckets = [
+    {label:'Đạt từ 120 giờ trở lên', min:120, max:Infinity, color:'#1F7A6C'},
+    {label:'Từ 90 đến dưới 120 giờ', min:90,  max:120,      color:'#4E8F5A'},
+    {label:'Từ 60 đến dưới 90 giờ',  min:60,  max:90,       color:'#B8873A'},
+    {label:'Từ 30 đến dưới 60 giờ',  min:30,  max:60,       color:'#C97B32'},
+    {label:'Dưới 30 giờ',            min:0,   max:30,       color:'#C0433F'}
+  ].map(b=>({label:b.label, color:b.color, value:0}));
+  const allPeople = DATA.participants.length ? DATA.participants.map(p=>p.id) : Object.keys(perPerson);
+  allPeople.forEach(pid=>{
+    const g = perPerson[pid]||0;
+    if(g>=120) buckets[0].value++;
+    else if(g>=90) buckets[1].value++;
+    else if(g>=60) buckets[2].value++;
+    else if(g>=30) buckets[3].value++;
+    else buckets[4].value++;
+  });
+  const cycleDone = buckets[0].value;
+
+  /* --- Tình trạng giấy & tiến độ cấp --- */
+  const statusAgg={};
+  DATA.certificates.filter(c=>inRange(c.ngayCap)).forEach(c=>{
+    const st = STATUS_LABEL[c.trangThai] || STATUS_LABEL.valid;
+    statusAgg[st[0]] = (statusAgg[st[0]]||0)+1;
+  });
+  const statusColors = {'Còn hiệu lực':'#1F7A6C','Đã hủy bỏ':'#C0433F','Đã thu hồi':'#8C2F2C','Đã đính chính':'#B8873A'};
+  const statusData = Object.entries(statusAgg).map(([k,v])=>({label:k, value:v, color:statusColors[k]}));
+
+  const withQr = certsAlive.filter(c=>c.maTraCuu).length;
+  const withFile = certsAlive.filter(c=>c.filePath || c.driveLink || c.published).length;
+  const funnel = [
+    {label:'Ghi nhận giờ tín chỉ', value: certsAlive.length + recPending.length, color:'#4A5D75'},
+    {label:'Đã cấp giấy chứng nhận', value: certsAlive.length, color:'#1F4E7A'},
+    {label:'Đã sinh mã QR tra cứu', value: withQr, color:'#1F7A6C'},
+    {label:'Đã lưu bản điện tử', value: withFile, color:'#B8873A'}
+  ];
+
+  /* --- Hồ sơ lưu trữ --- */
+  const ab = (typeof archiveBuckets==='function') ? archiveBuckets() : {active:[],pending:[],archived:[],due:[],soon:[]};
+
+  const totalHours = certsAlive.reduce((s,c)=>s+(c.gioTinChi||0),0);
+  return {
+    mode, f, certs, certsAlive, recPending,
+    kpi:{
+      certs: certsAlive.length,
+      hours: Math.round(totalHours*100)/100,
+      people: new Set(certsAlive.map(c=>c.participantId)).size,
+      programs: progRows.length,
+      avg: certsAlive.length ? Math.round(totalHours/certsAlive.length*100)/100 : 0,
+      pending: recPending.length,
+      cycleDone: cycleDone,
+      cyclePct: allPeople.length ? Math.round(cycleDone/allPeople.length*1000)/10 : 0,
+      revoked: DATA.certificates.filter(c=>inRange(c.ngayCap) && !alive(c)).length
+    },
+    seriesCount, seriesCum, htData, topPrograms, topUnits, progRows,
+    buckets, statusData, funnel,
+    archive:{ pending:ab.pending.length, archived:ab.archived.length, soon:ab.soon.length, due:ab.due.length }
+  };
+}
+function dashFilterText(f){
+  const parts=[];
+  parts.push('Từ ngày '+(f.tu?fmtDate(f.tu):'…')+' đến ngày '+(f.den?fmtDate(f.den):'…'));
+  if(f.programId){ const pg=byId(DATA.programs,f.programId); parts.push('Chương trình: '+(pg?pg.ten:f.programId)); }
+  if(f.hinhThuc){ const h=hinhThucById(f.hinhThuc); parts.push('Hình thức: '+(h?h.ten:f.hinhThuc)); }
+  if(f.donVi) parts.push('Đơn vị công tác chứa: “'+f.donVi+'”');
+  if(f.includeInactive) parts.push('Bao gồm giấy đã hủy/thu hồi');
+  return parts.join(' · ');
 }
 
-/* ============================== HOSPITAL ================================= */
+/* ========================= BẢNG ĐIỀU KHIỂN — GIAO DIỆN ===================== */
+const DASH_PRESETS = [
+  { id:'m30',    label:'30 ngày qua',  calc:()=>({tu:addDays(todayISO(),-29), den:todayISO()}) },
+  { id:'quarter',label:'Quý này',      calc:()=>{ const d=new Date(), q=Math.floor(d.getMonth()/3);
+      return { tu:d.getFullYear()+'-'+String(q*3+1).padStart(2,'0')+'-01', den:todayISO() }; } },
+  { id:'year',   label:'Năm nay',      calc:()=>({tu:new Date().getFullYear()+'-01-01', den:todayISO()}) },
+  { id:'prevyear',label:'Năm trước',   calc:()=>{ const y=new Date().getFullYear()-1; return {tu:y+'-01-01', den:y+'-12-31'}; } },
+  { id:'cycle',  label:'Chu kỳ 5 năm', calc:()=>({tu:addYears(todayISO(),-5), den:todayISO()}) },
+  { id:'all',    label:'Toàn bộ',      calc:()=>({tu:'2000-01-01', den:todayISO()}) }
+];
+
+function renderDashboard(c, tr){
+  if(!STATE.dash) STATE.dash = dashDefaultFilter();
+  const f = STATE.dash;
+  const D = dashCompute(f);
+  STATE.dashData = D;
+  if(tr) tr.innerHTML = `<button class="btn btn-gold" id="dbPdf">⬇ Báo cáo PDF</button><button class="btn" id="dbWord">⬇ Báo cáo Word</button>`;
+
+  const kpiHtml = `
+    <div class="kpi-grid">
+      <div class="kpi"><div class="lb">Giấy đã cấp</div><div class="vl">${D.kpi.certs}</div><div class="ft">trong khoảng đã chọn</div></div>
+      <div class="kpi k-teal"><div class="lb">Tổng giờ tín chỉ</div><div class="vl">${fmtNum(D.kpi.hours)}</div><div class="ft">trung bình ${fmtNum(D.kpi.avg)} giờ/giấy</div></div>
+      <div class="kpi"><div class="lb">Học viên</div><div class="vl">${D.kpi.people}</div><div class="ft">người đã được cấp giấy</div></div>
+      <div class="kpi"><div class="lb">Chương trình</div><div class="vl">${D.kpi.programs}</div><div class="ft">có phát sinh cấp giấy</div></div>
+      <div class="kpi k-gold"><div class="lb">Chờ cấp giấy</div><div class="vl">${D.kpi.pending}</div><div class="ft">ghi nhận chưa xuất giấy</div></div>
+      <div class="kpi k-teal"><div class="lb">Đạt chu kỳ 120 giờ</div><div class="vl">${D.kpi.cycleDone}</div><div class="ft">${fmtNum(D.kpi.cyclePct)}% người hành nghề</div></div>
+      <div class="kpi k-red"><div class="lb">Hủy bỏ / thu hồi</div><div class="vl">${D.kpi.revoked}</div><div class="ft">giấy không còn hiệu lực</div></div>
+      <div class="kpi"><div class="lb">Hồ sơ đang lưu trữ</div><div class="vl">${D.archive.archived}</div><div class="ft">${D.archive.pending} chờ đưa vào lưu trữ</div></div>
+    </div>`;
+
+  const groupName = D.mode==='year'?'năm':(D.mode==='quarter'?'quý':'tháng');
+
+  c.innerHTML = `
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-head"><div><h2>Phạm vi theo dõi</h2><div class="desc">${esc(dashFilterText(f))}</div></div></div>
+      <div class="card-pad">
+        <div class="dash-presets">
+          ${DASH_PRESETS.map(pr=>`<button data-preset="${pr.id}" class="${f.preset===pr.id?'on':''}">${esc(pr.label)}</button>`).join('')}
+        </div>
+        <div class="dash-filter">
+          <div class="field"><label>Từ ngày cấp</label><input type="date" id="dfTu" value="${esc(f.tu||'')}"></div>
+          <div class="field"><label>Đến ngày cấp</label><input type="date" id="dfDen" value="${esc(f.den||'')}"></div>
+          <div class="field"><label>Chương trình / khóa học</label>
+            <select id="dfProg"><option value="">Tất cả chương trình</option>
+              ${DATA.programs.slice().sort((a,b)=>(b.ngayKetThuc||'').localeCompare(a.ngayKetThuc||'')).map(pg=>`<option value="${pg.id}" ${f.programId===pg.id?'selected':''}>${esc(chTruncate(pg.ten,46))}</option>`).join('')}
+            </select></div>
+          <div class="field"><label>Hình thức CME</label>
+            <select id="dfHt"><option value="">Tất cả hình thức</option>
+              ${HINH_THUC.map(h=>`<option value="${h.id}" ${f.hinhThuc===h.id?'selected':''}>${esc(h.ten)}</option>`).join('')}
+            </select></div>
+          <div class="field"><label>Đơn vị công tác</label><input type="text" id="dfDv" value="${esc(f.donVi||'')}" placeholder="Lọc theo khoa/phòng…"></div>
+          <div class="field"><label>Nhóm số liệu theo</label>
+            <select id="dfGroup">
+              <option value="auto" ${f.groupBy==='auto'?'selected':''}>Tự động (${groupName})</option>
+              <option value="month" ${f.groupBy==='month'?'selected':''}>Tháng</option>
+              <option value="quarter" ${f.groupBy==='quarter'?'selected':''}>Quý</option>
+              <option value="year" ${f.groupBy==='year'?'selected':''}>Năm</option>
+            </select></div>
+        </div>
+        <div class="hstack" style="margin-top:10px;">
+          <label class="hstack" style="font-size:12.5px;font-weight:600;"><input type="checkbox" id="dfInactive" ${f.includeInactive?'checked':''}> Tính cả giấy đã hủy bỏ / thu hồi</label>
+          <span class="spacer"></span>
+          <button class="btn btn-sm btn-primary" id="dfApply">Áp dụng</button>
+          <button class="btn btn-sm" id="dfReset">Đặt lại</button>
+        </div>
+      </div>
+    </div>
+
+    ${kpiHtml}
+
+    <div class="grid grid-2">
+      <div>
+        ${chartCard('issued','Số giấy chứng nhận cấp theo '+groupName,'Đếm theo ngày cấp ghi trên giấy',
+          chartBars(D.seriesCount,{w:640,h:290,unit:'giấy',rotate:D.seriesCount.length>9,color:'#1F4E7A',empty:'Chưa cấp giấy nào trong khoảng đã chọn'}))}
+        ${chartCard('mix','Cơ cấu giờ tín chỉ theo hình thức CME','Phân bổ theo Điều 4–7 Thông tư 32/2023/TT-BYT',
+          chartDonut(D.htData,{w:640,h:290,centerLabel:'giờ tín chỉ'}))}
+        ${chartCard('programs','Chương trình có nhiều học viên nhất','Xếp hạng theo số giấy đã cấp',
+          chartHBar(D.topPrograms,{w:640,max:8,labelW:230,labelChars:36}))}
+      </div>
+      <div>
+        ${chartCard('cum','Lũy kế giờ tín chỉ đã cấp','Cộng dồn theo '+groupName+', cho thấy tốc độ đào tạo',
+          chartLine(D.seriesCum,{w:640,h:290,unit:'giờ',gid:'cum',color:'#1F7A6C'}))}
+        ${chartCard('cycle','Tiến độ tích lũy 120 giờ tín chỉ / 5 năm','Điều 3 Thông tư 32/2023/TT-BYT — tính trên toàn bộ người tham gia trong 5 năm gần nhất',
+          chartHBar(D.buckets,{w:640,max:5,labelW:230,labelChars:34,rowH:32}),
+          'Giấy chứng nhận chỉ xác nhận số giờ ghi trên giấy; việc đủ 120 giờ để duy trì giấy phép hành nghề do cơ quan quản lý xác định (Điều 3.5).')}
+        ${chartCard('units','Đơn vị công tác có nhiều lượt cấp nhất','Phục vụ phân bổ chỉ tiêu đào tạo cho khoa/phòng',
+          chartHBar(D.topUnits,{w:640,max:8,labelW:230,labelChars:36}))}
+      </div>
+    </div>
+
+    <div class="grid grid-2">
+      ${chartCard('funnel','Tiến độ cấp giấy và hoàn thiện hồ sơ','Từ lúc ghi nhận giờ tín chỉ đến khi có bản điện tử lưu trữ',
+        chartHBar(D.funnel,{w:640,max:4,labelW:220,labelChars:34,rowH:34}))}
+      ${chartCard('status','Tình trạng giấy chứng nhận','Theo dõi hủy bỏ, thu hồi, đính chính (Điều 15)',
+        chartDonut(D.statusData,{w:640,h:250,centerLabel:'giấy'}))}
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div><h2>Chi tiết theo chương trình / khóa đào tạo</h2>
+        <div class="desc">${D.progRows.length} chương trình có phát sinh cấp giấy</div></div>
+        <button class="btn btn-sm" id="dbCsv">⬇ Xuất bảng (Excel)</button></div>
+      <div class="tbl-wrap" style="max-height:420px;overflow-y:auto;">
+        <table class="tbl">
+          <thead><tr><th>#</th><th>Chương trình / khóa đào tạo</th><th>Thời gian</th>
+            <th class="right">Học viên</th><th class="right">Lượt cấp</th><th class="right">Tổng giờ TC</th><th class="right">TB/học viên</th></tr></thead>
+          <tbody>${D.progRows.length===0?'<tr><td colspan="7" class="empty">Chưa có dữ liệu phù hợp bộ lọc.</td></tr>':
+            D.progRows.map((r,i)=>`<tr>
+              <td>${i+1}</td><td>${esc(r.ten)}</td>
+              <td class="small-muted">${r.ngayBD?fmtDate(r.ngayBD):'—'} → ${r.ngayKT?fmtDate(r.ngayKT):'—'}</td>
+              <td class="right mono">${r.nguoi}</td><td class="right mono">${r.hoc}</td>
+              <td class="right mono">${fmtNum(r.gio)}</td><td class="right mono">${fmtNum(r.tb)}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="legal" style="margin-top:16px;">
+      Công cụ hỗ trợ tác nghiệp nội bộ, không thay thế hồ sơ gốc theo Điều 12 Quy định. Giấy chứng nhận chỉ xác nhận hoạt động
+      và số giờ tín chỉ ghi trên giấy, không xác nhận việc hoàn thành tổng số giờ tín chỉ cho thủ tục giấy phép hành nghề (Điều 3.5).
+    </div>`;
+
+  /* ---- sự kiện ---- */
+  $all('[data-preset]').forEach(b=>b.addEventListener('click', ()=>{
+    const pr = DASH_PRESETS.find(x=>x.id===b.dataset.preset); if(!pr) return;
+    Object.assign(f, pr.calc(), {preset:pr.id});
+    renderTab();
+  }));
+  $('#dfApply').addEventListener('click', ()=>{
+    f.tu=$('#dfTu').value; f.den=$('#dfDen').value; f.programId=$('#dfProg').value;
+    f.hinhThuc=$('#dfHt').value; f.donVi=$('#dfDv').value.trim();
+    f.groupBy=$('#dfGroup').value; f.includeInactive=$('#dfInactive').checked; f.preset='';
+    renderTab();
+  });
+  $('#dfReset').addEventListener('click', ()=>{ STATE.dash = dashDefaultFilter(); renderTab(); });
+  $all('[data-dl]').forEach(b=>b.addEventListener('click', ()=>downloadChart(b.dataset.box, b.dataset.name||'bieu-do', b.dataset.dl)));
+  $('#dbCsv').addEventListener('click', ()=>{
+    const rows=[['STT','Chương trình','Bắt đầu','Kết thúc','Học viên','Lượt cấp','Tổng giờ tín chỉ','Trung bình/học viên']]
+      .concat(D.progRows.map((r,i)=>[i+1,r.ten,r.ngayBD?fmtDate(r.ngayBD):'',r.ngayKT?fmtDate(r.ngayKT):'',r.nguoi,r.hoc,fmtNum(r.gio),fmtNum(r.tb)]));
+    const csv='\ufeff'+rows.map(r=>r.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(';')).join('\r\n');
+    download('ThongKeTheoChuongTrinh_'+todayISO()+'.csv', new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  });
+  if($('#dbPdf')) $('#dbPdf').addEventListener('click', ()=>exportDashboardPDF(D));
+  if($('#dbWord')) $('#dbWord').addEventListener('click', ()=>exportDashboardWord(D));
+}
+
+/* ==========================================================================
+ *  KẾT XUẤT BÁO CÁO TRỰC QUAN
+ *  Bản PDF được dựng bằng chính HTML đang hiển thị rồi chụp lại, nên chữ tiếng
+ *  Việt luôn đúng dấu (khác với cách ghi chữ trực tiếp vào PDF, vốn hay mất dấu)
+ *  và bố cục giống hệt những gì người dùng nhìn thấy trên màn hình.
+ * ========================================================================== */
+function dashReportHeader(D, pageNo, pageTotal){
+  const h = DATA.hospital||{};
+  return `<div style="text-align:center;">
+      <div style="font-size:10.5pt;">${esc((h.soYTe||'').toUpperCase())}</div>
+      <div style="font-size:11.5pt;font-weight:700;">${esc((h.tenDonVi||'').toUpperCase())}</div>
+    </div>
+    <h1>BÁO CÁO THỐNG KÊ CẬP NHẬT KIẾN THỨC Y KHOA LIÊN TỤC</h1>
+    <div class="rp-meta">${esc(dashFilterText(D.f))}<br>Ngày lập báo cáo: ${fmtDate(todayISO())}${pageTotal?` — Trang ${pageNo}/${pageTotal}`:''}</div>`;
+}
+function dashKpiBlock(D){
+  const k=D.kpi;
+  const item=(l,v,s)=>`<div><div class="l">${esc(l)}</div><div class="v">${esc(String(v))}</div><div class="l">${esc(s||'')}</div></div>`;
+  return `<div class="rp-kpi">
+    ${item('Giấy đã cấp', k.certs, 'trong kỳ báo cáo')}
+    ${item('Tổng giờ tín chỉ', fmtNum(k.hours), 'trung bình '+fmtNum(k.avg)+' giờ/giấy')}
+    ${item('Học viên', k.people, 'người được cấp giấy')}
+    ${item('Chương trình', k.programs, 'có phát sinh cấp giấy')}
+  </div>
+  <div class="rp-kpi">
+    ${item('Chờ cấp giấy', k.pending, 'ghi nhận chưa xuất giấy')}
+    ${item('Đạt 120 giờ/5 năm', k.cycleDone, fmtNum(k.cyclePct)+'% người hành nghề')}
+    ${item('Hủy bỏ / thu hồi', k.revoked, 'giấy không còn hiệu lực')}
+    ${item('Hồ sơ đang lưu trữ', D.archive.archived, D.archive.pending+' chờ đưa vào lưu trữ')}
+  </div>`;
+}
+function dashProgramTableHtml(D, limit){
+  const rows = D.progRows.slice(0, limit||24);
+  return `<table class="rp-tbl">
+    <thead><tr><th style="width:8mm;">#</th><th>Chương trình / khóa đào tạo</th><th style="width:34mm;">Thời gian</th>
+      <th style="width:16mm;text-align:right;">Học viên</th><th style="width:16mm;text-align:right;">Lượt cấp</th>
+      <th style="width:20mm;text-align:right;">Tổng giờ</th><th style="width:20mm;text-align:right;">TB/HV</th></tr></thead>
+    <tbody>${rows.length===0?'<tr><td colspan="7" style="text-align:center;">Không có dữ liệu</td></tr>':
+      rows.map((r,i)=>`<tr><td>${i+1}</td><td>${esc(r.ten)}</td>
+        <td>${r.ngayBD?fmtDate(r.ngayBD):'—'} → ${r.ngayKT?fmtDate(r.ngayKT):'—'}</td>
+        <td style="text-align:right;">${r.nguoi}</td><td style="text-align:right;">${r.hoc}</td>
+        <td style="text-align:right;">${fmtNum(r.gio)}</td><td style="text-align:right;">${fmtNum(r.tb)}</td></tr>`).join('')}
+    </tbody></table>
+    ${D.progRows.length>rows.length?`<div style="font-size:8.5pt;font-style:italic;margin-top:2mm;">… và ${D.progRows.length-rows.length} chương trình khác, xem đầy đủ trong bản Excel xuất từ màn hình Bảng điều khiển.</div>`:''}`;
+}
+/* Bộ biểu đồ dùng chung cho cả PDF lẫn Word — khai báo một lần, dùng hai nơi */
+function dashChartSet(D){
+  const groupName = D.mode==='year'?'năm':(D.mode==='quarter'?'quý':'tháng');
+  return [
+    { key:'issued', title:'Số giấy chứng nhận cấp theo '+groupName,
+      svg: chartBars(D.seriesCount,{w:640,h:280,unit:'giấy',rotate:D.seriesCount.length>9,color:'#1F4E7A'}) },
+    { key:'cum', title:'Lũy kế giờ tín chỉ đã cấp',
+      svg: chartLine(D.seriesCum,{w:640,h:280,unit:'giờ',gid:'r1',color:'#1F7A6C'}) },
+    { key:'mix', title:'Cơ cấu giờ tín chỉ theo hình thức CME',
+      svg: chartDonut(D.htData,{w:640,h:280,centerLabel:'giờ tín chỉ'}) },
+    { key:'cycle', title:'Tiến độ tích lũy 120 giờ tín chỉ trong 5 năm',
+      svg: chartHBar(D.buckets,{w:640,max:5,labelW:230,labelChars:34,rowH:32}) },
+    { key:'programs', title:'Chương trình có nhiều học viên nhất',
+      svg: chartHBar(D.topPrograms,{w:640,max:8,labelW:230,labelChars:36}) },
+    { key:'units', title:'Đơn vị công tác có nhiều lượt cấp nhất',
+      svg: chartHBar(D.topUnits,{w:640,max:8,labelW:230,labelChars:36}) },
+    { key:'funnel', title:'Tiến độ cấp giấy và hoàn thiện hồ sơ',
+      svg: chartHBar(D.funnel,{w:640,max:4,labelW:220,labelChars:34,rowH:34}) },
+    { key:'status', title:'Tình trạng giấy chứng nhận',
+      svg: chartDonut(D.statusData,{w:640,h:250,centerLabel:'giấy'}) }
+  ];
+}
+function dashReportPages(D){
+  const ch = dashChartSet(D);
+  const box = c => `<h2>${esc(c.title)}</h2><div style="width:100%;">${c.svg}</div>`;
+  const pages = [];
+  pages.push(`${dashReportHeader(D,1,3)}<h2>I. Số liệu tổng hợp</h2>${dashKpiBlock(D)}
+    ${box(ch[0])}${box(ch[1])}`);
+  pages.push(`${dashReportHeader(D,2,3)}<h2>II. Cơ cấu và tiến độ đào tạo</h2>
+    ${box(ch[2])}${box(ch[3])}${box(ch[6])}`);
+  pages.push(`${dashReportHeader(D,3,3)}<h2>III. Xếp hạng và chi tiết theo chương trình</h2>
+    ${box(ch[4])}${box(ch[5])}
+    <h2>Chi tiết theo chương trình / khóa đào tạo</h2>${dashProgramTableHtml(D,22)}
+    <div style="margin-top:8mm;font-size:9pt;font-style:italic;text-align:right;">
+      Người lập báo cáo<br><br><br><br>(Ký, ghi rõ họ tên)</div>`);
+  return pages;
+}
+async function exportDashboardPDF(D){
+  D = D || STATE.dashData; if(!D){ showToast('Chưa có số liệu để xuất','err'); return; }
+  if(typeof html2canvas==='undefined' || !window.jspdf){ showToast('Chưa nạp được thư viện tạo PDF. Kiểm tra kết nối mạng rồi thử lại.','err'); return; }
+  showToast('Đang dựng báo cáo PDF...','ok');
+  try{
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({unit:'mm', format:'a4', orientation:'portrait', compress:true});
+    const pages = dashReportPages(D);
+    for(let i=0;i<pages.length;i++){
+      const wrap = document.createElement('div');
+      wrap.style.cssText='position:fixed;left:-99999px;top:0;';
+      wrap.innerHTML = `<div class="rp-page">${pages[i]}</div>`;
+      document.body.appendChild(wrap);
+      try{
+        const el = wrap.querySelector('.rp-page');
+        await waitForImages(wrap);
+        const canvas = await html2canvas(el, {scale:2, backgroundColor:'#ffffff', logging:false,
+          width: el.offsetWidth, height: el.offsetHeight});
+        if(i>0) pdf.addPage('a4','portrait');
+        pdf.addImage(canvas.toDataURL('image/jpeg',0.95),'JPEG',0,0,210,297,undefined,'FAST');
+      } finally { wrap.remove(); }
+    }
+    pdf.save('BaoCaoTrucQuan_CME_'+todayISO()+'.pdf');
+    showToast('Đã tạo báo cáo PDF','ok');
+  }catch(e){ showToast('Lỗi khi tạo báo cáo PDF: '+e.message,'err'); }
+}
+async function exportDashboardWord(D){
+  D = D || STATE.dashData; if(!D){ showToast('Chưa có số liệu để xuất','err'); return; }
+  showToast('Đang dựng báo cáo Word...','ok');
+  try{
+    /* Word không đọc được SVG nội tuyến, nên từng biểu đồ được đổi sang ảnh PNG
+       độ phân giải cao rồi nhúng thẳng vào tài liệu. */
+    const set = dashChartSet(D);
+    const holder = document.createElement('div');
+    holder.style.cssText='position:fixed;left:-99999px;top:0;';
+    holder.innerHTML = set.map(c=>`<div>${c.svg}</div>`).join('');
+    document.body.appendChild(holder);
+    const svgs = Array.from(holder.querySelectorAll('svg'));
+    const imgs = [];
+    for(const sv of svgs){ try{ imgs.push(await svgToPngDataUrl(sv, 2.2)); }catch(e){ imgs.push(null); } }
+    holder.remove();
+
+    const h = DATA.hospital||{};
+    const blocks = set.map((c,i)=>`<h2 style="font-size:13pt;color:#142C46;margin:14pt 0 6pt;">${esc(c.title)}</h2>
+      ${imgs[i]?`<p style="margin:0;"><img src="${imgs[i]}" style="width:17.2cm;"></p>`:'<p><i>Không dựng được biểu đồ này.</i></p>'}`).join('');
+
+    const doc = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'><title>Bao cao CME</title>
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+@page WordSectionRp{ size:21.0cm 29.7cm; margin:1.8cm 1.9cm 1.8cm 1.9cm; }
+div.WordSectionRp{page:WordSectionRp;}
+body{font-family:'Times New Roman',Times,serif;font-size:13pt;color:#000;margin:0;}
+p,div,td{font-family:'Times New Roman',Times,serif;font-size:13pt;}
+p,div{margin:0;line-height:1.35;}
+table.rp{border-collapse:collapse;width:100%;font-size:10pt;}
+table.rp th,table.rp td{border:1pt solid #c9d1da;padding:3pt 4pt;}
+table.rp th{background:#EEF2F6;font-weight:bold;}
+h1{font-size:15pt;text-align:center;color:#142C46;margin:10pt 0 4pt;}
+</style></head><body lang=VI><div class=WordSectionRp>
+  <div style="text-align:center;font-size:11pt;">${esc((h.soYTe||'').toUpperCase())}</div>
+  <div style="text-align:center;font-size:12pt;font-weight:bold;">${esc((h.tenDonVi||'').toUpperCase())}</div>
+  <h1>BÁO CÁO THỐNG KÊ CẬP NHẬT KIẾN THỨC Y KHOA LIÊN TỤC</h1>
+  <div style="text-align:center;font-size:11pt;font-style:italic;">${esc(dashFilterText(D.f))}</div>
+  <div style="text-align:center;font-size:11pt;font-style:italic;margin-bottom:10pt;">Ngày lập báo cáo: ${fmtDate(todayISO())}</div>
+
+  <h2 style="font-size:13pt;color:#142C46;margin:12pt 0 6pt;">I. Số liệu tổng hợp</h2>
+  <table class="rp"><tbody>
+    <tr><th>Giấy chứng nhận đã cấp</th><td>${D.kpi.certs}</td><th>Tổng giờ tín chỉ</th><td>${fmtNum(D.kpi.hours)}</td></tr>
+    <tr><th>Số học viên được cấp</th><td>${D.kpi.people}</td><th>Trung bình giờ/giấy</th><td>${fmtNum(D.kpi.avg)}</td></tr>
+    <tr><th>Chương trình phát sinh</th><td>${D.kpi.programs}</td><th>Ghi nhận chờ cấp giấy</th><td>${D.kpi.pending}</td></tr>
+    <tr><th>Đạt 120 giờ trong 5 năm</th><td>${D.kpi.cycleDone} (${fmtNum(D.kpi.cyclePct)}%)</td><th>Giấy hủy bỏ / thu hồi</th><td>${D.kpi.revoked}</td></tr>
+    <tr><th>Hồ sơ đang lưu trữ</th><td>${D.archive.archived}</td><th>Hồ sơ chờ đưa vào lưu trữ</th><td>${D.archive.pending}</td></tr>
+  </tbody></table>
+
+  <h2 style="font-size:13pt;color:#142C46;margin:14pt 0 6pt;">II. Biểu đồ phân tích</h2>
+  ${blocks}
+
+  <h2 style="font-size:13pt;color:#142C46;margin:14pt 0 6pt;">III. Chi tiết theo chương trình / khóa đào tạo</h2>
+  <table class="rp"><thead><tr><th>#</th><th>Chương trình</th><th>Thời gian</th><th>Học viên</th><th>Lượt cấp</th><th>Tổng giờ</th><th>TB/HV</th></tr></thead>
+  <tbody>${D.progRows.length===0?'<tr><td colspan="7">Không có dữ liệu</td></tr>':
+    D.progRows.map((r,i)=>`<tr><td>${i+1}</td><td>${esc(r.ten)}</td>
+      <td>${r.ngayBD?fmtDate(r.ngayBD):'—'} → ${r.ngayKT?fmtDate(r.ngayKT):'—'}</td>
+      <td>${r.nguoi}</td><td>${r.hoc}</td><td>${fmtNum(r.gio)}</td><td>${fmtNum(r.tb)}</td></tr>`).join('')}
+  </tbody></table>
+
+  <p style="margin-top:16pt;font-style:italic;font-size:11pt;">Giấy chứng nhận chỉ xác nhận hoạt động và số giờ tín chỉ ghi trên giấy,
+  không xác nhận việc hoàn thành tổng số giờ tín chỉ cho thủ tục giấy phép hành nghề (Điều 3.5 Thông tư 32/2023/TT-BYT).</p>
+  <table style="width:100%;margin-top:14pt;border:none;"><tr>
+    <td style="width:50%;border:none;"></td>
+    <td style="width:50%;border:none;text-align:center;">
+      <div style="font-style:italic;">${esc(h.diaChiTinh||'')}, ngày ${new Date().getDate()} tháng ${new Date().getMonth()+1} năm ${new Date().getFullYear()}</div>
+      <div style="font-weight:bold;">NGƯỜI LẬP BÁO CÁO</div>
+      <div style="height:52pt;"></div>
+    </td></tr></table>
+</div></body></html>`;
+    download('BaoCaoTrucQuan_CME_'+todayISO()+'.doc', new Blob(['\ufeff', doc],{type:'application/msword;charset=utf-8'}));
+    showToast('Đã tạo báo cáo Word kèm biểu đồ','ok');
+  }catch(e){ showToast('Lỗi khi tạo báo cáo Word: '+e.message,'err'); }
+}
+
 function renderHospital(c){
   const h = DATA.hospital;
   c.innerHTML = `
@@ -3594,7 +4599,7 @@ function renderArchive(c, tr){
           <div class="field"><label>Báo trước khi sắp hết hạn (ngày)</label>
             <input type="number" min="30" max="1825" id="arWarn" value="${a.warnDays}"></div>
           <div class="hstack" style="margin-top:6px;">
-            <button class="btn" id="arExport">⬇ Xuất mục lục hồ sơ</button>
+            <button class="btn cfg-allow" id="arExport">⬇ Xuất mục lục hồ sơ</button>
           </div>
           <div class="legal">Lần rà soát gần nhất: ${a.lastRun?esc(new Date(a.lastRun).toLocaleString('vi-VN')):'chưa chạy'}.</div>
         </div>
@@ -4006,57 +5011,224 @@ function exportReportExcel(rows, byHT, totalHours){
 }
 
 function exportReportWord(rows, byHT, totalHours){
-  const rowsHtml = rows.map((r,i)=>`<tr><td>${i+1}</td><td>${esc(r.soGiay)}</td><td>${esc(r.hoTen)}</td><td>${esc(r.donViCongTac)}</td><td>${esc(r.chuongTrinh)}</td><td>${esc(r.hinhThuc)}</td><td>${esc(r.vaiTro)}</td><td>${fmtDate(r.ngayCap)}</td><td>${fmtNum(r.gioTinChi)}</td></tr>`).join('');
-  const sumHtml = Object.entries(byHT).map(([k,v])=>`<tr><td>${esc(k)}</td><td>${fmtNum(v)}</td></tr>`).join('');
-  const body = `
-    <div style="text-align:center;font-weight:bold;">${esc(DATA.hospital.soYTe)}<br>${esc(DATA.hospital.tenDonVi)}</div>
-    <div style="text-align:center;font-weight:bold;font-size:15pt;margin:16pt 0 4pt;">BÁO CÁO THỐNG KÊ CẤP GIẤY CHỨNG NHẬN<br>CẬP NHẬT KIẾN THỨC Y KHOA LIÊN TỤC</div>
-    <div style="text-align:center;font-style:italic;margin-bottom:14pt;">Ngày xuất báo cáo: ${fmtDate(todayISO())}</div>
-    <table border="1" cellspacing="0" cellpadding="4" style="width:100%;font-size:10.5pt;border-collapse:collapse;">
-      <tr style="font-weight:bold;background:#eef1f4;"><td>#</td><td>Số giấy</td><td>Họ và tên</td><td>Đơn vị công tác</td><td>Chương trình/hoạt động</td><td>Hình thức</td><td>Vai trò</td><td>Ngày cấp</td><td>Giờ TC</td></tr>
-      ${rowsHtml}
-    </table>
-    <div style="font-weight:bold;margin-top:18pt;">Tổng hợp theo hình thức</div>
-    <table border="1" cellspacing="0" cellpadding="4" style="width:60%;font-size:10.5pt;border-collapse:collapse;margin-top:6pt;">
-      <tr style="font-weight:bold;background:#eef1f4;"><td>Hình thức</td><td>Tổng giờ tín chỉ</td></tr>
-      ${sumHtml}
-      <tr style="font-weight:bold;"><td>Tổng cộng</td><td>${fmtNum(totalHours)}</td></tr>
-    </table>`;
-  const doc = wordDocWrapper(body, 'table td{border:1px solid #444;padding:4pt;} body{font-size:11pt;}');
-  const blob = new Blob(['\ufeff', doc], {type:'application/msword'});
-  download('BaoCaoThongKe_CME_'+todayISO()+'.doc', blob);
-  showToast('Đã tạo file Word','ok');
+  /* Không dùng chung khung Word của giấy chứng nhận nữa: báo cáo cần khổ ngang,
+     lề theo Nghị định 30/2020/NĐ-CP về công tác văn thư và có phần nơi nhận, chỗ ký. */
+  const h = DATA.hospital||{}, d = new Date();
+  const htRows = Object.entries(byHT).sort((a,b)=>b[1]-a[1]);
+  const doc = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'><title>Bao cao thong ke CME</title>
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]-->
+<style>
+@page WordSectionBc{ size:29.7cm 21.0cm; mso-page-orientation:landscape; margin:2.0cm 1.5cm 2.0cm 3.0cm; }
+div.WordSectionBc{page:WordSectionBc;}
+body{font-family:'Times New Roman',Times,serif;font-size:13pt;color:#000;margin:0;}
+p,div,td,th{font-family:'Times New Roman',Times,serif;}
+p,div{margin:0;line-height:1.4;}
+table.hd{width:100%;border-collapse:collapse;} table.hd td{width:50%;text-align:center;vertical-align:top;border:none;font-size:13pt;}
+.org{font-weight:bold;text-transform:uppercase;}
+.ln{border-bottom:1pt solid #000;display:inline-block;padding:0 18pt 2pt;}
+h1{font-size:14pt;font-weight:bold;text-align:center;text-transform:uppercase;margin:14pt 0 3pt;}
+.sub{text-align:center;font-style:italic;font-size:12.5pt;margin-bottom:12pt;}
+h2{font-size:13pt;font-weight:bold;margin:12pt 0 5pt;}
+table.d{width:100%;border-collapse:collapse;font-size:10.5pt;}
+table.d th,table.d td{border:1pt solid #000;padding:3pt 4pt;vertical-align:top;}
+table.d th{background:#EDF1F5;font-weight:bold;text-align:center;}
+td.c{text-align:center;} td.r{text-align:right;}
+table.sg{width:100%;border-collapse:collapse;margin-top:16pt;} table.sg td{width:50%;text-align:center;border:none;vertical-align:top;}
+.nn{font-size:10.5pt;font-style:italic;margin-top:14pt;}
+</style></head><body lang=VI><div class=WordSectionBc>
+<table class="hd"><tr>
+  <td><div>${esc((h.soYTe||'').toUpperCase())}</div><div class="org">${esc((h.tenDonVi||'').toUpperCase())}</div><div class="ln"></div></td>
+  <td><div class="org">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div><div style="font-weight:bold;">Độc lập - Tự do - Hạnh phúc</div><div class="ln"></div></td>
+</tr></table>
+<h1>Báo cáo thống kê cấp giấy chứng nhận<br>tham gia cập nhật kiến thức y khoa liên tục</h1>
+<div class="sub">${esc(reportFilterText())}</div>
+
+<h2>I. Danh sách giấy chứng nhận đã cấp</h2>
+<table class="d">
+  <thead><tr><th style="width:1.1cm;">TT</th><th style="width:3.2cm;">Số giấy</th><th>Họ và tên</th><th>Đơn vị công tác</th>
+    <th>Chương trình / hoạt động</th><th style="width:4.2cm;">Hình thức</th><th style="width:3.4cm;">Vai trò</th>
+    <th style="width:2.4cm;">Ngày cấp</th><th style="width:1.8cm;">Giờ TC</th></tr></thead>
+  <tbody>${rows.length===0?'<tr><td colspan="9" class="c">Không có dữ liệu phù hợp bộ lọc</td></tr>':
+    rows.map((r,i)=>`<tr><td class="c">${i+1}</td><td>${esc(r.soGiay)}</td><td>${esc(r.hoTen)}</td>
+      <td>${esc(r.donViCongTac)}</td><td>${esc(r.chuongTrinh)}</td><td>${esc(r.hinhThuc)}</td>
+      <td>${esc(r.vaiTro)}</td><td class="c">${fmtDate(r.ngayCap)}</td><td class="r">${fmtNum(r.gioTinChi)}</td></tr>`).join('')}
+  </tbody></table>
+
+<h2>II. Tổng hợp theo hình thức cập nhật kiến thức y khoa liên tục</h2>
+<table class="d" style="width:60%;">
+  <thead><tr><th style="width:1.2cm;">TT</th><th>Hình thức</th><th style="width:2.6cm;">Số giấy</th><th style="width:3.2cm;">Tổng giờ tín chỉ</th></tr></thead>
+  <tbody>${htRows.length===0?'<tr><td colspan="4" class="c">Không có dữ liệu</td></tr>':
+    htRows.map(([k,v],i)=>`<tr><td class="c">${i+1}</td><td>${esc(k)}</td>
+      <td class="c">${rows.filter(r=>(r.hinhThuc||'Khác')===k).length}</td><td class="r">${fmtNum(v)}</td></tr>`).join('')}
+    <tr><td colspan="2" style="font-weight:bold;text-align:right;">TỔNG CỘNG</td>
+      <td class="c" style="font-weight:bold;">${rows.length}</td><td class="r" style="font-weight:bold;">${fmtNum(totalHours)}</td></tr>
+  </tbody></table>
+
+<h2>III. Nhận xét</h2>
+<div style="text-align:justify;">Trong kỳ báo cáo, đơn vị đã cấp <b>${rows.length}</b> giấy chứng nhận tham gia cập nhật kiến thức
+y khoa liên tục cho <b>${new Set(rows.map(r=>r.hoTen)).size}</b> người, tương ứng <b>${fmtNum(totalHours)}</b> giờ tín chỉ.
+Giấy chứng nhận chỉ xác nhận hoạt động và số giờ tín chỉ ghi trên giấy, không xác nhận việc hoàn thành tổng số giờ tín chỉ
+phục vụ thủ tục giấy phép hành nghề (Điều 3.5 Thông tư 32/2023/TT-BYT).</div>
+
+<table class="sg"><tr>
+  <td><div class="nn" style="text-align:left;"><b>Nơi nhận:</b><br>- Ban Giám đốc (để b/c);<br>- Lưu: VT, hồ sơ CME.</div></td>
+  <td><div style="font-style:italic;">${esc(h.diaChiTinh||'')}, ngày ${d.getDate()} tháng ${d.getMonth()+1} năm ${d.getFullYear()}</div>
+      <div style="font-weight:bold;">${esc((h.chucDanhKy||'GIÁM ĐỐC').toUpperCase())}</div>
+      <div style="font-style:italic;font-size:11.5pt;">(Ký, đóng dấu)</div>
+      <div style="height:60pt;"></div><div style="font-weight:bold;">${esc(h.tenGiamDoc||'')}</div></td>
+</tr></table>
+</div></body></html>`;
+  download('BaoCaoThongKe_CME_'+todayISO()+'.doc', new Blob(['\ufeff', doc], {type:'application/msword;charset=utf-8'}));
+  showToast('Đã tạo báo cáo Word đúng thể thức văn bản','ok');
 }
 
-function exportReportPDF(rows, byHT, totalHours){
+
+/* ==========================================================================
+ *  XUẤT BÁO CÁO THỐNG KÊ — ĐÃ SỬA LỖI FONT
+ *
+ *  NGUYÊN NHÂN LỖI CŨ: bản trước ghi chữ thẳng vào PDF bằng jsPDF.text(). Các
+ *  phông dựng sẵn của jsPDF (Helvetica, Times) chỉ mã hoá theo bảng WinAnsi,
+ *  không có chữ cái tiếng Việt có dấu, nên "BỆNH VIỆN" biến thành "BÆNH VIÆN",
+ *  "THỐNG KÊ" thành "THÐNG KÊ" — đúng như tệp PDF bạn gửi.
+ *
+ *  CÁCH SỬA: dựng báo cáo bằng HTML với phông Times New Roman của máy, rồi chụp
+ *  lại từng trang A4 đưa vào PDF. Chữ do trình duyệt vẽ nên dấu tiếng Việt luôn
+ *  đúng, đồng thời trình bày được theo đúng thể thức văn bản hành chính:
+ *  quốc hiệu, tên cơ quan, tiêu đề, bảng số liệu, nơi nhận và chỗ ký.
+ * ========================================================================== */
+function reportPageStyle(){
+  return `<style>
+    .rpa{width:210mm;min-height:297mm;background:#fff;box-sizing:border-box;padding:20mm 15mm 18mm;
+      font-family:'Times New Roman',Times,serif;font-size:13pt;color:#000;line-height:1.45;position:relative;}
+    .rpa.land{width:297mm;min-height:210mm;padding:15mm 15mm 14mm;}
+    .rpa .hdr{width:100%;border-collapse:collapse;margin-bottom:6mm;}
+    .rpa .hdr td{width:50%;vertical-align:top;text-align:center;font-size:12.5pt;}
+    .rpa .hdr .org{font-weight:bold;text-transform:uppercase;}
+    .rpa .hdr .u{display:inline-block;border-bottom:1px solid #000;padding:0 6mm 1mm;margin-top:1mm;}
+    .rpa h1{font-size:15pt;font-weight:bold;text-align:center;margin:4mm 0 1mm;text-transform:uppercase;}
+    .rpa .sub{text-align:center;font-style:italic;font-size:12pt;margin-bottom:5mm;}
+    .rpa h2{font-size:13pt;font-weight:bold;margin:5mm 0 2mm;}
+    .rpa table.d{width:100%;border-collapse:collapse;font-size:10pt;}
+    .rpa table.d th,.rpa table.d td{border:1px solid #000;padding:1.4mm 1.8mm;vertical-align:top;}
+    .rpa table.d th{background:#EDF1F5;font-weight:bold;text-align:center;}
+    .rpa table.d td.c{text-align:center;} .rpa table.d td.r{text-align:right;}
+    .rpa .sign{width:100%;margin-top:8mm;border-collapse:collapse;}
+    .rpa .sign td{width:50%;text-align:center;vertical-align:top;font-size:12.5pt;}
+    .rpa .pgno{position:absolute;bottom:8mm;left:0;right:0;text-align:center;font-size:10pt;color:#444;}
+  </style>`;
+}
+function reportDocHeader(title, sub){
+  const h = DATA.hospital||{};
+  return `<table class="hdr"><tr>
+      <td><div>${esc((h.soYTe||'').toUpperCase())}</div><div class="org">${esc((h.tenDonVi||'').toUpperCase())}</div>
+          <div class="u"></div></td>
+      <td><div class="org">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+          <div style="font-weight:bold;">Độc lập - Tự do - Hạnh phúc</div><div class="u"></div></td>
+    </tr></table>
+    <h1>${esc(title)}</h1>
+    ${sub?`<div class="sub">${esc(sub)}</div>`:''}`;
+}
+function reportSignBlock(){
+  const h = DATA.hospital||{}, d=new Date();
+  return `<table class="sign"><tr>
+    <td><div style="font-weight:bold;">NGƯỜI LẬP BÁO CÁO</div>
+        <div style="font-style:italic;font-size:11.5pt;">(Ký, ghi rõ họ tên)</div><div style="height:24mm;"></div></td>
+    <td><div style="font-style:italic;">${esc(h.diaChiTinh||'')}, ngày ${d.getDate()} tháng ${d.getMonth()+1} năm ${d.getFullYear()}</div>
+        <div style="font-weight:bold;">${esc((h.chucDanhKy||'GIÁM ĐỐC').toUpperCase())}</div>
+        <div style="font-style:italic;font-size:11.5pt;">(Ký, đóng dấu)</div>
+        <div style="height:20mm;"></div><div style="font-weight:bold;">${esc(h.tenGiamDoc||'')}</div></td>
+  </tr></table>`;
+}
+function reportFilterText(){
+  const f = STATE.reportFilter||{};
+  const a=[];
+  if(f.tuNgay||f.denNgay) a.push('Từ ngày '+(f.tuNgay?fmtDate(f.tuNgay):'…')+' đến ngày '+(f.denNgay?fmtDate(f.denNgay):'…'));
+  else a.push('Toàn bộ thời gian');
+  if(f.hinhThuc){ const h=hinhThucById(f.hinhThuc); a.push('Hình thức: '+(h?h.ten:f.hinhThuc)); }
+  if(f.donVi) a.push('Đơn vị công tác: '+f.donVi);
+  if(f.includeInactive) a.push('Bao gồm giấy đã hủy bỏ / thu hồi');
+  return a.join(' · ');
+}
+/* Chia danh sách thành từng trang để bảng không bị cắt ngang khi chụp ảnh */
+function reportPagesHtml(rows, byHT, totalHours){
+  const first = 16, per = 26;           /* trang đầu ít dòng hơn vì có phần tiêu đề */
+  const chunks = [];
+  if(rows.length===0) chunks.push([]);
+  for(let i=0;i<rows.length;){
+    const take = chunks.length===0 ? first : per;
+    chunks.push(rows.slice(i, i+take)); i += take;
+  }
+  const total = chunks.length + 1;      /* +1 cho trang tổng hợp & ký */
+  let seq = 0;
+  const pages = chunks.map((chunk, ci)=>{
+    const head = ci===0
+      ? reportDocHeader('BÁO CÁO THỐNG KÊ CẤP GIẤY CHỨNG NHẬN\nCẬP NHẬT KIẾN THỨC Y KHOA LIÊN TỤC'.replace('\n',' '), reportFilterText())
+      : `<div style="text-align:right;font-style:italic;font-size:11pt;margin-bottom:3mm;">(tiếp theo)</div>`;
+    const body = `<table class="d">
+      <thead><tr><th style="width:9mm;">TT</th><th style="width:30mm;">Số giấy</th><th>Họ và tên</th>
+        <th>Đơn vị công tác</th><th>Chương trình / hoạt động</th><th style="width:34mm;">Hình thức</th>
+        <th style="width:30mm;">Vai trò</th><th style="width:22mm;">Ngày cấp</th><th style="width:16mm;">Giờ TC</th></tr></thead>
+      <tbody>${chunk.length===0?'<tr><td colspan="9" class="c">Không có dữ liệu phù hợp bộ lọc</td></tr>':
+        chunk.map(r=>{ seq++; return `<tr><td class="c">${seq}</td><td>${esc(r.soGiay)}</td><td>${esc(r.hoTen)}</td>
+          <td>${esc(r.donViCongTac)}</td><td>${esc(r.chuongTrinh)}</td><td>${esc(r.hinhThuc)}</td>
+          <td>${esc(r.vaiTro)}</td><td class="c">${fmtDate(r.ngayCap)}</td><td class="r">${fmtNum(r.gioTinChi)}</td></tr>`;}).join('')}
+      </tbody></table>`;
+    return `<div class="rpa land">${head}${ci===0?'<h2>I. Danh sách giấy chứng nhận đã cấp</h2>':''}${body}
+      <div class="pgno">Trang ${ci+1}/${total}</div></div>`;
+  });
+  const htRows = Object.entries(byHT).sort((a,b)=>b[1]-a[1]);
+  pages.push(`<div class="rpa">
+    <h2>II. Tổng hợp theo hình thức cập nhật kiến thức y khoa liên tục</h2>
+    <table class="d"><thead><tr><th style="width:12mm;">TT</th><th>Hình thức</th>
+      <th style="width:30mm;">Số giấy</th><th style="width:32mm;">Tổng giờ tín chỉ</th></tr></thead>
+      <tbody>${htRows.length===0?'<tr><td colspan="4" class="c">Không có dữ liệu</td></tr>':
+        htRows.map(([k,v],i)=>{
+          const n = rows.filter(r=>(r.hinhThuc||'Khác')===k).length;
+          return `<tr><td class="c">${i+1}</td><td>${esc(k)}</td><td class="c">${n}</td><td class="r">${fmtNum(v)}</td></tr>`;
+        }).join('')}
+        <tr><td colspan="2" style="font-weight:bold;text-align:right;">TỔNG CỘNG</td>
+          <td class="c" style="font-weight:bold;">${rows.length}</td>
+          <td class="r" style="font-weight:bold;">${fmtNum(totalHours)}</td></tr>
+      </tbody></table>
+    <h2>III. Nhận xét</h2>
+    <div style="text-align:justify;">Trong kỳ báo cáo, đơn vị đã cấp <b>${rows.length}</b> giấy chứng nhận tham gia cập nhật
+      kiến thức y khoa liên tục cho <b>${new Set(rows.map(r=>r.hoTen)).size}</b> người, tương ứng
+      <b>${fmtNum(totalHours)}</b> giờ tín chỉ. Giấy chứng nhận chỉ xác nhận hoạt động và số giờ tín chỉ ghi trên giấy,
+      không xác nhận việc hoàn thành tổng số giờ tín chỉ phục vụ thủ tục giấy phép hành nghề (Điều 3.5 Thông tư 32/2023/TT-BYT).</div>
+    ${reportSignBlock()}
+    <div class="pgno">Trang ${total}/${total}</div></div>`);
+  return pages;
+}
+async function exportReportPDF(rows, byHT, totalHours){
+  if(typeof html2canvas==='undefined' || !window.jspdf){ showToast('Chưa nạp được thư viện tạo PDF. Kiểm tra kết nối mạng rồi thử lại.','err'); return; }
+  showToast('Đang dựng báo cáo PDF...','ok');
   try{
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({unit:'mm', format:'a4', orientation:'landscape'});
-    doc.setFontSize(11); doc.text(DATA.hospital.tenDonVi||'', 14, 12);
-    doc.setFontSize(14); doc.text('BÁO CÁO THỐNG KÊ CẤP GIẤY CHỨNG NHẬN CME', 14, 20);
-    doc.setFontSize(9); doc.text('Ngày xuất báo cáo: '+fmtDate(todayISO()), 14, 26);
-    doc.autoTable({
-      startY:30,
-      head:[['#','Số giấy','Họ tên','Đơn vị công tác','Chương trình/hoạt động','Hình thức','Vai trò','Ngày cấp','Giờ TC']],
-      body: rows.map((r,i)=>[i+1, r.soGiay, r.hoTen, r.donViCongTac, r.chuongTrinh, r.hinhThuc, r.vaiTro, fmtDate(r.ngayCap), fmtNum(r.gioTinChi)]),
-      styles:{fontSize:8, cellPadding:2},
-      headStyles:{fillColor:[20,44,70]},
-      margin:{left:10,right:10}
-    });
-    let y = doc.lastAutoTable.finalY + 10;
-    doc.setFontSize(11); doc.text('Tổng hợp theo hình thức', 14, y); y+=4;
-    doc.autoTable({
-      startY:y,
-      head:[['Hình thức','Tổng giờ tín chỉ']],
-      body:[...Object.entries(byHT).map(([k,v])=>[k, fmtNum(v)]), ['Tổng cộng', fmtNum(totalHours)]],
-      styles:{fontSize:9, cellPadding:2},
-      headStyles:{fillColor:[184,135,58]},
-      margin:{left:14}
-    });
-    doc.save('BaoCaoThongKe_CME_'+todayISO()+'.pdf');
-    showToast('Đã tạo file PDF','ok');
+    const pdf = new jsPDF({unit:'mm', format:'a4', orientation:'landscape', compress:true});
+    const pages = reportPagesHtml(rows, byHT, totalHours);
+    for(let i=0;i<pages.length;i++){
+      const wrap = document.createElement('div');
+      wrap.style.cssText='position:fixed;left:-99999px;top:0;';
+      wrap.innerHTML = reportPageStyle() + pages[i];
+      document.body.appendChild(wrap);
+      try{
+        const el = wrap.querySelector('.rpa');
+        const land = el.classList.contains('land');
+        await waitForImages(wrap);
+        const canvas = await html2canvas(el, {scale:2, backgroundColor:'#ffffff', logging:false,
+          width: el.offsetWidth, height: el.offsetHeight});
+        /* Trang đầu dùng luôn trang có sẵn của tài liệu (đã đặt khổ ngang khi khởi tạo) */
+        if(i>0) pdf.addPage('a4', land?'landscape':'portrait');
+        const W = land?297:210, H = land?210:297;
+        pdf.addImage(canvas.toDataURL('image/jpeg',0.95),'JPEG',0,0,W,H,undefined,'FAST');
+      } finally { wrap.remove(); }
+    }
+    pdf.save('BaoCaoThongKe_CME_'+todayISO()+'.pdf');
+    showToast('Đã tạo báo cáo PDF — chữ tiếng Việt hiển thị đúng dấu','ok');
   }catch(e){ showToast('Lỗi khi tạo PDF: '+e.message,'err'); }
 }
+
 
 
 
@@ -5347,16 +6519,16 @@ function renderGoogleSync(c){
               <input type="checkbox" id="gAuto" ${g.autoSync?'checked':''}> Tự động đẩy dữ liệu sau mỗi lần cấp giấy chứng nhận
             </label>
             <div class="hstack">
-              <button class="btn btn-primary" id="gConnect">${connected?'Kết nối lại':'🔗 Kết nối Google'}</button>
-              <button class="btn btn-teal" id="gSyncNow" ${g.clientId?'':'disabled'}>⇅ Đồng bộ toàn bộ ngay</button>
-              ${connected?'<button class="btn btn-danger" id="gSignOut">Ngắt kết nối</button>':''}
+              <button class="btn btn-primary cfg-allow" id="gConnect">${connected?'Kết nối lại':'🔗 Kết nối Google'}</button>
+              <button class="btn btn-teal cfg-allow" id="gSyncNow" ${g.clientId?'':'disabled'}>⇅ Đồng bộ toàn bộ ngay</button>
+              ${connected?'<button class="btn btn-danger cfg-allow" id="gSignOut">Ngắt kết nối</button>':''}
             </div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-head"><div><h2>Nhật ký đồng bộ</h2></div>
-            <button class="btn btn-sm" id="gClearLog">Xoá nhật ký</button></div>
+            <button class="btn btn-sm cfg-allow" id="gClearLog">Xoá nhật ký</button></div>
           <div class="card-pad"><div class="gsync-log" id="gsLogBox">${gsLogHtml()}</div></div>
         </div>
       </div>
@@ -5671,6 +6843,19 @@ function renderLookup(c){
       <div class="card">
         <div class="card-head"><div><h2>Tra cứu giấy chứng nhận bằng mã QR</h2><div class="desc">Nhập mã tra cứu trên phiếu (hoặc quét từ mã QR) kèm mật mã được cấp</div></div></div>
         <div class="card-pad">
+          <div class="scan-modes">
+            <button id="lkWedge" class="${QR_SCAN.wedgeOn?'on':''}"><span class="ic">🔫</span>Máy quét chuyên dụng<span class="small-muted" style="font-weight:500;">${QR_SCAN.wedgeOn?'đang bật':'đang tắt'}</span></button>
+            <button id="lkCam"><span class="ic">📷</span>Quét bằng camera<span class="small-muted" style="font-weight:500;">${qrDetectorSupported()?'sẵn sàng':'trình duyệt chưa hỗ trợ'}</span></button>
+            <button id="lkFileBtn"><span class="ic">🖼️</span>Chọn ảnh mã QR<span class="small-muted" style="font-weight:500;">khi máy không có camera</span></button>
+          </div>
+          <input type="file" id="lkFile" accept="image/*" style="display:none;">
+          <div class="scan-stage" id="lkStage"><video id="lkVideo" playsinline muted></video>
+            <div class="scan-reticle"></div><div class="scan-hint">Đưa mã QR vào giữa khung — hệ thống tự tra cứu khi nhận được mã</div></div>
+          <div class="scan-wedge" id="lkWedgeBox">
+            <div style="font-size:12px;font-weight:700;color:#0d3c34;margin-bottom:6px;">Ô nhận mã từ máy quét</div>
+            <input type="text" id="lkScanBox" placeholder="Bấm vào ô này rồi bắn mã bằng máy quét…" autocomplete="off">
+            <div class="scan-log" id="lkScanLog">Máy quét USB/Bluetooth hoạt động như bàn phím: chỉ cần bắn mã, phần mềm tự nhận và tra cứu.</div>
+          </div>
           <div class="field"><label>Mã tra cứu</label><input type="text" id="lkCode" value="${esc(st.code)}" placeholder="VD: BVPSTG-2026-K7M2QX" style="text-transform:uppercase;"></div>
           <div class="field"><label>Mật mã truy cập</label><input type="text" id="lkPass" value="${esc(st.pass)}" placeholder="6 ký tự trên phiếu bàn giao" style="text-transform:uppercase;letter-spacing:3px;font-family:Consolas,monospace;"></div>
           <button class="btn btn-primary" id="lkGo">🔎 Tra cứu</button>
@@ -5683,6 +6868,32 @@ function renderLookup(c){
   $('#lkPass').addEventListener('input', e=>{ STATE.lookup.pass=e.target.value.toUpperCase(); });
   $('#lkPass').addEventListener('keydown', e=>{ if(e.key==='Enter') doLookup(); });
   $('#lkGo').addEventListener('click', doLookup);
+
+  /* --- gắn các cách quét mã --- */
+  $('#lkWedge').addEventListener('click', ()=>{
+    QR_SCAN.wedgeOn = !QR_SCAN.wedgeOn;
+    showToast(QR_SCAN.wedgeOn?'Đã bật nhận mã từ máy quét chuyên dụng':'Đã tắt nhận mã từ máy quét','ok');
+    renderTab();
+  });
+  $('#lkCam').addEventListener('click', ()=>{
+    if(QR_SCAN.mode==='camera'){ stopQrCamera(); }
+    else { $('#lkCam').classList.add('on'); startQrCamera(); }
+  });
+  $('#lkFileBtn').addEventListener('click', ()=>$('#lkFile').click());
+  $('#lkFile').addEventListener('change', e=>{ scanQrFromFile(e.target.files[0]); e.target.value=''; });
+  const sb = $('#lkScanBox');
+  sb.addEventListener('keydown', e=>{
+    if(e.key==='Enter'){
+      e.preventDefault();
+      const v = sb.value; sb.value='';
+      if(v.trim()) handleScanned(v, 'máy quét chuyên dụng');
+    }
+  });
+  /* Bộ nghe toàn màn hình để máy quét vẫn ăn dù con trỏ đang ở chỗ khác */
+  document.removeEventListener('keydown', wedgeKeyHandler);
+  document.addEventListener('keydown', wedgeKeyHandler);
+  setTimeout(()=>{ const el=$('#lkScanBox'); if(el && QR_SCAN.wedgeOn) el.focus(); }, 80);
+
   if(st.cert) drawLookupResult(st.cert);
 }
 async function doLookup(){
@@ -5760,7 +6971,7 @@ function renderQrSettingsCard(){
         </label>
         <div class="legal" style="margin-top:12px;">Mật mã gốc chỉ được lưu trên máy này. Trên Google Sheets chỉ lưu mã băm SHA-256 kèm muối bí mật, nên người xem bảng tính không thể suy ra mật mã của người tham gia.</div>
         <div class="hstack" style="margin-top:14px;">
-          <button class="btn" id="qrShowScript">📄 Xem mã cổng tra cứu trực tuyến (Google Apps Script)</button>
+          <button class="btn cfg-allow" id="qrShowScript">📄 Xem mã cổng tra cứu trực tuyến (Google Apps Script)</button>
         </div>
       </div>
     </div>`;
