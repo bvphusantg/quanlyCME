@@ -421,7 +421,57 @@ table.tbl tr:last-child td{border-bottom:none;}
 .qr-img{width:150px;height:150px;flex:none;border:1px solid var(--border);border-radius:8px;padding:6px;background:#fff;}
 .qr-img img,.qr-img canvas{width:100%;height:100%;display:block;}
 .pass-code{font-family:Consolas,"Courier New",monospace;font-size:22px;font-weight:700;letter-spacing:4px;color:var(--navy);background:var(--gold-light);border:1px dashed var(--gold);border-radius:8px;padding:8px 14px;display:inline-block;}
-.lookup-wrap{max-width:520px;margin:0 auto;}
+.lookup-wrap{max-width:1080px;margin:0 auto;}
+.lk-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:18px;align-items:start;}
+@media(max-width:1040px){.lk-grid{grid-template-columns:1fr;}}
+.lk-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 62%,#1d5468 100%);color:#fff;
+  border-radius:var(--radius);padding:20px 22px;margin-bottom:16px;position:relative;overflow:hidden;}
+.lk-hero:after{content:"";position:absolute;right:-40px;top:-50px;width:190px;height:190px;border-radius:50%;
+  background:rgba(255,255,255,.06);}
+.lk-hero h2{margin:0 0 5px;font-size:17px;font-weight:700;}
+.lk-hero p{margin:0;font-size:12.5px;color:rgba(255,255,255,.72);line-height:1.55;max-width:62ch;}
+.lk-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;}
+.lk-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:4px 11px;font-size:11.5px;font-weight:600;}
+.lk-chip.ok{background:rgba(46,183,151,.22);border-color:rgba(120,225,200,.4);}
+.lk-chip.off{background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);}
+.lk-tabs{display:flex;gap:4px;background:#EDF1F5;border-radius:10px;padding:4px;margin-bottom:16px;}
+.lk-tabs button{flex:1;border:none;background:transparent;border-radius:7px;padding:9px 10px;cursor:pointer;
+  font-size:13px;font-weight:700;color:var(--text-muted);display:flex;align-items:center;justify-content:center;gap:7px;}
+.lk-tabs button.on{background:#fff;color:var(--navy);box-shadow:0 1px 4px rgba(20,44,70,.13);}
+.scan-stage{position:relative;background:#0b131c;border-radius:12px;overflow:hidden;aspect-ratio:4/3;
+  display:flex;align-items:center;justify-content:center;}
+.scan-stage video{width:100%;height:100%;object-fit:cover;display:none;}
+.scan-stage.on video{display:block;}
+.scan-stage .idle{color:rgba(255,255,255,.5);font-size:12.5px;text-align:center;padding:0 20px;}
+.scan-stage.on .idle{display:none;}
+.scan-reticle{position:absolute;top:50%;left:50%;width:56%;aspect-ratio:1;transform:translate(-50%,-50%);
+  border-radius:16px;display:none;}
+.scan-stage.on .scan-reticle{display:block;}
+.scan-reticle:before,.scan-reticle:after{content:"";position:absolute;width:26px;height:26px;border:3px solid #4ade9f;}
+.scan-reticle:before{top:-2px;left:-2px;border-right:none;border-bottom:none;border-radius:12px 0 0 0;}
+.scan-reticle:after{bottom:-2px;right:-2px;border-left:none;border-top:none;border-radius:0 0 12px 0;}
+.scan-scanline{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#4ade9f,transparent);
+  animation:scanmove 2.1s ease-in-out infinite;}
+@keyframes scanmove{0%,100%{top:4%;}50%{top:96%;}}
+.scan-hint{position:absolute;left:0;right:0;bottom:10px;text-align:center;color:#fff;font-size:11.5px;
+  text-shadow:0 1px 4px rgba(0,0,0,.85);}
+.scan-ctrl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.scan-wedge{border:1px solid var(--border);background:#F7F9FB;border-radius:10px;padding:12px 13px;}
+.scan-wedge.on{border-color:#bfe3dc;background:var(--teal-light);}
+.scan-wedge input{width:100%;border:1px solid var(--border);border-radius:7px;padding:9px 11px;
+  font-family:Consolas,monospace;font-size:13px;letter-spacing:1px;background:#fff;}
+.scan-log{font-size:11.5px;color:var(--text-muted);margin-top:8px;line-height:1.5;}
+.lk-steps{counter-reset:s;list-style:none;padding:0;margin:0;}
+.lk-steps li{counter-increment:s;position:relative;padding:0 0 14px 34px;font-size:12.5px;color:var(--text);line-height:1.55;}
+.lk-steps li:before{content:counter(s);position:absolute;left:0;top:-1px;width:23px;height:23px;border-radius:50%;
+  background:var(--navy);color:#fff;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.lk-steps li:last-child{padding-bottom:0;}
+.lk-recent{list-style:none;padding:0;margin:0;}
+.lk-recent li{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--border);font-size:12px;}
+.lk-recent li:last-child{border-bottom:none;}
+.lk-recent .c{font-family:Consolas,monospace;font-weight:700;color:var(--navy);cursor:pointer;}
+.lk-recent .c:hover{text-decoration:underline;}
 .slip{border:1.5px dashed #999;border-radius:8px;padding:14px 16px;font-family:"Times New Roman",serif;font-size:12pt;}
 
 /* ==================== BỔ SUNG: Shape line trong trình soạn thảo ============ */
@@ -1167,7 +1217,7 @@ const TAB_META = {
   certlist:['Sổ quản lý giấy chứng nhận','Theo dõi, đính chính, cấp lại, hủy bỏ, thu hồi (Điều 15)'],
   reissue:['Cấp lại giấy chứng nhận','Tìm kiếm giấy đã cấp và cấp lại theo yêu cầu của người học (Điều 15.2)'],
   reports:['Báo cáo thống kê','Tổng hợp số liệu phục vụ báo cáo (xuất Excel / Word / PDF)'],
-  lookup:['Tra cứu giấy chứng nhận','Nhập mã tra cứu trên mã QR kèm mật mã được cấp để xem và tải lại giấy'],
+  lookup:['Tra cứu giấy chứng nhận','Quét mã QR bằng máy quét chuyên dụng hoặc camera, hoặc nhập mã kèm mật mã để xem và tải lại bản sao'],
   seal:['Chữ ký & con dấu','Chèn mẫu chữ ký người ký và con dấu đơn vị — mặc định tắt, có mật khẩu bảo vệ và nhật ký sử dụng'],
   archive:['Lưu trữ hồ sơ','Vòng đời và thời hạn lưu trữ hồ sơ giấy chứng nhận (Điều 9.4 TT 32/2023/TT-BYT, TT 33/2025/TT-BYT)'],
   gsync:['Đồng bộ Google','Lưu đồng thời dữ liệu lên Google Sheets, file giấy và hình ảnh lên Google Drive'],
@@ -1518,7 +1568,93 @@ function applyCfgLock(card){
  *     trình duyệt nhân Chromium (Chrome, Edge, Cốc Cốc).
  *  3) Chọn tệp ảnh chụp mã QR để giải mã, dùng khi máy không có camera.
  * ========================================================================== */
-let QR_SCAN = { mode:null, stream:null, raf:null, det:null, buf:'', last:0, wedgeOn:true };
+let QR_SCAN = {
+  mode:null, stream:null, raf:null, det:null, buf:'', last:0,
+  wedgeOn:true,            /* nhận mã từ máy quét chuyên dụng */
+  engine:null,             /* 'native' | 'jsqr' | 'none' | null = chưa dò */
+  devices:[], deviceIdx:0, torch:false, canvas:null, ctx:null,
+  history:[]               /* các mã đã quét trong phiên, để đối chiếu nhanh */
+};
+
+/* Nạp một thư viện ngoài, thử lần lượt nhiều địa chỉ dự phòng */
+function loadScriptOnce(urls){
+  return new Promise((resolve, reject)=>{
+    let i = 0;
+    const next = ()=>{
+      if(i >= urls.length){ reject(new Error('Không tải được thư viện giải mã')); return; }
+      const el = document.createElement('script');
+      el.src = urls[i++]; el.async = true;
+      el.onload = ()=>resolve(true);
+      el.onerror = next;
+      document.head.appendChild(el);
+    };
+    next();
+  });
+}
+/* ==========================================================================
+ *  BỘ GIẢI MÃ QR — hai lớp, tự chọn lớp khả dụng
+ *  Lớp 1: BarcodeDetector dựng sẵn trong trình duyệt. Nhanh nhất, nhưng trên
+ *         Windows thì Chrome và Edge đều CHƯA có (chỉ Android, macOS, ChromeOS),
+ *         nên đây chính là lý do máy của bạn báo "trình duyệt chưa hỗ trợ".
+ *  Lớp 2: thư viện jsQR tải kèm. Chạy được trên mọi trình duyệt, mọi hệ điều hành.
+ *  Chỉ khi cả hai lớp đều không dùng được, phần mềm mới GỠ HẲN các lựa chọn
+ *  liên quan tới camera và ảnh khỏi giao diện, thay vì hiện nút rồi báo lỗi.
+ * ========================================================================== */
+async function ensureQrDecoder(){
+  if(QR_SCAN.engine) return QR_SCAN.engine;
+  try{
+    if(typeof window.BarcodeDetector !== 'undefined'){
+      let ok = true;
+      if(window.BarcodeDetector.getSupportedFormats){
+        const fmts = await window.BarcodeDetector.getSupportedFormats();
+        ok = !!(fmts && fmts.indexOf('qr_code') >= 0);
+      }
+      if(ok){ QR_SCAN.det = new window.BarcodeDetector({formats:['qr_code']}); QR_SCAN.engine='native'; return 'native'; }
+    }
+  }catch(e){ /* rơi xuống lớp 2 */ }
+  if(typeof window.jsQR === 'function'){ QR_SCAN.engine='jsqr'; return 'jsqr'; }
+  try{
+    await loadScriptOnce([
+      'https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js',
+      'https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js',
+      'https://unpkg.com/jsqr@1.4.0/dist/jsQR.js'
+    ]);
+    if(typeof window.jsQR === 'function'){ QR_SCAN.engine='jsqr'; return 'jsqr'; }
+  }catch(e){ /* không có mạng hoặc bị chặn */ }
+  QR_SCAN.engine = 'none';
+  return 'none';
+}
+function qrEngineName(){
+  return QR_SCAN.engine==='native' ? 'bộ giải mã sẵn có của trình duyệt'
+       : QR_SCAN.engine==='jsqr'   ? 'bộ giải mã jsQR'
+       : 'chưa có bộ giải mã';
+}
+function cameraPossible(){
+  return QR_SCAN.engine && QR_SCAN.engine!=='none'
+      && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+}
+function imagePossible(){ return QR_SCAN.engine && QR_SCAN.engine!=='none'; }
+
+/* Đọc một khung hình bất kỳ (thẻ video hoặc ảnh) và trả về nội dung mã QR */
+async function decodeQrFrom(source, w, h){
+  if(QR_SCAN.engine==='native' && QR_SCAN.det){
+    const found = await QR_SCAN.det.detect(source);
+    return (found && found.length) ? (found[0].rawValue||'') : '';
+  }
+  if(QR_SCAN.engine==='jsqr' && typeof window.jsQR==='function'){
+    if(!QR_SCAN.canvas){ QR_SCAN.canvas = document.createElement('canvas'); QR_SCAN.ctx = QR_SCAN.canvas.getContext('2d', {willReadFrequently:true}); }
+    /* Thu nhỏ khung hình trước khi dò cho nhẹ máy mà vẫn đủ nét để đọc mã */
+    const maxW = 720;
+    const sc = w > maxW ? maxW/w : 1;
+    const cw = Math.max(1, Math.round(w*sc)), chh = Math.max(1, Math.round(h*sc));
+    QR_SCAN.canvas.width = cw; QR_SCAN.canvas.height = chh;
+    QR_SCAN.ctx.drawImage(source, 0, 0, cw, chh);
+    const img = QR_SCAN.ctx.getImageData(0, 0, cw, chh);
+    const res = window.jsQR(img.data, cw, chh, {inversionAttempts:'attemptBoth'});
+    return res ? (res.data||'') : '';
+  }
+  return '';
+}
 
 /* Bóc mã tra cứu và mật mã từ nội dung quét được, chấp nhận nhiều dạng khác nhau */
 function parseLookupPayload(text){
@@ -1550,16 +1686,29 @@ function handleScanned(text, source){
   STATE.lookup = STATE.lookup || {};
   STATE.lookup.code = r.code;
   if(r.pass) STATE.lookup.pass = r.pass;
+  QR_SCAN.history.unshift({ code:r.code, at:new Date(), src:source||'thiết bị quét' });
+  if(QR_SCAN.history.length>6) QR_SCAN.history.length=6;
   const ec=$('#lkCode'), ep=$('#lkPass');
   if(ec) ec.value = r.code;
   if(ep && r.pass) ep.value = r.pass;
   const note = $('#lkScanLog');
-  if(note) note.innerHTML = `Đã nhận mã <b>${esc(r.code)}</b> từ ${esc(source||'thiết bị quét')} lúc ${new Date().toLocaleTimeString('vi-VN')}.`;
-  /* Có đủ mã và mật mã thì tra cứu luôn; thiếu mật mã thì đưa con trỏ vào ô mật mã */
+  if(note) note.innerHTML = `✓ Đã nhận mã <b>${esc(r.code)}</b> từ ${esc(source||'thiết bị quét')} lúc ${new Date().toLocaleTimeString('vi-VN')}.`;
+  if(typeof beepOk==='function') beepOk();
   if(r.pass || !CFG.qr.requirePassword) doLookup();
   else { if(ep){ ep.focus(); ep.select && ep.select(); } showToast('Đã nhận mã tra cứu — nhập tiếp mật mã trên phiếu','ok'); }
   return true;
 }
+/* Tiếng “tinh” xác nhận đã quét được, giúp nhân viên không phải nhìn màn hình */
+function beepOk(){
+  try{
+    const AC = window.AudioContext || window.webkitAudioContext; if(!AC) return;
+    const ac = new AC(); const o = ac.createOscillator(), g = ac.createGain();
+    o.type='sine'; o.frequency.value=880; g.gain.value=0.05;
+    o.connect(g); g.connect(ac.destination); o.start();
+    setTimeout(()=>{ o.stop(); ac.close&&ac.close(); }, 110);
+  }catch(e){}
+}
+
 /* --- 1) Máy quét chuyên dụng: nhận diện theo nhịp gõ --- */
 function wedgeKeyHandler(e){
   if(!QR_SCAN.wedgeOn || STATE.tab!=='lookup') return;
@@ -1570,77 +1719,118 @@ function wedgeKeyHandler(e){
   QR_SCAN.last = now;
   if(e.key === 'Enter'){
     const data = QR_SCAN.buf; QR_SCAN.buf='';
-    /* Máy quét bắn cả chuỗi trong chớp mắt; người gõ tay không thể đạt tốc độ này */
-    if(data.length>=6){
-      if(handleScanned(data, 'máy quét chuyên dụng')){ e.preventDefault(); }
-    }
+    if(data.length>=6){ if(handleScanned(data, 'máy quét chuyên dụng')) e.preventDefault(); }
     return;
   }
   if(e.key && e.key.length===1){
     QR_SCAN.buf += e.key;
     if(QR_SCAN.buf.length>512) QR_SCAN.buf='';
-    /* Nếu đang gõ trong ô nhập thì để nguyên, chuỗi vẫn hiện ra bình thường */
     if(!inField && QR_SCAN.buf.length>0) e.preventDefault();
   }
 }
+
 /* --- 2) Camera --- */
-function qrDetectorSupported(){ return typeof window.BarcodeDetector !== 'undefined'; }
+async function listCameras(){
+  try{
+    const all = await navigator.mediaDevices.enumerateDevices();
+    QR_SCAN.devices = all.filter(d=>d.kind==='videoinput');
+  }catch(e){ QR_SCAN.devices = []; }
+  return QR_SCAN.devices;
+}
 async function startQrCamera(){
   const stage = $('#lkStage'), video = $('#lkVideo');
   if(!stage || !video) return;
-  if(!qrDetectorSupported()){
-    showToast('Trình duyệt này chưa hỗ trợ giải mã QR bằng camera. Hãy dùng Chrome/Edge, máy quét chuyên dụng, hoặc chọn ảnh mã QR.','err');
-    return;
-  }
-  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-    showToast('Không truy cập được camera. Lưu ý trình duyệt chỉ cho dùng camera trên địa chỉ https hoặc localhost.','err');
-    return;
-  }
+  const eng = await ensureQrDecoder();
+  if(eng==='none' || !cameraPossible()){ renderTab(); return; }
   try{
-    QR_SCAN.det = new window.BarcodeDetector({formats:['qr_code']});
-    QR_SCAN.stream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:'environment' } });
+    const dev = QR_SCAN.devices[QR_SCAN.deviceIdx];
+    const constraints = { video: dev && dev.deviceId
+      ? { deviceId:{ exact: dev.deviceId }, width:{ideal:1280}, height:{ideal:720} }
+      : { facingMode:{ ideal:'environment' }, width:{ideal:1280}, height:{ideal:720} } };
+    QR_SCAN.stream = await navigator.mediaDevices.getUserMedia(constraints);
     video.srcObject = QR_SCAN.stream;
     await video.play();
+    await listCameras();
     stage.classList.add('on');
     QR_SCAN.mode = 'camera';
+    updateScanUi();
+    let busy = false;
     const tick = async ()=>{
       if(QR_SCAN.mode!=='camera') return;
-      try{
-        const found = await QR_SCAN.det.detect(video);
-        if(found && found.length){
-          const val = found[0].rawValue||'';
-          if(val){ stopQrCamera(); handleScanned(val,'camera'); return; }
-        }
-      }catch(e){ /* khung hình chưa sẵn sàng, thử lại ở lượt sau */ }
+      if(!busy && video.videoWidth){
+        busy = true;
+        try{
+          const val = await decodeQrFrom(video, video.videoWidth, video.videoHeight);
+          if(val){ stopQrCamera(); handleScanned(val, 'camera'); return; }
+        }catch(e){ /* khung hình chưa sẵn sàng */ }
+        busy = false;
+      }
       QR_SCAN.raf = requestAnimationFrame(tick);
     };
     QR_SCAN.raf = requestAnimationFrame(tick);
-    showToast('Đưa mã QR vào giữa khung hình','ok');
   }catch(e){
-    showToast('Không bật được camera: '+e.message,'err');
+    const why = (e && e.name==='NotAllowedError') ? 'Bạn chưa cho phép trình duyệt dùng camera.'
+              : (e && e.name==='NotFoundError') ? 'Máy không có camera nào khả dụng.'
+              : (location.protocol!=='https:' && location.hostname!=='localhost') ? 'Trình duyệt chỉ cho dùng camera trên địa chỉ https.'
+              : ('Không bật được camera: '+(e.message||e.name));
+    showToast(why,'err');
+    QR_SCAN.mode=null; updateScanUi();
   }
 }
 function stopQrCamera(){
   QR_SCAN.mode = null;
   if(QR_SCAN.raf){ cancelAnimationFrame(QR_SCAN.raf); QR_SCAN.raf=null; }
   if(QR_SCAN.stream){ QR_SCAN.stream.getTracks().forEach(t=>t.stop()); QR_SCAN.stream=null; }
+  QR_SCAN.torch = false;
   const stage=$('#lkStage'); if(stage) stage.classList.remove('on');
-  const btn=$('#lkCam'); if(btn) btn.classList.remove('on');
+  updateScanUi();
+}
+async function switchCamera(){
+  if(!QR_SCAN.devices.length) await listCameras();
+  if(QR_SCAN.devices.length<2){ showToast('Máy chỉ có một camera','ok'); return; }
+  QR_SCAN.deviceIdx = (QR_SCAN.deviceIdx+1) % QR_SCAN.devices.length;
+  stopQrCamera(); startQrCamera();
+}
+async function toggleTorch(){
+  try{
+    const track = QR_SCAN.stream && QR_SCAN.stream.getVideoTracks()[0];
+    if(!track) return;
+    const caps = track.getCapabilities ? track.getCapabilities() : {};
+    if(!caps.torch){ showToast('Camera này không có đèn trợ sáng','ok'); return; }
+    QR_SCAN.torch = !QR_SCAN.torch;
+    await track.applyConstraints({ advanced:[{ torch: QR_SCAN.torch }] });
+    updateScanUi();
+  }catch(e){ showToast('Không bật được đèn: '+e.message,'err'); }
 }
 /* --- 3) Ảnh chụp mã QR --- */
 async function scanQrFromFile(file){
   if(!file) return;
-  if(!qrDetectorSupported()){
-    showToast('Trình duyệt này chưa hỗ trợ giải mã QR từ ảnh. Hãy dùng Chrome/Edge hoặc máy quét chuyên dụng.','err');
-    return;
-  }
+  const eng = await ensureQrDecoder();
+  if(eng==='none'){ renderTab(); return; }
   try{
-    const det = new window.BarcodeDetector({formats:['qr_code']});
-    const bmp = await createImageBitmap(file);
-    const found = await det.detect(bmp);
-    if(found && found.length) handleScanned(found[0].rawValue||'', 'ảnh mã QR');
-    else showToast('Không tìm thấy mã QR trong ảnh. Thử chụp lại rõ hơn, đủ sáng.','err');
+    let src, w, h;
+    if(window.createImageBitmap){
+      src = await createImageBitmap(file); w = src.width; h = src.height;
+    } else {
+      src = await new Promise((res,rej)=>{ const im=new Image(); im.onload=()=>res(im); im.onerror=rej; im.src=URL.createObjectURL(file); });
+      w = src.naturalWidth; h = src.naturalHeight;
+    }
+    const val = await decodeQrFrom(src, w, h);
+    if(val) handleScanned(val, 'ảnh mã QR');
+    else showToast('Không tìm thấy mã QR trong ảnh. Thử chụp lại rõ hơn, đủ sáng, mã nằm trọn trong khung.','err');
   }catch(e){ showToast('Không đọc được ảnh: '+e.message,'err'); }
+}
+/* Cập nhật riêng phần điều khiển quét, không vẽ lại cả trang cho đỡ giật */
+function updateScanUi(){
+  const on = QR_SCAN.mode==='camera';
+  const b = $('#lkStart'); if(b) b.innerHTML = on ? '⏹ Dừng camera' : '▶ Bật camera';
+  if(b) b.classList.toggle('btn-danger', on);
+  const sw = $('#lkSwitch'); if(sw) sw.style.display = on ? '' : 'none';
+  const tr = $('#lkTorch');
+  if(tr){ tr.style.display = on ? '' : 'none'; tr.classList.toggle('btn-gold', QR_SCAN.torch); }
+  const hint = $('#lkStageHint');
+  if(hint) hint.textContent = on ? 'Đưa mã QR vào giữa khung — hệ thống tự nhận và tra cứu'
+                                 : 'Camera đang tắt';
 }
 
 /* ============================== DASHBOARD ================================ */
@@ -6837,62 +7027,177 @@ function printPassSlips(certs){
  *  TAB: TRA CỨU GIẤY CHỨNG NHẬN (cổng tra cứu tại chỗ)
  * ======================================================================== */
 function renderLookup(c){
-  const st = STATE.lookup || (STATE.lookup = { code:'', pass:'', cert:null, msg:'' });
+  const st = STATE.lookup || (STATE.lookup = { code:'', pass:'', cert:null, msg:'', tab:'scan' });
+  if(!st.tab) st.tab = 'scan';
+  /* Dò khả năng giải mã ở nền; xong thì vẽ lại để giao diện phản ánh đúng thực tế
+     của máy này — không bao giờ hiện một nút rồi mới báo "không hỗ trợ". */
+  if(QR_SCAN.engine === null){
+    ensureQrDecoder().then(()=>{ if(STATE.tab==='lookup') renderTab(); });
+  }
+  const probing = QR_SCAN.engine === null;
+  const canCam = cameraPossible();
+  const canImg = imagePossible();
+  const hasVisual = canCam || canImg;
+  if(!hasVisual && st.tab==='scan' && !probing) st.tab = 'manual';
+
+  const chip = (on, label) => `<span class="lk-chip ${on?'ok':'off'}">${on?'●':'○'} ${esc(label)}</span>`;
+
   c.innerHTML = `
-    <div class="lookup-wrap">
-      <div class="card">
-        <div class="card-head"><div><h2>Tra cứu giấy chứng nhận bằng mã QR</h2><div class="desc">Nhập mã tra cứu trên phiếu (hoặc quét từ mã QR) kèm mật mã được cấp</div></div></div>
-        <div class="card-pad">
-          <div class="scan-modes">
-            <button id="lkWedge" class="${QR_SCAN.wedgeOn?'on':''}"><span class="ic">🔫</span>Máy quét chuyên dụng<span class="small-muted" style="font-weight:500;">${QR_SCAN.wedgeOn?'đang bật':'đang tắt'}</span></button>
-            <button id="lkCam"><span class="ic">📷</span>Quét bằng camera<span class="small-muted" style="font-weight:500;">${qrDetectorSupported()?'sẵn sàng':'trình duyệt chưa hỗ trợ'}</span></button>
-            <button id="lkFileBtn"><span class="ic">🖼️</span>Chọn ảnh mã QR<span class="small-muted" style="font-weight:500;">khi máy không có camera</span></button>
+  <div class="lookup-wrap">
+    <div class="lk-hero">
+      <h2>Tra cứu và tải lại giấy chứng nhận</h2>
+      <p>Dùng cho quầy tiếp nhận: quét mã QR in trên phiếu bàn giao hoặc nhập mã tra cứu kèm mật mã.
+         Bản xem và bản tải về từ đây luôn được đóng dấu <b>BẢN SAO</b>, không thay thế bản gốc do đơn vị cấp.</p>
+      <div class="lk-chips">
+        ${chip(QR_SCAN.wedgeOn, 'Máy quét chuyên dụng: ' + (QR_SCAN.wedgeOn?'đang bật':'đang tắt'))}
+        ${probing ? '<span class="lk-chip">⏳ Đang kiểm tra khả năng quét của máy…</span>'
+                  : (hasVisual ? chip(true, 'Giải mã QR: ' + qrEngineName()) : '')}
+        ${chip(CFG.qr.requirePassword, CFG.qr.requirePassword?'Bắt buộc nhập mật mã':'Không yêu cầu mật mã')}
+      </div>
+    </div>
+
+    <div class="lk-grid">
+      <div>
+        <div class="card">
+          <div class="card-pad">
+            ${hasVisual ? `
+            <div class="lk-tabs">
+              <button id="lkTabScan" class="${st.tab==='scan'?'on':''}">📷 Quét mã QR</button>
+              <button id="lkTabManual" class="${st.tab==='manual'?'on':''}">⌨ Nhập mã thủ công</button>
+            </div>` : ''}
+
+            ${(hasVisual && st.tab==='scan') ? `
+              ${canCam ? `
+              <div class="scan-stage" id="lkStage">
+                <video id="lkVideo" playsinline muted></video>
+                <div class="idle">Camera đang tắt.<br>Bấm “Bật camera” rồi đưa mã QR vào giữa khung.</div>
+                <div class="scan-reticle"><div class="scan-scanline"></div></div>
+                <div class="scan-hint" id="lkStageHint">Camera đang tắt</div>
+              </div>
+              <div class="scan-ctrl">
+                <button class="btn btn-primary" id="lkStart">▶ Bật camera</button>
+                <button class="btn" id="lkSwitch" style="display:none;">🔄 Đổi camera</button>
+                <button class="btn" id="lkTorch" style="display:none;">🔦 Đèn</button>
+                <span class="spacer"></span>
+                ${canImg?`<button class="btn" id="lkFileBtn">🖼️ Chọn ảnh mã QR</button>`:''}
+              </div>` : `
+              <div class="help-box" style="margin-bottom:12px;">Máy này không dùng được camera, nhưng vẫn giải mã được ảnh chụp mã QR.</div>
+              <button class="btn btn-primary" id="lkFileBtn">🖼️ Chọn ảnh mã QR</button>`}
+              <input type="file" id="lkFile" accept="image/*" style="display:none;">
+              <div style="border-top:1px solid var(--border);margin:16px 0 14px;"></div>
+            ` : ''}
+
+            <div class="scan-wedge ${QR_SCAN.wedgeOn?'on':''}">
+              <div class="hstack" style="margin-bottom:8px;">
+                <div style="font-size:12.5px;font-weight:700;color:var(--navy);">Máy quét mã vạch / QR chuyên dụng</div>
+                <span class="spacer"></span>
+                <button class="btn btn-sm" id="lkWedge">${QR_SCAN.wedgeOn?'Tắt':'Bật'}</button>
+              </div>
+              <input type="text" id="lkScanBox" placeholder="${QR_SCAN.wedgeOn?'Bấm vào ô này rồi bắn mã bằng máy quét…':'Đang tắt nhận mã từ máy quét'}" autocomplete="off" ${QR_SCAN.wedgeOn?'':'disabled'}>
+              <div class="scan-log" id="lkScanLog">Máy quét USB hoặc Bluetooth hoạt động như một bàn phím. Chỉ cần bắn mã, phần mềm tự nhận ra và tra cứu ngay, không cần bấm gì thêm.</div>
+            </div>
+
+            <div style="border-top:1px solid var(--border);margin:16px 0 14px;"></div>
+
+            <div class="grid" style="grid-template-columns:1.4fr 1fr;gap:12px;">
+              <div class="field" style="margin-bottom:0;"><label>Mã tra cứu</label>
+                <input type="text" id="lkCode" value="${esc(st.code)}" placeholder="VD: BVPSTG-2026-K7M2QX" style="text-transform:uppercase;font-family:Consolas,monospace;"></div>
+              <div class="field" style="margin-bottom:0;"><label>Mật mã truy cập${CFG.qr.requirePassword?'':' <span class="small-muted">(không bắt buộc)</span>'}</label>
+                <input type="text" id="lkPass" value="${esc(st.pass)}" placeholder="${CFG.qr.passLength||6} ký tự trên phiếu" style="text-transform:uppercase;letter-spacing:3px;font-family:Consolas,monospace;"></div>
+            </div>
+            <div class="hstack" style="margin-top:14px;">
+              <button class="btn btn-primary" id="lkGo">🔎 Tra cứu giấy chứng nhận</button>
+              <button class="btn" id="lkClear">Xoá ô nhập</button>
+            </div>
+            <div id="lkMsg" style="margin-top:14px;"></div>
           </div>
-          <input type="file" id="lkFile" accept="image/*" style="display:none;">
-          <div class="scan-stage" id="lkStage"><video id="lkVideo" playsinline muted></video>
-            <div class="scan-reticle"></div><div class="scan-hint">Đưa mã QR vào giữa khung — hệ thống tự tra cứu khi nhận được mã</div></div>
-          <div class="scan-wedge" id="lkWedgeBox">
-            <div style="font-size:12px;font-weight:700;color:#0d3c34;margin-bottom:6px;">Ô nhận mã từ máy quét</div>
-            <input type="text" id="lkScanBox" placeholder="Bấm vào ô này rồi bắn mã bằng máy quét…" autocomplete="off">
-            <div class="scan-log" id="lkScanLog">Máy quét USB/Bluetooth hoạt động như bàn phím: chỉ cần bắn mã, phần mềm tự nhận và tra cứu.</div>
+        </div>
+        <div id="lkResult" style="margin-top:16px;"></div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-head"><div><h2>Các bước tra cứu</h2></div></div>
+          <div class="card-pad">
+            <ol class="lk-steps">
+              <li>Quét mã QR trên phiếu bàn giao bằng máy quét chuyên dụng${canCam?', hoặc bật camera và đưa mã vào khung':''}. Không có mã QR thì gõ tay mã tra cứu.</li>
+              <li>Nhập <b>mật mã ${CFG.qr.passLength||6} ký tự</b> in trên phiếu bàn giao đã trao cho người được cấp giấy.</li>
+              <li>Đối chiếu thông tin trên màn hình với giấy người mang tới, rồi in hoặc tải lại bản sao nếu cần.</li>
+            </ol>
           </div>
-          <div class="field"><label>Mã tra cứu</label><input type="text" id="lkCode" value="${esc(st.code)}" placeholder="VD: BVPSTG-2026-K7M2QX" style="text-transform:uppercase;"></div>
-          <div class="field"><label>Mật mã truy cập</label><input type="text" id="lkPass" value="${esc(st.pass)}" placeholder="6 ký tự trên phiếu bàn giao" style="text-transform:uppercase;letter-spacing:3px;font-family:Consolas,monospace;"></div>
-          <button class="btn btn-primary" id="lkGo">🔎 Tra cứu</button>
-          <div id="lkMsg" style="margin-top:14px;"></div>
+        </div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-head"><div><h2>Mã đã quét trong phiên</h2></div></div>
+          <div class="card-pad">
+            ${QR_SCAN.history.length===0
+              ? '<div class="small-muted">Chưa quét mã nào. Danh sách này chỉ nằm trong bộ nhớ tạm và mất khi đóng phần mềm.</div>'
+              : `<ul class="lk-recent">${QR_SCAN.history.map(h=>`<li>
+                  <span class="c" data-recode="${esc(h.code)}">${esc(h.code)}</span>
+                  <span class="small-muted">${esc(h.src)} · ${h.at.toLocaleTimeString('vi-VN')}</span></li>`).join('')}</ul>`}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div><h2>Lưu ý khi tra cứu</h2></div></div>
+          <div class="card-pad">
+            <div class="legal" style="margin-top:0;">
+              Mật mã gốc chỉ lưu trên máy này, trên bảng tính đồng bộ chỉ lưu chuỗi băm SHA-256 kèm muối bí mật.
+              Người xem bảng tính không suy ra được mật mã của người tham gia.<br><br>
+              Giấy đã bị hủy bỏ hoặc thu hồi sẽ báo rõ tình trạng và không cho tải lại.<br><br>
+              ${hasVisual?'':'<b>Máy này chưa dùng được camera và ảnh mã QR</b> — không có bộ giải mã khả dụng (thường do máy đang ngoại tuyến nên không tải được thư viện giải mã). Hãy dùng máy quét chuyên dụng hoặc nhập mã thủ công.'}
+            </div>
+          </div>
         </div>
       </div>
-      <div id="lkResult" style="margin-top:16px;"></div>
-    </div>`;
+    </div>
+  </div>`;
+
+  /* ---- sự kiện ---- */
   $('#lkCode').addEventListener('input', e=>{ STATE.lookup.code=e.target.value.toUpperCase(); });
   $('#lkPass').addEventListener('input', e=>{ STATE.lookup.pass=e.target.value.toUpperCase(); });
   $('#lkPass').addEventListener('keydown', e=>{ if(e.key==='Enter') doLookup(); });
+  $('#lkCode').addEventListener('keydown', e=>{ if(e.key==='Enter'){ const p=$('#lkPass'); if(p) p.focus(); } });
   $('#lkGo').addEventListener('click', doLookup);
+  $('#lkClear').addEventListener('click', ()=>{
+    STATE.lookup.code=''; STATE.lookup.pass=''; STATE.lookup.cert=null; renderTab();
+  });
 
-  /* --- gắn các cách quét mã --- */
+  if($('#lkTabScan')) $('#lkTabScan').addEventListener('click', ()=>{ st.tab='scan'; renderTab(); });
+  if($('#lkTabManual')) $('#lkTabManual').addEventListener('click', ()=>{ stopQrCamera(); st.tab='manual'; renderTab(); });
+
+  if($('#lkStart')) $('#lkStart').addEventListener('click', ()=>{
+    if(QR_SCAN.mode==='camera') stopQrCamera(); else startQrCamera();
+  });
+  if($('#lkSwitch')) $('#lkSwitch').addEventListener('click', switchCamera);
+  if($('#lkTorch')) $('#lkTorch').addEventListener('click', toggleTorch);
+  if($('#lkFileBtn')) $('#lkFileBtn').addEventListener('click', ()=>$('#lkFile').click());
+  if($('#lkFile')) $('#lkFile').addEventListener('change', e=>{ scanQrFromFile(e.target.files[0]); e.target.value=''; });
+
   $('#lkWedge').addEventListener('click', ()=>{
     QR_SCAN.wedgeOn = !QR_SCAN.wedgeOn;
     showToast(QR_SCAN.wedgeOn?'Đã bật nhận mã từ máy quét chuyên dụng':'Đã tắt nhận mã từ máy quét','ok');
     renderTab();
   });
-  $('#lkCam').addEventListener('click', ()=>{
-    if(QR_SCAN.mode==='camera'){ stopQrCamera(); }
-    else { $('#lkCam').classList.add('on'); startQrCamera(); }
-  });
-  $('#lkFileBtn').addEventListener('click', ()=>$('#lkFile').click());
-  $('#lkFile').addEventListener('change', e=>{ scanQrFromFile(e.target.files[0]); e.target.value=''; });
   const sb = $('#lkScanBox');
-  sb.addEventListener('keydown', e=>{
+  if(sb) sb.addEventListener('keydown', e=>{
     if(e.key==='Enter'){
       e.preventDefault();
       const v = sb.value; sb.value='';
       if(v.trim()) handleScanned(v, 'máy quét chuyên dụng');
     }
   });
+  $all('[data-recode]').forEach(el=>el.addEventListener('click', ()=>{
+    STATE.lookup.code = el.dataset.recode;
+    const ec=$('#lkCode'); if(ec) ec.value = el.dataset.recode;
+    const ep=$('#lkPass'); if(ep) ep.focus();
+  }));
+
   /* Bộ nghe toàn màn hình để máy quét vẫn ăn dù con trỏ đang ở chỗ khác */
   document.removeEventListener('keydown', wedgeKeyHandler);
   document.addEventListener('keydown', wedgeKeyHandler);
-  setTimeout(()=>{ const el=$('#lkScanBox'); if(el && QR_SCAN.wedgeOn) el.focus(); }, 80);
+  setTimeout(()=>{ const el=$('#lkScanBox'); if(el && QR_SCAN.wedgeOn && !el.disabled) el.focus(); }, 80);
+  updateScanUi();
 
   if(st.cert) drawLookupResult(st.cert);
 }
