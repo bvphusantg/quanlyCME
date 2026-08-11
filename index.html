@@ -1056,6 +1056,51 @@ function saveData(){
 }
 function nextId(kind){ const n = DATA.nextIds[kind]++; saveData(); return kind.slice(0,2).toUpperCase()+String(n).padStart(4,'0'); }
 
+/* =====================================================================
+   LỊCH SỬ GỢI Ý NHẬP LIỆU (autosuggest)
+   ---------------------------------------------------------------------
+   Ghi nhớ các giá trị người dùng từng nhập ở một số ô nhập liệu hay lặp
+   lại (đơn vị công tác, chức danh, đơn vị tổ chức, người chỉ đạo...).
+   Dùng thẻ <datalist> gốc của trình duyệt (list="...") — gợi ý tự hiện
+   ra khi gõ, bấm chọn nhanh, hoạt động trên mọi trình duyệt hiện đại,
+   không cần thư viện ngoài.
+===================================================================== */
+const INPUT_HISTORY_KEY = 'cme_manager_input_history_v1';
+let INPUT_HISTORY = {};
+let inputHistorySaveTimer = null;
+async function loadInputHistory(){
+  try{
+    const res = await storageGet(INPUT_HISTORY_KEY);
+    if(res && res.value) INPUT_HISTORY = JSON.parse(res.value) || {};
+  }catch(e){ INPUT_HISTORY = {}; }
+}
+function saveInputHistory(){
+  clearTimeout(inputHistorySaveTimer);
+  inputHistorySaveTimer = setTimeout(()=>{ storageSet(INPUT_HISTORY_KEY, JSON.stringify(INPUT_HISTORY)); }, 300);
+}
+/* Ghi nhớ 1 giá trị vào lịch sử gợi ý của 1 trường (fieldKey). Đưa lên đầu danh
+   sách nếu đã có (giá trị dùng gần nhất hiện lên trước), giới hạn 30 mục/trường. */
+function recordSuggestion(fieldKey, value){
+  const v = (value||'').trim();
+  if(!v) return;
+  if(!INPUT_HISTORY[fieldKey]) INPUT_HISTORY[fieldKey] = [];
+  const arr = INPUT_HISTORY[fieldKey];
+  const idx = arr.findIndex(x=>x.toLowerCase()===v.toLowerCase());
+  if(idx>=0) arr.splice(idx,1);
+  arr.unshift(v);
+  if(arr.length>30) arr.length=30;
+  saveInputHistory();
+}
+/* Trả về HTML <datalist> cho 1 trường; đặt id="dl_<fieldKey>" để input dùng
+   thuộc tính list="dl_<fieldKey>" trỏ tới. */
+function suggestDatalist(fieldKey){
+  const arr = INPUT_HISTORY[fieldKey] || [];
+  if(arr.length===0) return `<datalist id="dl_${fieldKey}"></datalist>`;
+  return `<datalist id="dl_${fieldKey}">${arr.map(v=>`<option value="${esc(v)}"></option>`).join('')}</datalist>`;
+}
+/* Thuộc tính list="..." kèm dấu cách để chèn trực tiếp vào thẻ <input ...> */
+function suggestListAttr(fieldKey){ return ` list="dl_${fieldKey}"`; }
+
 /* ------------------------------- Helpers --------------------------------- */
 function $(sel,root){ return (root||document).querySelector(sel); }
 function $all(sel,root){ return Array.from((root||document).querySelectorAll(sel)); }
@@ -2759,8 +2804,8 @@ function openProgramModal(id){
     <div class="field"><label>Tên / Nội dung, chủ đề <span style="color:var(--danger)">*</span></label><input type="text" id="m_ten" value="${esc(p.ten)}" placeholder="VD: Hội nghị khoa học kỹ thuật sản phụ khoa năm 2026"></div>
     <div class="field"><label>Hình thức cập nhật kiến thức y khoa liên tục <span style="color:var(--danger)">*</span></label><select id="m_ht">${htOptions}</select><div class="hint" id="m_ht_hint"></div></div>
     <div class="grid grid-2">
-      <div class="field"><label>Đơn vị/cá nhân chịu trách nhiệm</label><input type="text" id="m_dvctn" value="${esc(p.donViChiuTrachNhiem)}" placeholder="VD: Bệnh viện Phụ sản Tiền Giang"></div>
-      <div class="field"><label>Đơn vị tổ chức</label><input type="text" id="m_dvto" value="${esc(p.donViToChuc)}"></div>
+      <div class="field"><label>Đơn vị/cá nhân chịu trách nhiệm</label><input type="text" id="m_dvctn" value="${esc(p.donViChiuTrachNhiem)}" placeholder="VD: Bệnh viện Phụ sản Tiền Giang"${suggestListAttr('donViChiuTrachNhiem')}>${suggestDatalist('donViChiuTrachNhiem')}</div>
+      <div class="field"><label>Đơn vị tổ chức</label><input type="text" id="m_dvto" value="${esc(p.donViToChuc)}"${suggestListAttr('donViToChuc')}>${suggestDatalist('donViToChuc')}</div>
       <div class="field"><label>Từ ngày</label><input type="date" id="m_ngbd" value="${esc(p.ngayBatDau)}"></div>
       <div class="field"><label>Đến ngày</label><input type="date" id="m_ngkt" value="${esc(p.ngayKetThuc)}"></div>
       <div class="field"><label>Tổng số tiết (nếu có)</label><input type="number" min="0" step="0.5" id="m_sotiet" value="${esc(p.soTiet)}"></div>
@@ -2780,6 +2825,8 @@ function openProgramModal(id){
           soTiet: $('#m_sotiet').value, soBuoi: $('#m_sobuoi').value,
           ghiChu: $('#m_ghichu').value.trim()
         };
+        recordSuggestion('donViChiuTrachNhiem', obj.donViChiuTrachNhiem);
+        recordSuggestion('donViToChuc', obj.donViToChuc);
         if(editing) Object.assign(editing, obj); else DATA.programs.push(obj);
         saveData(); closeModal(); showToast('Đã lưu chương trình','ok'); renderTab();
       }}
@@ -2866,8 +2913,8 @@ function openParticipantModal(id){
       <div class="field"><label>Họ và tên <span style="color:var(--danger)">*</span></label><input type="text" id="m_hoten" value="${esc(p.hoTen)}"></div>
       <div class="field"><label>Ngày sinh</label><input type="date" id="m_ngsinh" value="${esc(p.ngaySinh)}"></div>
       <div class="field"><label>Giới tính</label><select id="m_gt"><option ${p.gioiTinh==='Nam'?'selected':''}>Nam</option><option ${p.gioiTinh==='Nữ'?'selected':''}>Nữ</option></select><div class="hint">Dùng để in "Ông/Bà" trên giấy chứng nhận</div></div>
-      <div class="field"><label>Chức danh chuyên môn</label><input type="text" id="m_chucdanh" value="${esc(p.chucDanh)}" placeholder="VD: Bác sĩ CKI"></div>
-      <div class="field" style="grid-column:1/-1;"><label>Đơn vị công tác</label><input type="text" id="m_dvct" value="${esc(p.donViCongTac)}"></div>
+      <div class="field"><label>Chức danh chuyên môn</label><input type="text" id="m_chucdanh" value="${esc(p.chucDanh)}" placeholder="VD: Bác sĩ CKI"${suggestListAttr('chucDanh')}>${suggestDatalist('chucDanh')}</div>
+      <div class="field" style="grid-column:1/-1;"><label>Đơn vị công tác</label><input type="text" id="m_dvct" value="${esc(p.donViCongTac)}"${suggestListAttr('donViCongTac')}>${suggestDatalist('donViCongTac')}</div>
       <div class="field"><label>Số CCHN (nếu có)</label><input type="text" id="m_cchn" value="${esc(p.soCCHN)}"></div>
       <div class="field"><label>Điện thoại</label><input type="text" id="m_phone" value="${esc(p.dienThoai||'')}"></div>
       <div class="field" style="grid-column:1/-1;"><label>Email</label><input type="text" id="m_email" value="${esc(p.email||'')}"><div class="hint">Dùng để gửi mã QR và mật mã tra cứu giấy chứng nhận</div></div>
@@ -2881,6 +2928,8 @@ function openParticipantModal(id){
         const dup = DATA.participants.find(x=>x.id!==(editing?editing.id:null) && keyOfPerson(x.hoTen,x.ngaySinh)===keyOfPerson(hoTen,ngaySinh));
         if(dup && !confirm('Đã có người tham gia trùng họ tên và ngày sinh trong danh mục. Vẫn thêm mới?')) return;
         const obj = { id: editing?editing.id:('PP'+Date.now()), hoTen, ngaySinh, gioiTinh:$('#m_gt').value, chucDanh:$('#m_chucdanh').value.trim(), donViCongTac:$('#m_dvct').value.trim(), soCCHN:$('#m_cchn').value.trim(), email:$('#m_email').value.trim(), dienThoai:$('#m_phone').value.trim() };
+        recordSuggestion('chucDanh', obj.chucDanh);
+        recordSuggestion('donViCongTac', obj.donViCongTac);
         if(editing) Object.assign(editing, obj); else DATA.participants.push(obj);
         saveData(); closeModal(); showToast('Đã lưu','ok');
         if(CFG.google.enabled && CFG.google.autoSync && GS.token) gsPushTable('NguoiThamGia').catch(()=>{});
@@ -5047,7 +5096,7 @@ function openReissueModal(certId){
       <select id="rl_lydo">${Object.entries(LY_DO_CAP_LAI).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select>
     </div>
     <div class="field"><label>Ngày ký cấp lại <span style="color:var(--danger)">*</span></label><input type="date" id="rl_ngay" value="${todayISO()}"></div>
-    <div class="field"><label>Người/bộ phận chỉ đạo cấp lại</label><input type="text" id="rl_nguoichidao" placeholder="VD: Trưởng phòng KH-ĐD, hoặc theo văn bản chỉ đạo của Giám đốc"></div>
+    <div class="field"><label>Người/bộ phận chỉ đạo cấp lại</label><input type="text" id="rl_nguoichidao" placeholder="VD: Trưởng phòng KH-ĐD, hoặc theo văn bản chỉ đạo của Giám đốc"${suggestListAttr('nguoiChiDao')}>${suggestDatalist('nguoiChiDao')}</div>
     <div class="field"><label>Đính kèm giấy đề nghị cấp lại / tài liệu minh chứng (nếu có)</label>
       <input type="file" id="rl_file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
       <div class="hint">Hỗ trợ PDF/Word/ảnh, tối đa 5MB. Không bắt buộc nếu đã ghi rõ lý do/chỉ đạo ở ghi chú.</div>
@@ -5068,6 +5117,7 @@ function openReissueModal(certId){
         const ngayCapLai = $('#rl_ngay').value;
         if(!ngayCapLai){ showToast('Vui lòng chọn ngày ký cấp lại','err'); return; }
         const nguoiChiDao = $('#rl_nguoichidao').value.trim();
+        recordSuggestion('nguoiChiDao', nguoiChiDao);
         const ghiChu = $('#rl_ghichu').value.trim();
         const fileInput = $('#rl_file');
         let fileInfo = null;
@@ -5878,6 +5928,13 @@ function renderSettings(c){
           </div>
         </div>
         <div class="card">
+          <div class="card-head"><div><h2>Lịch sử gợi ý nhập liệu</h2><div class="desc">Các giá trị đã nhập ở ô "Đơn vị công tác", "Chức danh", "Đơn vị tổ chức"... được ghi nhớ để gợi ý nhanh cho lần sau</div></div></div>
+          <div class="card-pad">
+            <div class="small-muted" style="margin-bottom:10px;">Đang ghi nhớ ${Object.values(INPUT_HISTORY).reduce((s,a)=>s+(a?a.length:0),0)} giá trị gợi ý trên ${Object.keys(INPUT_HISTORY).length} loại ô nhập liệu.</div>
+            <button class="btn btn-danger btn-sm" id="btnClearSuggest">🗑️ Xoá toàn bộ lịch sử gợi ý</button>
+          </div>
+        </div>
+        <div class="card">
           <div class="card-head"><div><h2>Xoá dữ liệu</h2><div class="desc">Hãy sao lưu trước khi thực hiện</div></div></div>
           <div class="card-pad">
             <div class="danger-box" style="margin-bottom:14px;">Thao tác xoá toàn bộ không thể hoàn tác. Giấy chứng nhận đã cấp cũng sẽ bị xoá khỏi sổ quản lý.</div>
@@ -5886,6 +5943,11 @@ function renderSettings(c){
         </div>
       </div>
     </div>`;
+
+  $('#btnClearSuggest').addEventListener('click', ()=>{
+    if(!confirm('Xoá toàn bộ lịch sử gợi ý nhập liệu đã ghi nhớ?')) return;
+    INPUT_HISTORY = {}; saveInputHistory(); showToast('Đã xoá lịch sử gợi ý nhập liệu','ok'); renderTab();
+  });
 
   $('#btnChangeFolder').addEventListener('click', async ()=>{
     try{
@@ -7820,7 +7882,7 @@ function ensureOrgUnderline(root){
 document.getElementById('modalBg').addEventListener('click', (e)=>{ if(e.target.id==='modalBg') closeModal(); });
 (async function init(){
   await loadCfg();
-  await Promise.all([loadData(), loadDesign(), loadSeal()]);
+  await Promise.all([loadData(), loadDesign(), loadSeal(), loadInputHistory()]);
   await fsRestoreRoot(true);
   /* Rà soát hồ sơ đến hạn đóng ngay khi mở phần mềm (không bao giờ xoá dữ liệu) */
   try{ if(archiveCfg().auto) runArchiveJob(); }catch(e){ console.warn('Rà soát lưu trữ:', e); }
