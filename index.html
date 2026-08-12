@@ -276,12 +276,12 @@ table.tbl tr:last-child td{border-bottom:none;}
 .cert-org b{font-weight:700;}
 .cert-nation{text-align:center;font-weight:700;font-size:13pt;line-height:1.35;}
 .cert-nation .line1{white-space:nowrap;display:inline-block;font-size:12.6pt;}
-.cert-nation .line2{display:inline-block;border-bottom:1px solid #000;padding-bottom:3px;line-height:1.3;}
-.cert-hr-left{border-bottom:1px solid #000;width:70px;margin:5px auto 0;}
+.cert-nation .line2{display:inline-block;border-bottom:1px solid currentColor;padding-bottom:3px;line-height:1.3;}
+.cert-hr-left{border-bottom:1px solid currentColor;width:70px;margin:5px auto 0;}
 .cert-so{text-align:center;font-size:13pt;margin-top:6px;}
 .cert-title-wrap{text-align:center;margin-top:26px;}
-.cert-title{font-size:22pt;font-weight:700;letter-spacing:1px;color:#C00000;}
-.cert-subtitle{font-size:14pt;font-weight:700;margin-top:8px;line-height:1.45;color:#C00000;}
+.cert-title{font-size:22pt;font-weight:700;letter-spacing:1px;color:var(--cert-title-color,#C00000);}
+.cert-subtitle{font-size:14pt;font-weight:700;margin-top:8px;line-height:1.45;color:var(--cert-title-color,#C00000);}
 .cert-body{margin-top:26px;font-size:13pt;line-height:1.9;text-align:justify;}
 .cert-body .ln{margin-bottom:2px;}
 .cert-body .field-val{font-weight:700;}
@@ -495,10 +495,10 @@ table.tbl tr:last-child td{border-bottom:none;}
 
 /* Gạch chân tự động 1/3 */
 .auto-ul{display:inline-block;text-align:center;}
-.auto-ul-line{display:block;height:1.4px;background:#000;width:33%;margin:2px auto 0;}
+.auto-ul-line{display:block;height:1.4px;background:currentColor;width:33%;margin:2px auto 0;}
 .editor-canvas .auto-ul{outline:1px dotted rgba(184,135,58,.55);outline-offset:2px;}
 .ul-preview{display:inline-block;text-align:center;font-family:"Times New Roman",serif;font-weight:700;font-size:13pt;margin-top:6px;}
-.ul-preview .auto-ul-line{background:#000;}
+.ul-preview .auto-ul-line{background:currentColor;}
 
 /* Trạng thái đồng bộ trên bảng */
 .sync-chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;}
@@ -652,7 +652,8 @@ const DEFAULT_DESIGN = {
   cornerStyle:'none', cornerSize:20,
   useLogo:false, logoImageData:null, watermarkOpacity:0.12, watermarkSize:52,
   useCustomContent:false, customContentHtml:null,
-  autoUnderlineOrg:true
+  autoUnderlineOrg:true,
+  autoPalette:true, titleColor:'#C00000', bodyTextColor:'#000000'
 };
 let DESIGN = JSON.parse(JSON.stringify(DEFAULT_DESIGN));
 
@@ -892,17 +893,17 @@ function svgTileDataUri(size, tileFn, color){
 /* ================= Khung dựng sẵn (áp dụng nhanh trọn bộ màu + viền + góc) ================= */
 const DESIGN_PRESETS = [
   { id:'classicRed', label:'Cổ điển đỏ', swatch:'#B23A3A',
-    apply:{ borderColor:'#B23A3A', borderLine:'dotsline', patternThickness:6, cornerStyle:'damask', cornerSize:22, borderInset:9 } },
+    apply:{ bgColor:'#FFFFFF', borderColor:'#B23A3A', borderLine:'dotsline', patternThickness:6, cornerStyle:'damask', cornerSize:22, borderInset:9, autoPalette:false, titleColor:'#B23A3A', bodyTextColor:'#1B1B1B' } },
   { id:'luxuryGold', label:'Vàng sang trọng', swatch:'#B8873A',
-    apply:{ borderColor:'#B8873A', borderLine:'double', borderThickness:2, cornerStyle:'ornateGold', cornerSize:20, borderInset:8 } },
+    apply:{ bgColor:'#FFFFFF', borderColor:'#B8873A', borderLine:'double', borderThickness:2, cornerStyle:'ornateGold', cornerSize:20, borderInset:8, autoPalette:false, titleColor:'#8a651f', bodyTextColor:'#1B1B1B' } },
   { id:'elegantBlue', label:'Xanh dương thanh lịch', swatch:'#1F4E9C',
-    apply:{ borderColor:'#1F4E9C', borderLine:'solid', borderThickness:1.5, cornerStyle:'vine', cornerSize:24, borderInset:9 } },
+    apply:{ bgColor:'#FFFFFF', borderColor:'#1F4E9C', borderLine:'solid', borderThickness:1.5, cornerStyle:'vine', cornerSize:24, borderInset:9, autoPalette:false, titleColor:'#14315C', bodyTextColor:'#1B1B1B' } },
   { id:'greekGreen', label:'Hoạ tiết Hy Lạp xanh lá', swatch:'#1F7A45',
-    apply:{ borderColor:'#1F7A45', borderLine:'meander', patternThickness:7, cornerStyle:'none', borderInset:8 } },
+    apply:{ bgColor:'#FFFFFF', borderColor:'#1F7A45', borderLine:'meander', patternThickness:7, cornerStyle:'none', borderInset:8, autoPalette:false, titleColor:'#14532D', bodyTextColor:'#1B1B1B' } },
   { id:'minimalGold', label:'Tối giản thanh nhã', swatch:'#8a651f',
-    apply:{ borderColor:'#8a651f', borderLine:'solid', borderThickness:1.5, cornerStyle:'framecorner', cornerSize:16, borderInset:8 } },
+    apply:{ bgColor:'#FFFFFF', borderColor:'#8a651f', borderLine:'solid', borderThickness:1.5, cornerStyle:'framecorner', cornerSize:16, borderInset:8, autoPalette:false, titleColor:'#8a651f', bodyTextColor:'#1B1B1B' } },
   { id:'none', label:'Không trang trí (mặc định)', swatch:'#B9C0C8',
-    apply:{ borderLine:'none', cornerStyle:'none' } }
+    apply:{ bgColor:'#FFFFFF', borderLine:'none', cornerStyle:'none', autoPalette:true, titleColor:'#C00000', bodyTextColor:'#000000' } }
 ];
 function patternBorderHtml(patternId, color, insetMm, thicknessMm){
   const p = PATTERN_BORDERS[patternId]; if(!p) return '';
@@ -916,18 +917,130 @@ function patternBorderHtml(patternId, color, insetMm, thicknessMm){
   html += `<div style="position:absolute;top:${insetMm}mm;bottom:${insetMm}mm;right:${insetMm}mm;width:${t}mm;${bg}background-repeat:repeat-y;z-index:1;pointer-events:none;"></div>`;
   return html;
 }
+/* =====================================================================
+   PHỐI MÀU THÔNG MINH THEO MÀU NỀN
+   ---------------------------------------------------------------------
+   Khi người dùng đổi màu nền giấy, hệ thống tự tính lại:
+   - Màu chữ nội dung (đen/trắng ngả ấm) theo độ tương phản chuẩn WCAG
+     để luôn dễ đọc trên mọi nền sáng/tối.
+   - Màu tiêu đề/điểm nhấn và màu viền-hoạ tiết theo nguyên tắc phối màu
+     bổ túc tách đôi (split-complementary): lấy màu đối lập trên vòng
+     thuần sắc của màu nền rồi điều chỉnh độ sáng/độ bão hoà để vừa nổi
+     bật, vừa hài hoà — không chọn màu đối lập 180° thuần tuý (dễ chói,
+     phản cảm) mà lệch 150°/210° cho mềm mắt hơn, đúng tinh thần thiết
+     kế chuyên nghiệp.
+===================================================================== */
+function hexToRgb(hex){
+  hex = (hex||'#ffffff').replace('#','');
+  if(hex.length===3) hex = hex.split('').map(c=>c+c).join('');
+  const n = parseInt(hex,16);
+  return { r:(n>>16)&255, g:(n>>8)&255, b:n&255 };
+}
+function rgbToHex(r,g,b){
+  const h = n=>Math.max(0,Math.min(255,Math.round(n))).toString(16).padStart(2,'0');
+  return '#'+h(r)+h(g)+h(b);
+}
+function rgbToHsl(r,g,b){
+  r/=255; g/=255; b/=255;
+  const max=Math.max(r,g,b), min=Math.min(r,g,b);
+  let h=0, s=0, l=(max+min)/2;
+  if(max!==min){
+    const d = max-min;
+    s = l>0.5 ? d/(2-max-min) : d/(max+min);
+    if(max===r) h = ((g-b)/d + (g<b?6:0));
+    else if(max===g) h = (b-r)/d + 2;
+    else h = (r-g)/d + 4;
+    h *= 60;
+  }
+  return { h, s, l };
+}
+function hslToRgb(h,s,l){
+  h = ((h%360)+360)%360;
+  if(s===0){ const v=l*255; return {r:v,g:v,b:v}; }
+  const q = l<0.5 ? l*(1+s) : l+s-l*s;
+  const p = 2*l-q;
+  const hue2rgb=(p,q,t)=>{ if(t<0)t+=1; if(t>1)t-=1; if(t<1/6) return p+(q-p)*6*t; if(t<1/2) return q; if(t<2/3) return p+(q-p)*(2/3-t)*6; return p; };
+  const hk = h/360;
+  return { r:hue2rgb(p,q,hk+1/3)*255, g:hue2rgb(p,q,hk)*255, b:hue2rgb(p,q,hk-1/3)*255 };
+}
+/* Độ chói tương đối theo chuẩn WCAG 2.x, dùng để chọn chữ đen/trắng và ước lượng tỉ lệ tương phản */
+function relLuminance(hex){
+  const {r,g,b} = hexToRgb(hex);
+  const lin = v=>{ v/=255; return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4); };
+  return 0.2126*lin(r) + 0.7152*lin(g) + 0.0722*lin(b);
+}
+function contrastRatio(hexA, hexB){
+  const L1 = relLuminance(hexA)+0.05, L2 = relLuminance(hexB)+0.05;
+  return L1>L2 ? L1/L2 : L2/L1;
+}
+/* Từ 1 màu nền, tính bộ 3 màu: chữ nội dung / tiêu đề-điểm nhấn / viền-hoạ tiết */
+function computeSmartPalette(bgHex){
+  const lum = relLuminance(bgHex);
+  const isDark = lum < 0.5;
+  let bodyTextColor = isDark ? '#F5F1E6' : '#1B1B1B';
+
+  const {r,g,b} = hexToRgb(bgHex);
+  const hsl = rgbToHsl(r,g,b);
+  const isGray = hsl.s < 0.08; /* nền gần như trắng/đen/xám -> dùng bộ màu trung tính an toàn thay vì suy ra từ hue */
+
+  let accentHex, borderHex;
+  if(isGray){
+    accentHex = isDark ? '#E8C468' : '#B23A3A';
+    borderHex = isDark ? '#D8B65A' : '#B8873A';
+  } else {
+    const accentHue = hsl.h + 165; /* bổ túc tách đôi, dịu hơn đối lập 180° thuần */
+    const accentSat = Math.min(0.75, Math.max(0.55, hsl.s+0.15));
+    const accentLight = isDark ? 0.72 : 0.34;
+    const rgbA = hslToRgb(accentHue, accentSat, accentLight);
+    accentHex = rgbToHex(rgbA.r, rgbA.g, rgbA.b);
+
+    const borderHue = hsl.h + 180;
+    const borderSat = Math.min(0.7, Math.max(0.45, hsl.s));
+    const borderLight = isDark ? 0.66 : 0.40;
+    const rgbB = hslToRgb(borderHue, borderSat, borderLight);
+    borderHex = rgbToHex(rgbB.r, rgbB.g, rgbB.b);
+  }
+  /* đảm bảo tỉ lệ tương phản tối thiểu cho từng vai trò so với nền; nếu chưa đủ,
+     đẩy màu về phía sáng hơn (nền tối) hoặc tối hơn (nền sáng) đến khi đạt chuẩn */
+  function ensureContrast(hex, minRatio){
+    let cur = hex, tries=0;
+    while(contrastRatio(cur, bgHex) < minRatio && tries<12){
+      const {r,g,b} = hexToRgb(cur);
+      const hsl2 = rgbToHsl(r,g,b);
+      hsl2.l = isDark ? Math.min(0.98, hsl2.l+0.05) : Math.max(0.03, hsl2.l-0.05);
+      const rgb2 = hslToRgb(hsl2.h, hsl2.s, hsl2.l);
+      cur = rgbToHex(rgb2.r, rgb2.g, rgb2.b);
+      tries++;
+    }
+    return cur;
+  }
+  bodyTextColor = ensureContrast(bodyTextColor, 4.6); /* chuẩn WCAG AA cho chữ cỡ thường */
+  accentHex = ensureContrast(accentHex, 3.2);
+  borderHex = ensureContrast(borderHex, 2.6);
+
+  return { bodyTextColor, titleColor:accentHex, borderColor:borderHex, isDark };
+}
+/* Áp bảng màu thông minh vào DESIGN hiện tại (chỉ khi bật autoPalette) */
+function applySmartPaletteIfEnabled(){
+  if(!DESIGN.autoPalette) return;
+  const pal = computeSmartPalette(DESIGN.bgColor||'#FFFFFF');
+  DESIGN.bodyTextColor = pal.bodyTextColor;
+  DESIGN.titleColor = pal.titleColor;
+  DESIGN.borderColor = pal.borderColor;
+}
+
 function borderFrameStyleAttr(){
   const d=DESIGN, c=d.borderColor||'#B8873A', t=d.borderThickness||2;
   if(d.borderLine==='solid') return `border:${t}px solid ${c};`;
   if(d.borderLine==='double') return `border:${Math.max(t*3,6)}px double ${c};`;
   if(d.borderLine==='dashed') return `border:${t}px dashed ${c};`;
   if(d.borderLine==='dotted') return `border:${Math.max(t,2.5)}px dotted ${c};`;
-  if(d.borderLine==='goldframe') return `box-shadow:inset 0 0 0 2px ${c}, inset 0 0 0 7px #ffffff, inset 0 0 0 9px ${c};`;
+  if(d.borderLine==='goldframe') return `box-shadow:inset 0 0 0 2px ${c}, inset 0 0 0 7px ${d.bgColor||'#ffffff'}, inset 0 0 0 9px ${c};`;
   return '';
 }
 function certPageStyleAttr(extra){
   const d=DESIGN;
-  let s=`background-color:${d.bgColor||'#ffffff'};`;
+  let s=`background-color:${d.bgColor||'#ffffff'};color:${d.bodyTextColor||'#000000'};--cert-title-color:${d.titleColor||'#C00000'};`;
   if(extra) s+=extra;
   return s;
 }
@@ -2545,6 +2658,28 @@ function renderDesign(c){
                 <button class="btn btn-sm" id="d_bgcolor_reset">Đặt lại (trắng)</button>
               </div>
             </div>
+            <div class="field" style="background:#F6F8FA;border:1px solid var(--border);border-radius:8px;padding:10px 12px;">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-bottom:0;">
+                <input type="checkbox" id="d_autopalette" ${d.autoPalette?'checked':''}>
+                🎨 Tự động phối màu chữ &amp; viền theo màu nền (khuyến nghị)
+              </label>
+              <div class="hint" style="margin-top:6px;">Khi bật, mỗi lần đổi màu nền, phần mềm tự tính lại màu chữ (đen/trắng theo độ tương phản chuẩn WCAG để luôn dễ đọc) và màu tiêu đề/viền/hoạ tiết (theo nguyên tắc phối màu bổ túc — hài hoà, nổi bật, không chọn tuỳ tiện).</div>
+              <div class="hstack" style="margin-top:10px;">
+                <span class="small-muted">Màu chữ hiện tại:</span>
+                <span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:16px;height:16px;border-radius:4px;background:${d.bodyTextColor||'#000'};border:1px solid rgba(0,0,0,.2);"></span><span class="mono" style="font-size:11.5px;">${(d.bodyTextColor||'#000000').toUpperCase()}</span></span>
+                <span class="small-muted" style="margin-left:10px;">Màu tiêu đề:</span>
+                <span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:16px;height:16px;border-radius:4px;background:${d.titleColor||'#C00000'};border:1px solid rgba(0,0,0,.2);"></span><span class="mono" style="font-size:11.5px;">${(d.titleColor||'#C00000').toUpperCase()}</span></span>
+              </div>
+              ${!d.autoPalette?`
+              <div class="grid grid-2" style="margin-top:10px;">
+                <div class="field" style="margin-bottom:0;"><label>Màu chữ nội dung (ghi đè tay)</label>
+                  <div class="hstack"><input type="color" id="d_bodytext" value="${d.bodyTextColor||'#000000'}" style="width:40px;height:32px;padding:2px;"><input type="text" id="d_bodytext_hex" value="${d.bodyTextColor||'#000000'}" style="width:95px;"></div>
+                </div>
+                <div class="field" style="margin-bottom:0;"><label>Màu tiêu đề / điểm nhấn (ghi đè tay)</label>
+                  <div class="hstack"><input type="color" id="d_titlecolor" value="${d.titleColor||'#C00000'}" style="width:40px;height:32px;padding:2px;"><input type="text" id="d_titlecolor_hex" value="${d.titleColor||'#C00000'}" style="width:95px;"></div>
+                </div>
+              </div>`:''}
+            </div>
             <div class="field">
               <label>Hình nền (tuỳ chọn)</label>
               <div class="hstack">
@@ -2615,10 +2750,10 @@ function renderDesign(c){
             <div class="field">
               <label>Màu viền / hoạ tiết (dùng chung)</label>
               <div class="hstack">
-                <input type="color" id="d_bordercolor" value="${d.borderColor}" style="width:44px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;">
-                <input type="text" id="d_bordercolor_hex" value="${d.borderColor}" style="width:110px;">
+                <input type="color" id="d_bordercolor" value="${d.borderColor}" style="width:44px;height:36px;padding:2px;border:1px solid var(--border);border-radius:6px;" ${d.autoPalette?'disabled':''}>
+                <input type="text" id="d_bordercolor_hex" value="${d.borderColor}" style="width:110px;" ${d.autoPalette?'disabled':''}>
               </div>
-
+              ${d.autoPalette?'<div class="hint">Đang tự động theo màu nền. Tắt "Tự động phối màu" ở khối Màu &amp; hình nền phía trên để tự chọn màu này.</div>':''}
             </div>`:''}
           </div>
         </div>
@@ -2675,9 +2810,19 @@ function renderDesign(c){
     saveDesign(); showToast('Đã áp dụng khung "'+preset.label+'"','ok'); renderTab();
   }));
 
-  $('#d_bgcolor').addEventListener('input', e=>{ d.bgColor=e.target.value; $('#d_bgcolor_hex').value=e.target.value; saveDesign(); refreshPreview(); });
-  $('#d_bgcolor_hex').addEventListener('change', e=>{ const v=e.target.value.trim(); if(/^#([0-9a-fA-F]{6})$/.test(v)){ d.bgColor=v; $('#d_bgcolor').value=v; saveDesign(); refreshPreview(); } });
-  $('#d_bgcolor_reset').addEventListener('click', ()=>{ d.bgColor='#FFFFFF'; saveDesign(); renderTab(); });
+  $('#d_bgcolor').addEventListener('input', e=>{ d.bgColor=e.target.value; $('#d_bgcolor_hex').value=e.target.value; applySmartPaletteIfEnabled(); saveDesign(); refreshPreview(); });
+  $('#d_bgcolor').addEventListener('change', ()=>{ if(d.autoPalette) renderTab(); });
+  $('#d_bgcolor_hex').addEventListener('change', e=>{ const v=e.target.value.trim(); if(/^#([0-9a-fA-F]{6})$/.test(v)){ d.bgColor=v; $('#d_bgcolor').value=v; applySmartPaletteIfEnabled(); saveDesign(); renderTab(); } });
+  $('#d_bgcolor_reset').addEventListener('click', ()=>{ d.bgColor='#FFFFFF'; applySmartPaletteIfEnabled(); saveDesign(); renderTab(); });
+  $('#d_autopalette').addEventListener('change', e=>{
+    d.autoPalette = e.target.checked;
+    if(d.autoPalette) applySmartPaletteIfEnabled();
+    saveDesign(); showToast(d.autoPalette?'Đã bật tự động phối màu theo nền':'Đã chuyển sang chọn màu thủ công','ok'); renderTab();
+  });
+  if($('#d_bodytext')) $('#d_bodytext').addEventListener('input', e=>{ d.bodyTextColor=e.target.value; $('#d_bodytext_hex').value=e.target.value; saveDesign(); refreshPreview(); });
+  if($('#d_bodytext_hex')) $('#d_bodytext_hex').addEventListener('change', e=>{ const v=e.target.value.trim(); if(/^#([0-9a-fA-F]{6})$/.test(v)){ d.bodyTextColor=v; $('#d_bodytext').value=v; saveDesign(); refreshPreview(); } });
+  if($('#d_titlecolor')) $('#d_titlecolor').addEventListener('input', e=>{ d.titleColor=e.target.value; $('#d_titlecolor_hex').value=e.target.value; saveDesign(); refreshPreview(); });
+  if($('#d_titlecolor_hex')) $('#d_titlecolor_hex').addEventListener('change', e=>{ const v=e.target.value.trim(); if(/^#([0-9a-fA-F]{6})$/.test(v)){ d.titleColor=v; $('#d_titlecolor').value=v; saveDesign(); refreshPreview(); } });
 
   $('#d_bgfile').addEventListener('change', e=>{
     const file=e.target.files[0]; if(!file) return;
@@ -3191,7 +3336,7 @@ function orgNameLinesHtml(h){
   let line1 = raw, line2 = '';
   const m = raw.match(/^(BỆNH VIỆN|TRUNG TÂM|TRƯỜNG|SỞ Y TẾ|VIỆN)\s+(.+)$/);
   if(m){ line1 = m[1]; line2 = m[2]; }
-  const ul = txt => `<span style="display:inline-block;text-align:center;">${esc(txt)}<span style="display:block;height:1.4px;background:#000;width:33%;margin:2px auto 0;"></span></span>`;
+  const ul = txt => `<span style="display:inline-block;text-align:center;">${esc(txt)}<span style="display:block;height:1.4px;background:currentColor;width:33%;margin:2px auto 0;"></span></span>`;
   if(!line2) return ul(line1);
   return `${esc(line1)}<br>${ul(line2)}`;
 }
@@ -3748,7 +3893,7 @@ function wordDocWrapper(bodyHtml, opt){
   ${pageBorder}
 }
 div.WordSectionCert{page:WordSectionCert;}
-body{font-family:'Times New Roman',Times,serif; font-size:13.0pt; color:#000; margin:0;}
+body{font-family:'Times New Roman',Times,serif; font-size:13.0pt; color:${DESIGN.bodyTextColor||'#000'}; margin:0;}
 p,div,td,span{font-family:'Times New Roman',Times,serif; font-size:13.0pt;}
 /* Word/LibreOffice biến mỗi thẻ div thành một đoạn văn và tự thêm khoảng cách
    trước–sau. Phải đưa về 0 nếu không nội dung bị giãn ra và tràn sang trang thứ hai. */
@@ -3761,11 +3906,11 @@ table{border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;} td{ve
 .cert-org b{font-weight:bold;}
 .cert-nation{text-align:center;font-weight:bold;font-size:12.0pt;line-height:1.35;}
 .cert-nation .line1{font-size:12.0pt;white-space:nowrap;mso-no-proof:yes;}
-.cert-nation .line2{border-bottom:1pt solid #000;padding-bottom:2pt;}
+.cert-nation .line2{border-bottom:1pt solid ${DESIGN.bodyTextColor||'#000'};padding-bottom:2pt;}
 .cert-so{text-align:center;font-size:13.0pt;margin-top:6pt;}
 .cert-title-wrap{text-align:center;margin-top:20pt;}
-.cert-title{font-size:22.0pt;font-weight:bold;letter-spacing:1pt;color:#C00000;}
-.cert-subtitle{font-size:14.0pt;font-weight:bold;margin-top:8pt;color:#C00000;line-height:1.45;}
+.cert-title{font-size:22.0pt;font-weight:bold;letter-spacing:1pt;color:${DESIGN.titleColor||'#C00000'};}
+.cert-subtitle{font-size:14.0pt;font-weight:bold;margin-top:8pt;color:${DESIGN.titleColor||'#C00000'};line-height:1.45;}
 .cert-body{margin-top:20pt;font-size:13.0pt;line-height:1.55;text-align:justify;}
 .cert-body .ln{margin-bottom:2pt;}
 .field-val{font-weight:bold;}
@@ -3877,38 +4022,40 @@ function docxCertBodyXml(ctx){
   const hinhThucTen = vaiTro&&vaiTro.htTen?vaiTro.htTen:((hinhThucById(r?r.hinhThuc:'')||{}).ten||'');
   const gio = r?(Math.round((r.gioTinChi||0)*100)/100):0;
   const orgLines = orgNameLinesPlain(h);
-  const fieldLine = (label,val)=>wPara(wRun(label,{sz:26})+wRun(val||'',{b:true,sz:26}), {align:'both'});
+  const bodyC = (DESIGN.bodyTextColor||'#000000').replace('#','');
+  const titleC = (DESIGN.titleColor||'#C00000').replace('#','');
+  const fieldLine = (label,val)=>wPara(wRun(label,{sz:26,color:bodyC})+wRun(val||'',{b:true,sz:26,color:bodyC}), {align:'both'});
 
-  const leftCell = wPara(wRun((h.soYTe||'').toUpperCase(),{sz:26}),{align:'center'})
-    + wPara(wRun(orgLines[0],{b:true,sz:26}),{align:'center'})
-    + (orgLines[1]?wPara(wRun(orgLines[1],{b:true,u:true,sz:26}),{align:'center'}):'')
+  const leftCell = wPara(wRun((h.soYTe||'').toUpperCase(),{sz:26,color:bodyC}),{align:'center'})
+    + wPara(wRun(orgLines[0],{b:true,sz:26,color:bodyC}),{align:'center'})
+    + (orgLines[1]?wPara(wRun(orgLines[1],{b:true,u:true,sz:26,color:bodyC}),{align:'center'}):'')
     + wPara('',{})
-    + wPara(wRun('Số: '+(ctx.soGiay||''),{sz:26}),{align:'center'});
-  const rightCell = wPara(wRun('CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM',{b:true,sz:24}),{align:'center'})
-    + wPara(wRun('Độc lập - Tự do - Hạnh phúc',{b:true,u:true,sz:24}),{align:'center'})
+    + wPara(wRun('Số: '+(ctx.soGiay||''),{sz:26,color:bodyC}),{align:'center'});
+  const rightCell = wPara(wRun('CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM',{b:true,sz:24,color:bodyC}),{align:'center'})
+    + wPara(wRun('Độc lập - Tự do - Hạnh phúc',{b:true,u:true,sz:24,color:bodyC}),{align:'center'})
     + wPara('',{}) + wPara('',{});
 
   /* Cột trái 4000 twip, cột phải 5360 twip: vừa đủ cho quốc hiệu trên một dòng */
   let out = wTable2Col(leftCell, rightCell, 4000, 5360);
-  out += wPara(wRun('GIẤY CHỨNG NHẬN',{b:true,color:'C00000',sz:44}),{align:'center',before:220});
-  out += wPara(wRun('THAM GIA CẬP NHẬT KIẾN THỨC Y KHOA LIÊN TỤC',{b:true,color:'C00000',sz:28}),{align:'center',before:140});
-  out += wPara(wRun('TRONG KHÁM BỆNH, CHỮA BỆNH',{b:true,color:'C00000',sz:28}),{align:'center'});
+  out += wPara(wRun('GIẤY CHỨNG NHẬN',{b:true,color:titleC,sz:44}),{align:'center',before:220});
+  out += wPara(wRun('THAM GIA CẬP NHẬT KIẾN THỨC Y KHOA LIÊN TỤC',{b:true,color:titleC,sz:28}),{align:'center',before:140});
+  out += wPara(wRun('TRONG KHÁM BỆNH, CHỮA BỆNH',{b:true,color:titleC,sz:28}),{align:'center'});
   out += wPara('',{});
   out += fieldLine('Chứng nhận: '+gioiTinh+' ', p?p.hoTen:'');
   out += fieldLine('Sinh ngày: ', p&&p.ngaySinh?fmtDate(p.ngaySinh):'');
   out += fieldLine('Đơn vị công tác: ', p?p.donViCongTac:'');
-  out += wPara(wRun('Đã hoàn thành cập nhật kiến thức y khoa liên tục với các nội dung như sau:',{sz:26}),{align:'both',before:120});
+  out += wPara(wRun('Đã hoàn thành cập nhật kiến thức y khoa liên tục với các nội dung như sau:',{sz:26,color:bodyC}),{align:'both',before:120});
   out += fieldLine('1. Hình thức: ', hinhThucTen);
   out += fieldLine('2. Nội dung/chủ đề: ', pg?pg.ten:'');
   out += fieldLine('3. Đơn vị/cá nhân chịu trách nhiệm: ', pg?(pg.donViChiuTrachNhiem||h.tenDonVi):'');
-  out += wPara(wRun('4. Thời gian từ ngày '+bd.d+' tháng '+bd.m+' năm '+bd.y+', đến ngày '+kt.d+' tháng '+kt.m+' năm '+kt.y,{sz:26}),{align:'both'});
+  out += wPara(wRun('4. Thời gian từ ngày '+bd.d+' tháng '+bd.m+' năm '+bd.y+', đến ngày '+kt.d+' tháng '+kt.m+' năm '+kt.y,{sz:26,color:bodyC}),{align:'both'});
   out += fieldLine((vaiTro&&vaiTro.donVi&&vaiTro.donVi.indexOf('tiết')>=0?'5. Số tiết: ':'5. Khối lượng thực hiện: '), r?(r.soLuong+' '+(vaiTro?vaiTro.donVi:'')):'');
-  out += wPara(wRun('Quy đổi tương đương: '+fmtNum(gio)+' giờ tín chỉ',{b:true,sz:26}),{align:'center',before:180});
-  out += wPara(wRun('(bằng chữ: '+soThanhChuVN(gio)+')',{i:true,sz:25}),{align:'center'});
-  const signRight = wPara(wRun((h.diaChiTinh||'')+', ngày '+d.d+' tháng '+d.m+' năm '+d.y,{i:true,sz:26}),{align:'center',before:220})
-    + wPara(wRun((h.chucDanhKy||'GIÁM ĐỐC').toUpperCase(),{b:true,sz:26}),{align:'center'})
+  out += wPara(wRun('Quy đổi tương đương: '+fmtNum(gio)+' giờ tín chỉ',{b:true,sz:26,color:bodyC}),{align:'center',before:180});
+  out += wPara(wRun('(bằng chữ: '+soThanhChuVN(gio)+')',{i:true,sz:25,color:bodyC}),{align:'center'});
+  const signRight = wPara(wRun((h.diaChiTinh||'')+', ngày '+d.d+' tháng '+d.m+' năm '+d.y,{i:true,sz:26,color:bodyC}),{align:'center',before:220})
+    + wPara(wRun((h.chucDanhKy||'GIÁM ĐỐC').toUpperCase(),{b:true,sz:26,color:bodyC}),{align:'center'})
     + wPara('',{}) + wPara('',{}) + wPara('',{})
-    + wPara(wRun(h.tenGiamDoc||'',{b:true,sz:26}),{align:'center'});
+    + wPara(wRun(h.tenGiamDoc||'',{b:true,sz:26,color:bodyC}),{align:'center'});
   out += wTable2Col(wPara('',{}), signRight, 4700, 4660);
   if(ctx.reissueLabel) out += wPara(wRun(ctx.reissueLabel,{i:true,sz:18,color:'666666'}),{align:'right',before:200});
   return out;
@@ -4194,10 +4341,14 @@ function rtfEsc(str){
 const R = rtfEsc;
 
 function rtfColorTable(){
-  const hex = (DESIGN.borderColor||'#B8873A').replace('#','');
-  const r = parseInt(hex.substr(0,2),16)||184, g = parseInt(hex.substr(2,2),16)||135, b = parseInt(hex.substr(4,2),16)||58;
-  /* cf1 = đỏ tiêu đề, cf2 = màu viền theo thiết kế */
-  return `{\\colortbl;\\red192\\green0\\blue0;\\red${r}\\green${g}\\blue${b};}`;
+  const hexB = (DESIGN.borderColor||'#B8873A').replace('#','');
+  const rB = parseInt(hexB.substr(0,2),16)||184, gB = parseInt(hexB.substr(2,2),16)||135, bB = parseInt(hexB.substr(4,2),16)||58;
+  const hexT = (DESIGN.titleColor||'#C00000').replace('#','');
+  const rT = parseInt(hexT.substr(0,2),16)||192, gT = parseInt(hexT.substr(2,2),16)||0, bT = parseInt(hexT.substr(4,2),16)||0;
+  const hexC = (DESIGN.bodyTextColor||'#000000').replace('#','');
+  const rC = parseInt(hexC.substr(0,2),16)||0, gC = parseInt(hexC.substr(2,2),16)||0, bC = parseInt(hexC.substr(4,2),16)||0;
+  /* cf1 = màu tiêu đề/điểm nhấn, cf2 = màu viền theo thiết kế, cf3 = màu chữ nội dung */
+  return `{\\colortbl;\\red${rT}\\green${gT}\\blue${bT};\\red${rB}\\green${gB}\\blue${bB};\\red${rC}\\green${gC}\\blue${bC};}`;
 }
 /* Viền trang gốc của RTF — đo từ mép giấy, khoảng cách = độ thụt viền trong thiết kế */
 function rtfPageBorders(){
@@ -4241,45 +4392,44 @@ function rtfCertBody(ctx){
   const gio = r?(Math.round((r.gioTinChi||0)*100)/100):0;
   const orgLines = orgNameLinesPlain(h);
   const soTietNhan = (vaiTro&&vaiTro.donVi&&vaiTro.donVi.indexOf('tiết')>=0) ? '5. Số tiết: ' : '5. Khối lượng thực hiện: ';
-  const line = (label, val) => `\\pard\\ql ${R(label)}${(val!==undefined&&val!==null&&val!=='')?'\\b '+R(val)+'\\b0':''}\\par\n`;
-
+  const line = (label, val) => `\\pard\\ql\\cf3 ${R(label)}${(val!==undefined&&val!==null&&val!=='')?'\\b '+R(val)+'\\b0':''}\\par\n`;
   let s='';
   /* ---- Khối tiêu đề: cột trái = cơ quan chủ quản/đơn vị/số giấy, cột phải = quốc hiệu ---- */
   s += rtfRowStart(4000, RTF_TEXTW);
-  s += `\\pard\\intbl\\qc\\fs26 ${R((h.soYTe||'').toUpperCase())}\\par\n`;
+  s += `\\pard\\intbl\\qc\\fs26\\cf3 ${R((h.soYTe||'').toUpperCase())}\\par\n`;
   s += `\\b ${R(orgLines[0]||'')}\\par\n`;
   if(orgLines[1]) s += `\\ul ${R(orgLines[1])}\\ulnone\\par\n`;
   s += `\\b0\\par\n`;
   s += `${R('Số: '+(ctx.soGiay||''))}\\cell\n`;
-  s += `\\pard\\intbl\\qc\\b\\fs24 ${R('CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM')}\\par\n`;
+  s += `\\pard\\intbl\\qc\\b\\fs24\\cf3 ${R('CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM')}\\par\n`;
   s += `\\ul ${R('Độc lập - Tự do - Hạnh phúc')}\\ulnone\\b0\\fs26\\cell\n`;
   s += `\\row\n`;
   /* ---- Tiêu đề giấy ---- */
   s += `\\pard\\qc\\sb240\\b\\fs44\\cf1 ${R('GIẤY CHỨNG NHẬN')}\\par\n`;
   s += `\\pard\\qc\\sb120\\fs28\\b\\cf1 ${R('THAM GIA CẬP NHẬT KIẾN THỨC Y KHOA LIÊN TỤC')}\\par\n`;
   s += `\\pard\\qc\\fs28\\b\\cf1 ${R('TRONG KHÁM BỆNH, CHỮA BỆNH')}\\par\n`;
-  s += `\\pard\\cf0\\b0\\fs26\\par\n`;
+  s += `\\pard\\cf3\\b0\\fs26\\par\n`;
   /* ---- Nội dung ---- */
   s += line('Chứng nhận: '+gioiTinh+' ', p?p.hoTen:'');
   s += line('Sinh ngày: ', p&&p.ngaySinh?fmtDate(p.ngaySinh):'');
   s += line('Đơn vị công tác: ', p?p.donViCongTac:'');
-  s += `\\pard\\ql\\sb120 ${R('Đã hoàn thành cập nhật kiến thức y khoa liên tục với các nội dung như sau:')}\\par\n`;
+  s += `\\pard\\ql\\sb120\\cf3 ${R('Đã hoàn thành cập nhật kiến thức y khoa liên tục với các nội dung như sau:')}\\par\n`;
   s += line('1. Hình thức: ', hinhThucTen);
   s += line('2. Nội dung/chủ đề: ', pg?pg.ten:'');
   s += line('3. Đơn vị/cá nhân chịu trách nhiệm: ', pg?(pg.donViChiuTrachNhiem||h.tenDonVi):'');
-  s += `\\pard\\ql ${R('4. Thời gian từ ngày '+bd.d+' tháng '+bd.m+' năm '+bd.y+', đến ngày '+kt.d+' tháng '+kt.m+' năm '+kt.y)}\\par\n`;
+  s += `\\pard\\ql\\cf3 ${R('4. Thời gian từ ngày '+bd.d+' tháng '+bd.m+' năm '+bd.y+', đến ngày '+kt.d+' tháng '+kt.m+' năm '+kt.y)}\\par\n`;
   s += line(soTietNhan, r?(r.soLuong+' '+(vaiTro?vaiTro.donVi:'')):'');
-  s += `\\pard\\qc\\sb180\\b ${R('Quy đổi tương đương: '+fmtNum(gio)+' giờ tín chỉ')}\\b0\\par\n`;
-  s += `\\pard\\qc\\i ${R('(bằng chữ: '+soThanhChuVN(gio)+')')}\\i0\\par\n`;
+  s += `\\pard\\qc\\sb180\\b\\cf3 ${R('Quy đổi tương đương: '+fmtNum(gio)+' giờ tín chỉ')}\\b0\\par\n`;
+  s += `\\pard\\qc\\i\\cf3 ${R('(bằng chữ: '+soThanhChuVN(gio)+')')}\\i0\\par\n`;
   /* ---- Khối ký: đẩy sang nửa phải bằng bảng 2 cột ---- */
   s += `\\pard\\sa240\\par\n`;
   s += rtfRowStart(4706, RTF_TEXTW);
   s += `\\pard\\intbl\\cell\n`;
-  s += `\\pard\\intbl\\qc\\i ${R((h.diaChiTinh||'')+', ngày '+d.d+' tháng '+d.m+' năm '+d.y)}\\i0\\par\n`;
+  s += `\\pard\\intbl\\qc\\i\\cf3 ${R((h.diaChiTinh||'')+', ngày '+d.d+' tháng '+d.m+' năm '+d.y)}\\i0\\par\n`;
   s += `\\b ${R((h.chucDanhKy||'GIÁM ĐỐC').toUpperCase())}\\b0\\par\n\\par\n\\par\n\\par\n`;
   s += `\\b ${R(h.tenGiamDoc||'')}\\b0\\cell\n`;
   s += `\\row\n\\pard\n`;
-  if(ctx.reissueLabel) s += `\\pard\\qr\\i\\fs18 ${R(ctx.reissueLabel)}\\i0\\fs26\\par\n`;
+  if(ctx.reissueLabel) s += `\\pard\\qr\\i\\fs18\\cf3 ${R(ctx.reissueLabel)}\\i0\\fs26\\par\n`;
   return s;
 }
 
@@ -4302,7 +4452,7 @@ async function exportCertRtf(ctxs, filename){
 ${rtfColorTable()}
 \\viewkind4\\paperw11906\\paperh16838\\margl1247\\margr1247\\margt1134\\margb1021\\headery0\\footery0\\sectd\\linex0${rtfPageBorders()}
 ${headerRtf}
-\\f0\\fs26\\cf0
+\\f0\\fs26\\cf3
 ${bodies}
 }`;
     /* Chỉ chứa ASCII nên ghi bằng bảng mã nào cũng đọc đúng */
